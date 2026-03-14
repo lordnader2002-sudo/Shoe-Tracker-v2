@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>🔥 Sneaker Release Tracker</title>
+<style>
+:root{
+  --bg0:#0d1117;--bg1:#161b22;--bg2:#1f2937;--bg3:#111827;
+  --border:#30363d;--txt:#e6edf3;--txt2:#8b949e;
+  --blue:#58a6ff;--blue-dim:#1f4373;--purple:#bc8cff;
+  --green:#3fb950;--yellow:#d29922;--orange:#f78166;--red:#ff4040;
+  --h1:#3fb950;--h2:#d29922;--h3:#f78166;--h4:#ff4040;--h5:#bc8cff;
+  --jordan:#e03131;--nike:#fa7343;--adidas:#40c057;--yeezy:#fab005;
+  --nb:#4dabf7;--puma:#ff6b6b;--ua:#5c7cfa;--other:#8b949e;
+  --r:10px;--shadow:0 4px 24px rgba(0,0,0,.6);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{background:var(--bg0);color:var(--txt);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;line-height:1.5}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── NAVBAR ── */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;padding:0 22px;height:58px;background:var(--bg1);border-bottom:1px solid var(--border)}
+.nav-brand{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.nav-flame{font-size:22px}
+.nav-title{font-size:17px;font-weight:800;letter-spacing:-.3px}
+.nav-title span{color:var(--blue)}
+.nav-count{background:var(--blue-dim);color:var(--blue);font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;border:1px solid var(--blue)}
+.nav-search{flex:1;max-width:400px;position:relative}
+.nav-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none}
+.nav-search input{width:100%;padding:7px 12px 7px 32px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--txt);font-size:13px;outline:none;transition:.2s}
+.nav-search input::placeholder{color:var(--txt2)}
+.nav-search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(88,166,255,.15)}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.nav-sync{font-size:11px;color:var(--txt2);white-space:nowrap}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:8px;border:1px solid transparent;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap;font-family:inherit}
+.btn-blue{background:var(--blue);color:#000;border-color:var(--blue)}
+.btn-blue:hover{background:#79baff}
+.btn-outline{background:transparent;color:var(--txt);border-color:var(--border)}
+.btn-outline:hover{background:var(--bg2);border-color:var(--blue);color:var(--blue)}
+.btn-excel{background:#1a7a3f;color:#fff;border-color:#1a7a3f}
+.btn-excel:hover{background:#22a050}
+.btn-ghost{background:transparent;color:var(--txt2);border:1px solid var(--border)}
+.btn-ghost:hover{color:var(--red);border-color:var(--red)}
+
+/* ── STATS BAR ── */
+.stats{display:flex;gap:10px;padding:12px 22px;background:var(--bg1);border-bottom:1px solid var(--border);overflow-x:auto}
+.stat{display:flex;flex-direction:column;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:9px 22px;min-width:100px;flex-shrink:0}
+.stat-val{font-size:22px;font-weight:800;color:var(--blue)}
+.stat-lbl{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* ── FILTER BAR ── */
+.filters{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px;padding:12px 22px;background:var(--bg1);border-bottom:1px solid var(--border)}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:10px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.5px}
+.fg select{background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--txt);font-size:12px;padding:6px 26px 6px 9px;cursor:pointer;outline:none;min-width:130px;transition:.2s;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%238b949e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;font-family:inherit}
+.fg select:focus{border-color:var(--blue)}
+.fg select option{background:var(--bg2)}
+.hype-range{display:flex;align-items:center;gap:6px}
+.hype-range select{min-width:82px}
+.range-sep{color:var(--txt2);font-size:13px}
+
+/* ── MAIN ── */
+.main{padding:22px;min-height:60vh}
+.loader{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:70px 0;color:var(--txt2)}
+.spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:70px 0;color:var(--txt2);text-align:center}
+.empty-icon{font-size:52px}
+.empty h2{color:var(--txt);font-size:18px}
+.empty p{max-width:360px;font-size:13px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.hidden{display:none!important}
+
+/* ── CARD ── */
+.card{background:var(--bg1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.2s;position:relative}
+.card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:var(--shadow)}
+.card[data-hype="1"]{border-left:3px solid var(--h1)}
+.card[data-hype="2"]{border-left:3px solid var(--h2)}
+.card[data-hype="3"]{border-left:3px solid var(--h3)}
+.card[data-hype="4"]{border-left:3px solid var(--h4)}
+.card[data-hype="5"]{border-left:3px solid var(--h5)}
+
+.img-wrap{position:relative;width:100%;padding-top:62%;background:var(--bg2);overflow:hidden}
+.img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:8px;transition:transform .3s}
+.card:hover .img-wrap img{transform:scale(1.05)}
+.img-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:48px}
+
+.hype-ov{position:absolute;top:8px;right:8px;z-index:2}
+.brand-ov{position:absolute;top:8px;left:8px;z-index:2}
+
+.hbadge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;letter-spacing:.3px;border:1px solid}
+.h1b{color:var(--h1);background:rgba(63,185,80,.12);border-color:var(--h1)}
+.h2b{color:var(--h2);background:rgba(210,153,34,.12);border-color:var(--h2)}
+.h3b{color:var(--h3);background:rgba(247,129,102,.12);border-color:var(--h3)}
+.h4b{color:var(--h4);background:rgba(255,64,64,.12);border-color:var(--h4)}
+.h5b{color:var(--h5);background:rgba(188,140,255,.15);border-color:var(--h5)}
+
+.bbadge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border:1px solid}
+.bJordan{color:var(--jordan);background:rgba(224,49,49,.15);border-color:var(--jordan)}
+.bNike{color:var(--nike);background:rgba(250,115,67,.12);border-color:var(--nike)}
+.bAdidas{color:var(--adidas);background:rgba(64,192,87,.12);border-color:var(--adidas)}
+.bYeezy{color:var(--yeezy);background:rgba(250,176,5,.12);border-color:var(--yeezy)}
+.bNB{color:var(--nb);background:rgba(77,171,247,.12);border-color:var(--nb)}
+.bPuma{color:var(--puma);background:rgba(255,107,107,.12);border-color:var(--puma)}
+.bUA{color:var(--ua);background:rgba(92,124,250,.12);border-color:var(--ua)}
+.bOther{color:var(--other);background:rgba(139,148,158,.1);border-color:var(--other)}
+
+.cbody{padding:13px;display:flex;flex-direction:column;gap:9px;flex:1}
+.cname{font-size:13px;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cmeta{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.cmeta-item{display:flex;flex-direction:column;gap:2px}
+.cmeta-key{font-size:9px;font-weight:700;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px}
+.cmeta-val{font-size:12px;font-weight:700}
+.cv-date{color:var(--blue)}
+.cv-price{color:var(--green)}
+.cv-tbd{color:var(--txt2);font-style:italic}
+
+.chype{display:flex;align-items:center;gap:7px}
+.cstars{letter-spacing:1px;font-size:13px}
+.clabel{font-size:11px;font-weight:700}
+.cl1{color:var(--h1)}.cl2{color:var(--h2)}.cl3{color:var(--h3)}.cl4{color:var(--h4)}.cl5{color:var(--h5)}
+
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--bg2);border:1px solid var(--border);color:var(--txt2);white-space:nowrap}
+.chip-snkrs{color:#fa7343;border-color:#fa7343;background:rgba(250,115,67,.1)}
+.chip-raffle,.chip-draw{color:var(--h4);border-color:var(--h4);background:rgba(255,64,64,.1)}
+.chip-confirmed{color:var(--adidas);border-color:var(--adidas);background:rgba(64,192,87,.1)}
+.chip-online{color:var(--blue);border-color:var(--blue-dim);background:rgba(88,166,255,.08)}
+
+.cfoot{padding:9px 13px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.csrc{font-size:10px;color:var(--txt2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.csrc:hover{color:var(--blue)}
+.cvbtn{font-size:10px;font-weight:700;color:var(--blue);background:transparent;border:1px solid var(--blue-dim);border-radius:6px;padding:3px 9px;cursor:pointer;flex-shrink:0;transition:.2s;font-family:inherit}
+.cvbtn:hover{background:var(--blue-dim)}
+
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px)}
+.modal{background:var(--bg1);border:1px solid var(--border);border-radius:14px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow)}
+.mhead{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg1);z-index:1}
+.mhead h2{font-size:16px;font-weight:800}
+.mclose{background:transparent;border:1px solid var(--border);color:var(--txt2);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:13px;transition:.2s;font-family:inherit}
+.mclose:hover{border-color:var(--red);color:var(--red)}
+.mbody{padding:18px 22px;display:flex;flex-direction:column;gap:22px}
+.msec{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:2px}
+
+.ltable{width:100%;border-collapse:collapse;font-size:12px}
+.ltable th{background:var(--bg2);padding:9px 11px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--txt2);border-bottom:1px solid var(--border)}
+.ltable td{padding:11px;border-bottom:1px solid var(--border);vertical-align:middle}
+.ltable tr:hover td{background:var(--bg2)}
+
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:9px}
+.mi{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;gap:3px}
+.mi strong{font-size:12px;color:var(--blue)}
+.mi span{font-size:10px;color:var(--txt2);line-height:1.4}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:300;background:var(--bg2);border:1px solid var(--border);color:var(--txt);padding:10px 20px;border-radius:10px;font-size:12px;font-weight:700;box-shadow:var(--shadow);transition:opacity .3s;white-space:nowrap}
+.t-ok{border-color:var(--green);color:var(--green)}
+.t-err{border-color:var(--red);color:var(--red)}
+.t-info{border-color:var(--blue);color:var(--blue)}
+
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg0)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:700px){
+  .nav{flex-wrap:wrap;height:auto;padding:10px 14px;gap:8px}
+  .nav-search{order:3;max-width:100%;width:100%}
+  .nav-sync{display:none}
+  .stats,.filters{padding:10px 14px}
+  .main{padding:14px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="nav">
+  <div class="nav-brand">
+    <span class="nav-flame">🔥</span>
+    <span class="nav-title">Sneaker<span> Tracker</span></span>
+    <span class="nav-count" id="totalBadge">–</span>
+  </div>
+  <div class="nav-search">
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M9 9l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <input id="searchInput" type="text" placeholder="Search sneakers, brands…"/>
+  </div>
+  <div class="nav-actions">
+    <span class="nav-sync" id="syncLabel">Showing seed data</span>
+    <button class="btn btn-outline" id="legendBtn">📖 Legend</button>
+    <button class="btn btn-excel" id="exportBtn">📥 Export CSV</button>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-val" id="sTotal">–</div><div class="stat-lbl">Total Releases</div></div>
+  <div class="stat"><div class="stat-val" id="sUpcoming">–</div><div class="stat-lbl">Upcoming</div></div>
+  <div class="stat"><div class="stat-val" id="sGrail">–</div><div class="stat-lbl">Grails 🟣</div></div>
+  <div class="stat"><div class="stat-val" id="sShowing">–</div><div class="stat-lbl">Showing</div></div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters">
+  <div class="fg">
+    <label>Brand</label>
+    <select id="fBrand"><option value="">All Brands</option></select>
+  </div>
+  <div class="fg">
+    <label>Hype Level</label>
+    <div class="hype-range">
+      <select id="fHypeLo">
+        <option value="1">★ 1</option><option value="2">★★ 2</option>
+        <option value="3">★★★ 3</option><option value="4">★★★★ 4</option>
+        <option value="5">★★★★★ 5</option>
+      </select>
+      <span class="range-sep">–</span>
+      <select id="fHypeHi">
+        <option value="1">★ 1</option><option value="2">★★ 2</option>
+        <option value="3">★★★ 3</option><option value="4">★★★★ 4</option>
+        <option value="5" selected>★★★★★ 5</option>
+      </select>
+    </div>
+  </div>
+  <div class="fg">
+    <label>Sale Method</label>
+    <select id="fMethod"><option value="">All Methods</option></select>
+  </div>
+  <div class="fg">
+    <label>Sort By</label>
+    <select id="fSort">
+      <option value="date_asc">Release Date ↑</option>
+      <option value="date_desc">Release Date ↓</option>
+      <option value="hype_desc">Hype (Highest)</option>
+      <option value="hype_asc">Hype (Lowest)</option>
+      <option value="price_asc">Price ↑</option>
+      <option value="price_desc">Price ↓</option>
+      <option value="brand">Brand A–Z</option>
+    </select>
+  </div>
+  <div class="fg" style="justify-content:flex-end">
+    <label>&nbsp;</label>
+    <button class="btn btn-ghost" id="clearBtn">✕ Clear</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="loader hidden" id="loader"><div class="spinner"></div><p>Loading…</p></div>
+  <div class="empty hidden" id="emptyState">
+    <div class="empty-icon">👟</div>
+    <h2>No results</h2>
+    <p>Try adjusting your filters or clearing the search.</p>
+    <button class="btn btn-outline" onclick="clearAll()">✕ Clear Filters</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- LEGEND MODAL -->
+<div class="overlay hidden" id="legendModal">
+  <div class="modal">
+    <div class="mhead">
+      <h2>📖 Hype Level Guide</h2>
+      <button class="mclose" id="mClose">✕</button>
+    </div>
+    <div class="mbody">
+      <div>
+        <div class="msec">🔥 Hype Scale (1–5)</div>
+        <table class="ltable">
+          <thead><tr><th>Level</th><th>Status</th><th>What it means</th></tr></thead>
+          <tbody>
+            <tr><td><span class="hbadge h1b">★ 1/5</span></td><td class="cl1">⚪ General Release</td><td>Widely available. Walk-in purchase, no rush or special app needed.</td></tr>
+            <tr><td><span class="hbadge h2b">★★ 2/5</span></td><td class="cl2">🟡 Popular</td><td>High demand, sells out eventually but restocks occur. Prepare checkout early.</td></tr>
+            <tr><td><span class="hbadge h3b">★★★ 3/5</span></td><td class="cl3">🟠 Hyped</td><td>Sells out in minutes. Bot competition is high. Limited restocks.</td></tr>
+            <tr><td><span class="hbadge h4b">★★★★ 4/5</span></td><td class="cl4">🔴 Limited</td><td>Raffle or draw entry required. Very low stock. 2–5× resale premium.</td></tr>
+            <tr><td><span class="hbadge h5b">★★★★★ 5/5</span></td><td class="cl5">🟣 Grail</td><td>Instant global sellout. Major collab or iconic colorway. 5–15× resale.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="msec">🛍️ Sale Methods</div>
+        <div class="mgrid">
+          <div class="mi"><strong>SNKRS App</strong><span>Nike's exclusive drop app for limited releases.</span></div>
+          <div class="mi"><strong>Confirmed App</strong><span>Adidas draw/reservation app for Yeezy & collabs.</span></div>
+          <div class="mi"><strong>Raffle</strong><span>Submit entry for random winner selection. No speed advantage.</span></div>
+          <div class="mi"><strong>Draw</strong><span>Open entry window, winners randomly selected.</span></div>
+          <div class="mi"><strong>In-Store</strong><span>Physical retail. May need to queue the night before.</span></div>
+          <div class="mi"><strong>Online</strong><span>Brand/retailer website at drop time. Fast checkout needed.</span></div>
+          <div class="mi"><strong>Foot Locker</strong><span>FLX app or footlocker.com and stores.</span></div>
+          <div class="mi"><strong>StockX / GOAT</strong><span>Resale platforms — prices are above retail.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast hidden" id="toast"></div>
+
+<script>
+// ── Seed data (embedded – no server needed) ──────────────────────────
+const SEED = [{"id":"a1b2c3d4e5f6","name":"Air Jordan 1 Retro High OG \"Lost & Found\"","brand":"Jordan","release_date":"2025-04-19","price":180,"sale_methods":["SNKRS App","Raffle"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/09/Air-Jordan-1-Lost-Found-DZ5485-612.jpg","source_url":"https://sneakernews.com/2022/09/air-jordan-1-lost-found-release-date/","source":"SneakerNews","hype_level":5,"hype_label":"Grail"},{"id":"b2c3d4e5f6a1","name":"Nike Dunk Low \"Panda\"","brand":"Nike","release_date":"2025-04-25","price":110,"sale_methods":["Online","In-Store","Foot Locker"],"image_url":"https://sneakernews.com/wp-content/uploads/2021/08/Nike-Dunk-Low-Panda-DD1391-100.jpg","source_url":"https://sneakernews.com/2021/08/nike-dunk-low-panda-release-date/","source":"KicksOnFire","hype_level":3,"hype_label":"Hyped"},{"id":"c3d4e5f6a1b2","name":"Adidas Yeezy Boost 350 V2 \"Bone\"","brand":"Adidas (Yeezy)","release_date":"2025-05-03","price":230,"sale_methods":["Confirmed App","Online"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/03/yeezy-boost-350-v2-bone-HQ6316.jpg","source_url":"https://sneakernews.com/2022/03/yeezy-350-v2-bone-release-date/","source":"SneakerNews","hype_level":4,"hype_label":"Limited"},{"id":"d4e5f6a1b2c3","name":"New Balance 990v4 \"Grey Day\"","brand":"New Balance","release_date":"2025-04-30","price":185,"sale_methods":["Online","In-Store"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/05/new-balance-990v4-grey-day-M990GD4.jpg","source_url":"https://sneakernews.com/2022/05/new-balance-990v4-grey-day-release-date/","source":"SoleCollector","hype_level":3,"hype_label":"Hyped"},{"id":"e5f6a1b2c3d4","name":"Puma Suede Classic \"Varsity Blue\"","brand":"Puma","release_date":"2025-05-10","price":75,"sale_methods":["In-Store","Online"],"image_url":"","source_url":"https://puma.com","source":"KicksOnFire","hype_level":2,"hype_label":"Popular"},{"id":"f6a1b2c3d4e5","name":"Under Armour Curry 12 \"FNF\"","brand":"Under Armour","release_date":"2025-05-15","price":160,"sale_methods":["Online","In-Store"],"image_url":"","source_url":"https://underarmour.com","source":"SneakerNews","hype_level":2,"hype_label":"Popular"},{"id":"a2b3c4d5e6f1","name":"Off-White x Nike Air Force 1 Low \"The 50\"","brand":"Nike","release_date":"2025-05-20","price":170,"sale_methods":["SNKRS App","Raffle"],"image_url":"https://sneakernews.com/wp-content/uploads/2021/06/off-white-nike-air-force-1-low-the-50-DX1419-100.jpg","source_url":"https://sneakernews.com/2021/06/off-white-nike-air-force-1-the-50/","source":"SneakerNews","hype_level":5,"hype_label":"Grail"},{"id":"b3c4d5e6f1a2","name":"Adidas Samba OG \"Cloud White\"","brand":"Adidas","release_date":"2025-04-22","price":100,"sale_methods":["Online","In-Store"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/08/adidas-samba-og-white-B75806.jpg","source_url":"https://sneakernews.com/2022/08/adidas-samba-og-white-release/","source":"KicksOnFire","hype_level":3,"hype_label":"Hyped"},{"id":"c4d5e6f1a2b3","name":"Nike Air Max 1 \"Anniversary Red\"","brand":"Nike","release_date":"2025-06-01","price":140,"sale_methods":["SNKRS App","Online","In-Store"],"image_url":"","source_url":"https://sneakernews.com/2022/10/nike-air-max-1-anniversary-red/","source":"SneakerNews","hype_level":4,"hype_label":"Limited"},{"id":"d5e6f1a2b3c4","name":"Jordan 4 Retro \"Bred Reimagined\"","brand":"Jordan","release_date":"2025-06-07","price":215,"sale_methods":["SNKRS App","Raffle","Draw"],"image_url":"https://sneakernews.com/wp-content/uploads/2023/06/Air-Jordan-4-Bred-Reimagined-FV5029-006.jpg","source_url":"https://sneakernews.com/2023/06/air-jordan-4-bred-reimagined/","source":"SneakerNews","hype_level":5,"hype_label":"Grail"},{"id":"e6f1a2b3c4d5","name":"New Balance 550 \"White Grey\"","brand":"New Balance","release_date":"2025-05-28","price":110,"sale_methods":["Online","In-Store"],"image_url":"","source_url":"https://kicksonfire.com/new-balance-550-white-grey/","source":"KicksOnFire","hype_level":2,"hype_label":"Popular"},{"id":"f1a2b3c4d5e6","name":"Converse Chuck 70 \"Patchwork\"","brand":"Converse","release_date":"TBD","price":90,"sale_methods":["Online","In-Store"],"image_url":"","source_url":"https://solecollector.com","source":"SoleCollector","hype_level":1,"hype_label":"General Release"}];
+
+// ── Hype helpers ─────────────────────────────────────────────────────
+const HYPE_LABEL = {1:"⚪ General Release",2:"🟡 Popular",3:"🟠 Hyped",4:"🔴 Limited",5:"🟣 Grail"};
+const HYPE_CLS   = {1:"h1b",2:"h2b",3:"h3b",4:"h4b",5:"h5b"};
+const HYPE_TEXT  = {1:"cl1",2:"cl2",3:"cl3",4:"cl4",5:"cl5"};
+const BRAND_CLS  = {"Jordan":"bJordan","Nike":"bNike","Adidas":"bAdidas","Adidas (Yeezy)":"bYeezy","New Balance":"bNB","Puma":"bPuma","Under Armour":"bUA"};
+
+function stars(n){return"★".repeat(n)+"☆".repeat(5-n)}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function fmtDate(d){if(!d||d==="TBD")return"TBD";try{const dt=new Date(d+"T00:00:00");return dt.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}catch{return d}}
+function hostname(u){try{return new URL(u).hostname.replace(/^www\./,"")}catch{return"Source"}}
+
+function chipCls(m){
+  const l=m.toLowerCase();
+  if(l.includes("snkrs"))return"chip chip-snkrs";
+  if(l.includes("raffle"))return"chip chip-raffle";
+  if(l.includes("draw"))return"chip chip-draw";
+  if(l.includes("confirmed"))return"chip chip-confirmed";
+  if(l.includes("online"))return"chip chip-online";
+  return"chip";
+}
+
+// ── Build card ───────────────────────────────────────────────────────
+function buildCard(r){
+  const h=r.hype_level||1;
+  const bc=BRAND_CLS[r.brand]||"bOther";
+  const date=fmtDate(r.release_date);
+  const price=r.price?`$${Math.round(r.price)}`:"TBD";
+  const dateC=date==="TBD"?"cmeta-val cv-tbd":"cmeta-val cv-date";
+  const priceC=r.price?"cmeta-val cv-price":"cmeta-val cv-tbd";
+  const img=r.image_url
+    ?`<img src="${esc(r.image_url)}" alt="${esc(r.name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+    :"";
+  const methods=(r.sale_methods||[]).slice(0,4).map(m=>`<span class="${chipCls(m)}">${esc(m)}</span>`).join("");
+  const src=hostname(r.source_url||"");
+
+  const div=document.createElement("div");
+  div.className="card";div.dataset.hype=h;
+  div.innerHTML=`
+    <div class="img-wrap">
+      ${img}
+      <div class="img-ph" ${r.image_url?"style='display:none'":""}>👟</div>
+      <div class="hype-ov"><span class="hbadge ${HYPE_CLS[h]}">${stars(h)} ${h}/5</span></div>
+      <div class="brand-ov"><span class="bbadge ${bc}">${esc(r.brand)}</span></div>
+    </div>
+    <div class="cbody">
+      <div class="cname">${esc(r.name)}</div>
+      <div class="cmeta">
+        <div class="cmeta-item"><span class="cmeta-key">📅 Release</span><span class="${dateC}">${date}</span></div>
+        <div class="cmeta-item"><span class="cmeta-key">💰 Retail</span><span class="${priceC}">${price}</span></div>
+      </div>
+      <div class="chype">
+        <span class="cstars ${HYPE_TEXT[h]}">${stars(h)}</span>
+        <span class="clabel ${HYPE_TEXT[h]}">${HYPE_LABEL[h]}</span>
+      </div>
+      <div class="chips">${methods}</div>
+    </div>
+    <div class="cfoot">
+      <a class="csrc" href="${esc(r.source_url||"#")}" target="_blank" rel="noopener">🔗 ${esc(src)}</a>
+      <a class="cvbtn" href="${esc(r.source_url||"#")}" target="_blank" rel="noopener">View →</a>
+    </div>`;
+  return div;
+}
+
+// ── Filter + render ──────────────────────────────────────────────────
+function getFiltered(){
+  const search=document.getElementById("searchInput").value.trim().toLowerCase();
+  const brand=document.getElementById("fBrand").value;
+  const lo=+document.getElementById("fHypeLo").value;
+  const hi=+document.getElementById("fHypeHi").value;
+  const method=document.getElementById("fMethod").value;
+  const sort=document.getElementById("fSort").value;
+
+  let list=SEED.filter(r=>{
+    if(search&&!r.name.toLowerCase().includes(search)&&!r.brand.toLowerCase().includes(search))return false;
+    if(brand&&r.brand!==brand)return false;
+    if((r.hype_level||1)<lo||(r.hype_level||1)>hi)return false;
+    if(method&&!(r.sale_methods||[]).some(m=>m===method))return false;
+    return true;
+  });
+
+  list.sort((a,b)=>{
+    if(sort==="date_asc"||sort==="date_desc"){
+      const da=a.release_date==="TBD"?"9999-99-99":a.release_date;
+      const db=b.release_date==="TBD"?"9999-99-99":b.release_date;
+      return sort==="date_asc"?da.localeCompare(db):db.localeCompare(da);
+    }
+    if(sort==="hype_desc")return(b.hype_level||1)-(a.hype_level||1);
+    if(sort==="hype_asc") return(a.hype_level||1)-(b.hype_level||1);
+    if(sort==="price_asc") return(a.price||0)-(b.price||0);
+    if(sort==="price_desc")return(b.price||0)-(a.price||0);
+    if(sort==="brand")return(a.brand||"").localeCompare(b.brand||"");
+    return 0;
+  });
+  return list;
+}
+
+function render(){
+  const list=getFiltered();
+  const grid=document.getElementById("grid");
+  const empty=document.getElementById("emptyState");
+  grid.innerHTML="";
+  if(list.length===0){empty.classList.remove("hidden");grid.classList.add("hidden")}
+  else{
+    empty.classList.add("hidden");grid.classList.remove("hidden");
+    const frag=document.createDocumentFragment();
+    list.forEach(r=>frag.appendChild(buildCard(r)));
+    grid.appendChild(frag);
+  }
+  document.getElementById("sShowing").textContent=list.length;
+}
+
+// ── Populate dropdowns ───────────────────────────────────────────────
+function populateDropdowns(){
+  const brands=[...new Set(SEED.map(r=>r.brand))].sort();
+  const fBrand=document.getElementById("fBrand");
+  brands.forEach(b=>{const o=document.createElement("option");o.value=o.textContent=b;fBrand.appendChild(o)});
+
+  const methods=[...new Set(SEED.flatMap(r=>r.sale_methods||[]))].sort();
+  const fMethod=document.getElementById("fMethod");
+  methods.forEach(m=>{const o=document.createElement("option");o.value=o.textContent=m;fMethod.appendChild(o)});
+}
+
+// ── Stats ────────────────────────────────────────────────────────────
+function updateStats(){
+  const today=new Date().toISOString().slice(0,10);
+  const upcoming=SEED.filter(r=>r.release_date&&r.release_date!=="TBD"&&r.release_date>=today).length;
+  const grails=SEED.filter(r=>r.hype_level===5).length;
+  document.getElementById("sTotal").textContent=SEED.length;
+  document.getElementById("sUpcoming").textContent=upcoming;
+  document.getElementById("sGrail").textContent=grails;
+  document.getElementById("totalBadge").textContent=SEED.length;
+}
+
+// ── CSV export ───────────────────────────────────────────────────────
+function exportCSV(){
+  const list=getFiltered();
+  const hdr=["Name","Brand","Release Date","Price (USD)","Sale Methods","Hype Level","Hype Status","Source URL"];
+  const rows=list.map(r=>[
+    `"${(r.name||"").replace(/"/g,'""')}"`,
+    `"${r.brand||""}"`,
+    r.release_date||"TBD",
+    r.price?`$${Math.round(r.price)}`:"TBD",
+    `"${(r.sale_methods||[]).join(", ")}"`,
+    r.hype_level||1,
+    `"${r.hype_label||""}"`,
+    `"${r.source_url||""}"`,
+  ].join(","));
+  const csv=[hdr.join(","),...rows].join("\n");
+  const blob=new Blob([csv],{type:"text/csv"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=`sneaker_releases_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  toast("📥 CSV downloaded","t-ok");
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────
+let toastT;
+function toast(msg,cls="t-info"){
+  const el=document.getElementById("toast");
+  el.textContent=msg;el.className=`toast ${cls}`;
+  el.classList.remove("hidden");
+  clearTimeout(toastT);toastT=setTimeout(()=>el.classList.add("hidden"),3500);
+}
+
+// ── Clear ─────────────────────────────────────────────────────────────
+function clearAll(){
+  document.getElementById("searchInput").value="";
+  document.getElementById("fBrand").value="";
+  document.getElementById("fMethod").value="";
+  document.getElementById("fHypeLo").value="1";
+  document.getElementById("fHypeHi").value="5";
+  document.getElementById("fSort").value="date_asc";
+  render();
+}
+
+// ── Debounce ──────────────────────────────────────────────────────────
+function debounce(fn,ms){let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}}
+
+// ── Wire up events ────────────────────────────────────────────────────
+document.getElementById("searchInput").addEventListener("input",debounce(render,250));
+["fBrand","fHypeLo","fHypeHi","fMethod","fSort"].forEach(id=>{
+  document.getElementById(id).addEventListener("change",()=>{
+    const lo=+document.getElementById("fHypeLo").value;
+    const hi=+document.getElementById("fHypeHi").value;
+    if(id==="fHypeLo"&&lo>hi)document.getElementById("fHypeHi").value=lo;
+    if(id==="fHypeHi"&&hi<lo)document.getElementById("fHypeLo").value=hi;
+    render();
+  });
+});
+document.getElementById("clearBtn").addEventListener("click",clearAll);
+document.getElementById("exportBtn").addEventListener("click",exportCSV);
+document.getElementById("legendBtn").addEventListener("click",()=>document.getElementById("legendModal").classList.remove("hidden"));
+document.getElementById("mClose").addEventListener("click",()=>document.getElementById("legendModal").classList.add("hidden"));
+document.getElementById("legendModal").addEventListener("click",e=>{if(e.target.id==="legendModal")document.getElementById("legendModal").classList.add("hidden")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.getElementById("legendModal").classList.add("hidden")});
+
+// ── Init ──────────────────────────────────────────────────────────────
+populateDropdowns();
+updateStats();
+render();
+</script>
+</body>
+</html>
