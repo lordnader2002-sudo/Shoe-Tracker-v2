@@ -319,24 +319,49 @@ def _sn_url_is_current(url: str) -> bool:
 
 
 class SneakerNewsScraper(BaseScraper):
-    SOURCE       = "SneakerNews"
-    BASE_URL     = "https://sneakernews.com"
-    RELEASE_URL  = "https://sneakernews.com/release-dates/"
-    # RSS feeds (tried in order)
-    RSS_FEEDS    = [
+    SOURCE      = "SneakerNews"
+    BASE_URL    = "https://sneakernews.com"
+    RELEASE_URL = "https://sneakernews.com/release-dates/"
+
+    # Tried in order — first one that returns ≥1 item wins.
+    # Google News RSS is a public search feed; it cannot be 403-blocked by SN.
+    RSS_FEEDS = [
+        # Direct page feed (WordPress adds /feed/ to any page)
+        "https://sneakernews.com/release-dates/feed/",
+        # Category feed
         "https://sneakernews.com/category/release-dates/feed/",
+        # Tag feeds
+        "https://sneakernews.com/tag/release-date/feed/",
+        "https://sneakernews.com/tag/sneaker-releases/feed/",
+        # Main site feed — no title filter; all SN articles are sneaker-related
         "https://sneakernews.com/feed/",
+        # Google News RSS — searches SN articles, never blocked by the source site
+        (
+            "https://news.google.com/rss/search"
+            "?q=site:sneakernews.com+sneaker+release+date"
+            "&hl=en-US&gl=US&ceid=US:en"
+        ),
     ]
 
     def scrape(self) -> list:
+        all_releases = []
         for feed_url in self.RSS_FEEDS:
             releases = self._scrape_rss(feed_url)
             if releases:
                 logger.info("  SneakerNews: %d releases from %s", len(releases), feed_url)
-                return releases
-            logger.warning("  SneakerNews: no results from %s", feed_url)
-        logger.error("  SneakerNews: all RSS feeds failed")
-        return []
+                all_releases.extend(releases)
+                # Once we have a good haul from a native SN feed, stop
+                if len(all_releases) >= 20 and "google.com" not in feed_url:
+                    break
+            else:
+                logger.warning("  SneakerNews: no results from %s", feed_url)
+        if not all_releases:
+            logger.error("  SneakerNews: all feeds failed/empty")
+        return all_releases
+
+    # ------------------------------------------------------------------
+    # RSS fetch + parse
+    # ------------------------------------------------------------------
 
     def _scrape_rss(self, feed_url: str) -> list:
         try:
@@ -355,7 +380,7 @@ class SneakerNewsScraper(BaseScraper):
         items    = root.findall(".//item")
         releases = []
         skipped  = 0
-        logger.info("  SneakerNews RSS: %d items in feed", len(items))
+        logger.info("  SneakerNews RSS: %d items in %s", len(items), feed_url)
 
         for item in items:
             r = self._parse_rss_item(item, feed_url)
@@ -368,35 +393,47 @@ class SneakerNewsScraper(BaseScraper):
         return releases
 
     def _parse_rss_item(self, item, feed_url: str):
-        # Title
+        # ---- title ----
         title_el = item.find("title")
-        if title_el is None or not title_el.text:
+        if title_el is None:
             return None
-        name = title_el.text.strip()
+        # RSS titles may be wrapped in CDATA, ET strips that automatically
+        name = (title_el.text or "").strip()
         if len(name) < 6:
             return None
 
-        # When using the main /feed/ (not the release-dates category feed)
-        # we filter to articles whose title contains "release date/s"
-        if "feed/" == feed_url.split("/")[-2] + "/":   # main feed
-            if not re.search(r"release\s+date", name, re.IGNORECASE):
-                return None
-
-        # Link / URL
+        # ---- link ----
+        # <link> in RSS 2.0 is a text node that may follow a comment node;
+        # ET sometimes returns None for .text on these — also try <guid>
+        source_url = ""
         link_el = item.find("link")
-        source_url = (link_el.text or "").strip() if link_el is not None else self.RELEASE_URL
-        if not _sn_url_is_current(source_url):
+        if link_el is not None and link_el.text:
+            source_url = link_el.text.strip()
+        if not source_url:
+            guid_el = item.find("guid")
+            if guid_el is not None and guid_el.text:
+                source_url = guid_el.text.strip()
+        if not source_url:
+            source_url = self.RELEASE_URL
+
+        # For native SN feeds, skip pre-current-year article URLs
+        # (Google News URLs point to google.com, not sneakernews.com — keep them)
+        if "google.com" not in feed_url and not _sn_url_is_current(source_url):
             return None
 
-        # Description (HTML excerpt) → plain text for date/price extraction
+        # For Google News results, extract the original SN URL from the
+        # <link> parameter (?url=... or the redirect target).  We store the
+        # Google News link as-is; it will redirect to the article on click.
+
+        # ---- description → plain text for date/price ----
         desc_el  = item.find("description")
-        raw_html = desc_el.text or "" if desc_el is not None else ""
+        raw_html = (desc_el.text or "") if desc_el is not None else ""
         excerpt  = BeautifulSoup(raw_html, "html.parser").get_text(" ", strip=True)
         full_text = f"{name} {excerpt}"
 
         release_date = _parse_date(full_text, None, source_url)
 
-        # Image: try <media:content>, <media:thumbnail>, then <enclosure>
+        # ---- image ----
         image_url = ""
         for ns_tag in ("media:content", "media:thumbnail"):
             ns, tag = ns_tag.split(":")
@@ -471,18 +508,45 @@ class KicksOnFireScraper(BaseScraper):
         return releases
 
     def _parse(self, entry):
-        title = entry.find(["h2", "h3", "h4", "h5"])
-        if not title:
-            return None
-        name = title.get_text(" ", strip=True)
+        # KicksOnFire release calendar cards put the shoe name in various
+        # elements depending on page version.  Try from most to least specific.
+        name = ""
+
+        # 1. Standard heading tags
+        heading = entry.find(["h2", "h3", "h4", "h5"])
+        if heading:
+            name = heading.get_text(" ", strip=True)
+
+        # 2. Element with a class that looks like a title
+        if not name:
+            title_el = entry.find(
+                attrs={"class": re.compile(r"title|name|heading|shoe|sneaker", re.I)}
+            )
+            if title_el:
+                name = title_el.get_text(" ", strip=True)
+
+        # 3. The img alt text (often the shoe name on calendar cards)
+        if not name:
+            img = entry.find("img")
+            if img:
+                name = (img.get("alt") or img.get("title") or "").strip()
+
+        # 4. The link text of the first anchor
+        if not name:
+            link_tag = entry.find("a", href=True)
+            if link_tag:
+                name = link_tag.get_text(" ", strip=True)
+
         if len(name) < 6:
             return None
 
-        link      = entry.find("a", href=True)
+        link       = entry.find("a", href=True)
         source_url = link["href"] if link else self.RELEASE_URL
-        img_tag   = entry.find("img")
-        image_url = _best_img(img_tag)
-        full_text = entry.get_text(" ", strip=True)
+        if source_url and not source_url.startswith("http"):
+            source_url = self.BASE_URL + source_url
+        img_tag      = entry.find("img")
+        image_url    = _best_img(img_tag)
+        full_text    = entry.get_text(" ", strip=True)
         release_date = _parse_date(full_text, entry, source_url)
 
         return self._build_release(name, source_url, image_url, release_date, full_text)
