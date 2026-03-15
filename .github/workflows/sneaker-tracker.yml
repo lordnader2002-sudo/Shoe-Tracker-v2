@@ -224,10 +224,12 @@ jobs:
               html = f.read()
 
           seed_json = json.dumps(releases, separators=(',', ':'))
-          # The SEED line is a single long line; replace it in-place
+          # Use a lambda replacement so backslashes in seed_json are not
+          # treated as regex escape sequences (fixes re.error: bad escape \u)
+          replacement = f'let SEED = {seed_json};'
           new_html = re.sub(
               r'(?:const|let) SEED = \[.*?\];',
-              f'let SEED = {seed_json};',
+              lambda _: replacement,
               html,
               count=1,
               flags=re.DOTALL
