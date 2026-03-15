@@ -211,11 +211,40 @@ jobs:
           print(f"  {len(releases)} releases across all brands")
           EOF
 
+      - name: Refresh embedded SEED in index.html
+        run: |
+          python3 - <<'EOF'
+          import json, re
+
+          with open('data/releases.json') as f:
+              data = json.load(f)
+          releases = data.get('releases', [])
+
+          with open('index.html', 'r') as f:
+              html = f.read()
+
+          seed_json = json.dumps(releases, separators=(',', ':'))
+          # The SEED line is a single long line; replace it in-place
+          new_html = re.sub(
+              r'(?:const|let) SEED = \[.*?\];',
+              f'let SEED = {seed_json};',
+              html,
+              count=1,
+              flags=re.DOTALL
+          )
+          if new_html == html:
+              print('WARNING: SEED pattern not found in index.html — skipping')
+          else:
+              with open('index.html', 'w') as f:
+                  f.write(new_html)
+              print(f'Refreshed SEED in index.html with {len(releases)} releases')
+          EOF
+
       - name: Commit updated data back to repo
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/releases.json reports/sneaker_releases.xlsx
+          git add data/releases.json reports/sneaker_releases.xlsx index.html
           # Only commit if something actually changed
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           COUNT=$(python3 -c "import json; d=json.load(open('data/releases.json')); print(len(d.get('releases',[])))")
