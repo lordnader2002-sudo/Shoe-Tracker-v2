@@ -624,6 +624,92 @@ a:hover { text-decoration: underline; }
 .toast--info    { border-color: var(--blue);   color: var(--blue);  }
 
 /* ============================================================
+   VIEW TOGGLE
+   ============================================================ */
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.vt-btn {
+  background: transparent;
+  border: none;
+  color: var(--txt-muted);
+  padding: 6px 11px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: var(--trans);
+  line-height: 1;
+}
+.vt-btn:hover         { background: var(--bg2); color: var(--txt); }
+.vt-btn--active       { background: var(--blue-dim); color: var(--blue); }
+
+/* ============================================================
+   LIST VIEW TABLE
+   ============================================================ */
+.list-view {
+  overflow-x: auto;
+}
+.release-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.release-table thead th {
+  background: var(--bg2);
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid var(--blue);
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.release-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.release-table tbody tr:nth-child(even) { background: var(--bg_alt, #111827); }
+.release-table tbody tr:hover           { background: var(--bg2); }
+.release-table td {
+  padding: 10px 12px;
+  vertical-align: middle;
+}
+/* Column widths */
+.lt-name    { min-width: 200px; }
+.lt-brand   { width: 110px; }
+.lt-date    { width: 110px; white-space: nowrap; }
+.lt-price   { width: 80px;  white-space: nowrap; }
+.lt-hype    { width: 110px; white-space: nowrap; }
+.lt-methods { min-width: 180px; }
+.lt-link    { width: 70px; text-align: right; }
+
+.lt-name-text  { font-weight: 700; color: var(--txt); }
+.lt-date-val   { color: var(--blue); font-weight: 600; }
+.lt-date-tbd   { color: var(--txt-muted); font-style: italic; }
+.lt-price-val  { color: var(--green); font-weight: 700; }
+.lt-price-tbd  { color: var(--txt-muted); font-style: italic; }
+.lt-view-btn {
+  font-size: 11px;
+  color: var(--blue);
+  border: 1px solid var(--blue-dim);
+  background: transparent;
+  border-radius: 6px;
+  padding: 3px 9px;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--trans);
+}
+.lt-view-btn:hover { background: var(--blue-dim); }
+
+/* ============================================================
    UTILITIES
    ============================================================ */
 .hidden { display: none !important; }

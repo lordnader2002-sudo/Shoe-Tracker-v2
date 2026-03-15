@@ -25,6 +25,10 @@
 
   <div class="navbar__actions">
     <span class="last-updated" id="lastUpdated">Never synced</span>
+    <div class="view-toggle" id="viewToggle" title="Toggle grid / list view">
+      <button class="vt-btn vt-btn--active" id="vt-grid" data-view="grid">⊞</button>
+      <button class="vt-btn" id="vt-list" data-view="list">☰</button>
+    </div>
     <button class="btn btn--outline" id="legendBtn" title="Hype Legend">📖 Legend</button>
     <button class="btn btn--primary" id="refreshBtn">⟳ Refresh</button>
     <button class="btn btn--excel" id="exportBtn">📥 Excel</button>
@@ -126,6 +130,24 @@
 
   <!-- Cards grid -->
   <div class="cards-grid hidden" id="cardsGrid"></div>
+
+  <!-- List view -->
+  <div class="list-view hidden" id="listView">
+    <table class="release-table">
+      <thead>
+        <tr>
+          <th class="lt-name">Shoe Name</th>
+          <th class="lt-brand">Brand</th>
+          <th class="lt-date">Release Date</th>
+          <th class="lt-price">Price</th>
+          <th class="lt-hype">Hype</th>
+          <th class="lt-methods">Sale Methods</th>
+          <th class="lt-link"></th>
+        </tr>
+      </thead>
+      <tbody id="listBody"></tbody>
+    </table>
+  </div>
 
 </main>
 
