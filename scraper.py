@@ -280,20 +280,28 @@ class BaseScraper:
 
 # ---------------------------------------------------------------------------
 # SneakerNews
-# Only source: https://sneakernews.com/release-dates/
-# Article URLs follow the pattern /YYYY/MM/slug/ — we only keep links whose
-# year is the current or next calendar year to avoid stale 404 articles.
+#
+# The release-dates page (https://sneakernews.com/release-dates/) is a
+# JavaScript-rendered calendar — requests/BeautifulSoup never sees the grid.
+#
+# Fix: use the WordPress REST API, which returns plain JSON (no JS needed)
+# and supports pagination up to 100 posts per request.
+#
+# Strategy:
+#   1. Resolve the "release-dates" category ID via /wp-json/wp/v2/categories
+#   2. Fetch posts in that category, newest first, up to MAX_PAGES pages
+#   3. Each post is inspected for name, date, price, image via ?_embed
+#   4. Fall back to HTML scraping of the calendar page if the API is blocked
 # ---------------------------------------------------------------------------
 
-# Matches SneakerNews article URLs with an embedded year, e.g. /2025/04/...
 _SN_URL_YEAR = re.compile(r"/(\d{4})/\d{2}/")
 
 
 def _sn_url_is_current(url: str) -> bool:
-    """Return True if the URL year is current year or next year."""
+    """Return True if the URL year is the current or next calendar year."""
     m = _SN_URL_YEAR.search(url or "")
     if not m:
-        return False          # no year in URL — skip
+        return False
     year = int(m.group(1))
     current = datetime.now().year
     return current <= year <= current + 1
@@ -303,39 +311,158 @@ class SneakerNewsScraper(BaseScraper):
     SOURCE      = "SneakerNews"
     BASE_URL    = "https://sneakernews.com"
     RELEASE_URL = "https://sneakernews.com/release-dates/"
+    WP_API      = "https://sneakernews.com/wp-json/wp/v2"
+    MAX_PAGES   = 5          # 5 × 100 = up to 500 posts
+
+    # ------------------------------------------------------------------ #
+    # Public entry point                                                   #
+    # ------------------------------------------------------------------ #
 
     def scrape(self) -> list:
+        releases = self._scrape_via_api()
+        if not releases:
+            logger.warning("  SneakerNews API returned nothing — falling back to HTML")
+            releases = self._scrape_via_html()
+        logger.info("  SneakerNews: %d releases collected", len(releases))
+        return releases
+
+    # ------------------------------------------------------------------ #
+    # Primary path: WordPress REST API                                     #
+    # ------------------------------------------------------------------ #
+
+    def _scrape_via_api(self) -> list:
+        category_id = self._resolve_category_id()
+
+        releases = []
+        for page in range(1, self.MAX_PAGES + 1):
+            params = {
+                "per_page": 100,
+                "page":     page,
+                "orderby":  "date",
+                "order":    "desc",
+                "_embed":   1,          # includes featured image & author
+            }
+            if category_id:
+                params["categories"] = category_id
+            else:
+                # Fallback: search for posts whose title contains "release date"
+                params["search"] = "release date"
+
+            try:
+                resp = requests.get(
+                    f"{self.WP_API}/posts",
+                    params=params,
+                    headers=HEADERS,
+                    timeout=20,
+                )
+                resp.raise_for_status()
+                posts = resp.json()
+            except Exception as e:
+                logger.error("  SneakerNews API page %d failed: %s", page, e)
+                break
+
+            if not posts or not isinstance(posts, list):
+                break
+
+            logger.info("  SneakerNews API page %d: %d posts", page, len(posts))
+            for post in posts:
+                r = self._parse_api_post(post)
+                if r:
+                    releases.append(r)
+
+            # Stop if this was the last page
+            total_pages = int(resp.headers.get("X-WP-TotalPages", 1))
+            if page >= total_pages:
+                break
+
+        return releases
+
+    def _resolve_category_id(self) -> int | None:
+        """Look up the 'release-dates' category ID from the WP API."""
+        try:
+            resp = requests.get(
+                f"{self.WP_API}/categories",
+                params={"slug": "release-dates", "per_page": 1},
+                headers=HEADERS,
+                timeout=10,
+            )
+            data = resp.json()
+            if data and isinstance(data, list):
+                logger.info("  SneakerNews: category id=%s", data[0]["id"])
+                return data[0]["id"]
+        except Exception as e:
+            logger.debug("  SneakerNews: category lookup failed: %s", e)
+        return None
+
+    def _parse_api_post(self, post: dict):
+        try:
+            name = BeautifulSoup(
+                post.get("title", {}).get("rendered", ""), "html.parser"
+            ).get_text(" ", strip=True)
+            if len(name) < 6:
+                return None
+
+            link = post.get("link", self.RELEASE_URL)
+            # Skip old articles (pre-current-year slugs)
+            if not _sn_url_is_current(link):
+                return None
+
+            # Pull excerpt text for date / price extraction
+            excerpt = BeautifulSoup(
+                post.get("excerpt", {}).get("rendered", ""), "html.parser"
+            ).get_text(" ", strip=True)
+            full_text = f"{name} {excerpt}"
+
+            release_date = _parse_date(full_text, None, link)
+
+            # Featured image via _embed
+            image_url = ""
+            try:
+                media = post["_embedded"]["wp:featuredmedia"][0]
+                image_url = (
+                    media.get("source_url")
+                    or media.get("media_details", {})
+                       .get("sizes", {})
+                       .get("large", {})
+                       .get("source_url", "")
+                )
+            except (KeyError, IndexError, TypeError):
+                pass
+
+            return self._build_release(name, link, image_url, release_date, full_text)
+        except Exception as e:
+            logger.debug("  SN API parse error: %s", e)
+            return None
+
+    # ------------------------------------------------------------------ #
+    # Fallback path: plain HTML (works only if the page is SSR'd)         #
+    # ------------------------------------------------------------------ #
+
+    def _scrape_via_html(self) -> list:
         releases = []
         skipped  = 0
         try:
-            logger.info("Scraping SneakerNews release-dates page …")
             soup = self._get(self.RELEASE_URL)
-
-            # The release-dates page renders article cards; try several selectors
             articles = (
                 soup.find_all("article")
                 or soup.find_all("div", class_=re.compile(r"post|release|card"))
             )
-            logger.info("  SneakerNews: %d article elements found", len(articles))
-
-            for art in articles[:80]:
+            logger.info("  SneakerNews HTML: %d elements", len(articles))
+            for art in articles[:200]:
                 try:
-                    r = self._parse(art)
+                    r = self._parse_html_article(art)
                     if r:
                         releases.append(r)
                     else:
                         skipped += 1
                 except Exception as e:
-                    logger.debug("  SN parse error: %s", e)
+                    logger.debug("  SN HTML parse error: %s", e)
                     skipped += 1
-
-            logger.info("  SneakerNews: %d kept, %d skipped (old/invalid URLs)",
-                        len(releases), skipped)
         except Exception as e:
-            logger.error("SneakerNews scrape failed: %s", e)
+            logger.error("SneakerNews HTML scrape failed: %s", e)
         return releases
 
-    def _parse(self, article):
+    def _parse_html_article(self, article):
         title = article.find(["h2", "h3", "h4"])
         if not title:
             return None
@@ -343,27 +470,20 @@ class SneakerNewsScraper(BaseScraper):
         if len(name) < 6:
             return None
 
-        # Only follow links that resolve to a current-year article.
-        # If no valid link exists, fall back to the calendar page itself.
-        source_url = self.RELEASE_URL
         link = article.find("a", href=True)
-        if link:
-            href = link["href"]
-            if not href.startswith("http"):
-                href = self.BASE_URL + href
-            if _sn_url_is_current(href):
-                source_url = href
-            else:
-                # Old article link — log and skip rather than storing a 404 URL
-                logger.debug("  SN skipping old URL: %s", href)
-                return None
+        if not link:
+            return None
+        href = link["href"]
+        if not href.startswith("http"):
+            href = self.BASE_URL + href
+        if not _sn_url_is_current(href):
+            return None
 
-        img_tag   = article.find("img")
-        image_url = _best_img(img_tag)
-        full_text = article.get_text(" ", strip=True)
-        release_date = _parse_date(full_text, article, source_url)
-
-        return self._build_release(name, source_url, image_url, release_date, full_text)
+        img_tag      = article.find("img")
+        image_url    = _best_img(img_tag)
+        full_text    = article.get_text(" ", strip=True)
+        release_date = _parse_date(full_text, article, href)
+        return self._build_release(name, href, image_url, release_date, full_text)
 
 
 # ---------------------------------------------------------------------------
