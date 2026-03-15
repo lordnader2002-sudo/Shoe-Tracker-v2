@@ -280,7 +280,24 @@ class BaseScraper:
 
 # ---------------------------------------------------------------------------
 # SneakerNews
+# Only source: https://sneakernews.com/release-dates/
+# Article URLs follow the pattern /YYYY/MM/slug/ — we only keep links whose
+# year is the current or next calendar year to avoid stale 404 articles.
 # ---------------------------------------------------------------------------
+
+# Matches SneakerNews article URLs with an embedded year, e.g. /2025/04/...
+_SN_URL_YEAR = re.compile(r"/(\d{4})/\d{2}/")
+
+
+def _sn_url_is_current(url: str) -> bool:
+    """Return True if the URL year is current year or next year."""
+    m = _SN_URL_YEAR.search(url or "")
+    if not m:
+        return False          # no year in URL — skip
+    year = int(m.group(1))
+    current = datetime.now().year
+    return current <= year <= current + 1
+
 
 class SneakerNewsScraper(BaseScraper):
     SOURCE      = "SneakerNews"
@@ -289,19 +306,31 @@ class SneakerNewsScraper(BaseScraper):
 
     def scrape(self) -> list:
         releases = []
+        skipped  = 0
         try:
-            logger.info("Scraping SneakerNews …")
+            logger.info("Scraping SneakerNews release-dates page …")
             soup = self._get(self.RELEASE_URL)
-            articles = soup.find_all("article") or \
-                       soup.find_all("div", class_=re.compile(r"post|release|card"))
-            logger.info("  SneakerNews: %d articles found", len(articles))
-            for art in articles[:60]:
+
+            # The release-dates page renders article cards; try several selectors
+            articles = (
+                soup.find_all("article")
+                or soup.find_all("div", class_=re.compile(r"post|release|card"))
+            )
+            logger.info("  SneakerNews: %d article elements found", len(articles))
+
+            for art in articles[:80]:
                 try:
                     r = self._parse(art)
                     if r:
                         releases.append(r)
+                    else:
+                        skipped += 1
                 except Exception as e:
                     logger.debug("  SN parse error: %s", e)
+                    skipped += 1
+
+            logger.info("  SneakerNews: %d kept, %d skipped (old/invalid URLs)",
+                        len(releases), skipped)
         except Exception as e:
             logger.error("SneakerNews scrape failed: %s", e)
         return releases
@@ -314,8 +343,20 @@ class SneakerNewsScraper(BaseScraper):
         if len(name) < 6:
             return None
 
+        # Only follow links that resolve to a current-year article.
+        # If no valid link exists, fall back to the calendar page itself.
+        source_url = self.RELEASE_URL
         link = article.find("a", href=True)
-        source_url = link["href"] if link else self.RELEASE_URL
+        if link:
+            href = link["href"]
+            if not href.startswith("http"):
+                href = self.BASE_URL + href
+            if _sn_url_is_current(href):
+                source_url = href
+            else:
+                # Old article link — log and skip rather than storing a 404 URL
+                logger.debug("  SN skipping old URL: %s", href)
+                return None
 
         img_tag   = article.find("img")
         image_url = _best_img(img_tag)
