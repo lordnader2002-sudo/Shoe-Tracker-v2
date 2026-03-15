@@ -15,7 +15,24 @@
       "source": "SneakerBarDetroit",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:34.413819"
+      "scraped_at": "2026-03-15T07:22:04.761423"
+    },
+    {
+      "id": "f8f8bc4e2061",
+      "name": "The Nike Book 2 “Must Be The Denim” Releases On March 20th - Sneaker News",
+      "brand": "Nike",
+      "release_date": "2026-03-20",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNNHlCTkJ3TTFfUzZ2V1doeVlpYWpSLWR0Z3JXVEtiNmpJOVprbWxCRzBtVG9KSlozVzFiMy1lUk1YVDljUEx5R2JyaWN3RGdRMTQxRUlXMGJYU1EwTzlBSmFsd0tzRXF4TzhxTHNWVXFmX1B1alQ1cFZJNGc5T0lucHhGcVROWlltNkdSWHVtNm1uUUtQazRhTlhB0gGaAUFVX3lxTE00eUJOQndNMV9TNnZXV2h5WWlhalItZHRncldUS2I2akk5WmttbEJHMG1Ub0pKWjNXMWIzLWVSTVhUOWNQTHlHYnJpY3dEZ1ExNDFFSVcwYlhTUTBPOUFKYWx3S3NFcXhPOHFMc1ZVcWZfUHVqVDVwVkk0ZzlPSW5weEZxVE5aWW02R1JYdW02bW5RS1BrNGFOWEE?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:21:59.037983"
     },
     {
       "id": "aa8e0e1761a9",
@@ -32,125 +49,7 @@
       "source": "SneakerBarDetroit",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:34.413832"
-    },
-    {
-      "id": "b9f1f8abfc88",
-      "name": "The Jordan MVP 92 Approaches A “Tour” Colorway",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://sneakernews.com/2026/03/14/jordan-mvp-92-summit-white-vivid-sulfur-black-hq3950-107/",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983258"
-    },
-    {
-      "id": "0bfafc4c0982",
-      "name": "Jordan Brand’s Craft Series Returns With The Air Jordan 1 Low SE “Cargo Khaki”",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": 100,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://sneakernews.com/2026/03/14/air-jordan-1-low-se-craft-cargo-khaki-coconut-milk-fq3055-300/",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983266"
-    },
-    {
-      "id": "54589a04c4de",
-      "name": "Leopard Print Prowls Onto The Nike Air Rift",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online"
-      ],
-      "image_url": "",
-      "source_url": "https://sneakernews.com/2026/03/14/nike-air-rift-leopard-print/",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983268"
-    },
-    {
-      "id": "d607e461fa96",
-      "name": "The New Balance 1906F Dawns With A “Sunrise” Build",
-      "brand": "New Balance",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://sneakernews.com/2026/03/14/new-balance-1906f-sunrise-gradient/",
-      "source": "SneakerNews",
-      "hype_level": 2,
-      "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983270"
-    },
-    {
-      "id": "a5147448d846",
-      "name": "This Nike Air Max 90 Is Perfect Stadium Gear",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": 110,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://sneakernews.com/2026/03/14/nike-air-max-90-wolf-grey-midnight-navy-dm0029-022/",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983272"
-    },
-    {
-      "id": "a10978a9dcae",
-      "name": "Division St. Brings Attention To The Fir Trees Of Oregon With The Nike Air Max 95",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": 160,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://sneakernews.com/2026/03/13/oregon-ducks-air-max-95-division-st/",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983273"
-    },
-    {
-      "id": "24d0ea22b3de",
-      "name": "The Year Of The Vans Authentic Continues With A Haven Collab",
-      "brand": "Vans",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://sneakernews.com/2026/03/13/haven-vans-authentic-vibram-release-date/",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983274"
+      "scraped_at": "2026-03-15T07:22:04.761434"
     },
     {
       "id": "821d804d4bf6",
@@ -166,7 +65,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983280"
+      "scraped_at": "2026-03-15T07:21:59.037921"
     },
     {
       "id": "d962837a74c8",
@@ -183,7 +82,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983282"
+      "scraped_at": "2026-03-15T07:21:59.037926"
     },
     {
       "id": "0ad3484bdf8c",
@@ -200,7 +99,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983283"
+      "scraped_at": "2026-03-15T07:21:59.037928"
     },
     {
       "id": "73a94bbfcb7b",
@@ -217,7 +116,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983285"
+      "scraped_at": "2026-03-15T07:21:59.037929"
     },
     {
       "id": "4a35459e9d35",
@@ -234,7 +133,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983286"
+      "scraped_at": "2026-03-15T07:21:59.037931"
     },
     {
       "id": "fdbe7aa9e312",
@@ -251,7 +150,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983287"
+      "scraped_at": "2026-03-15T07:21:59.037932"
     },
     {
       "id": "9e1b455a9071",
@@ -268,7 +167,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983288"
+      "scraped_at": "2026-03-15T07:21:59.037933"
     },
     {
       "id": "37de878f2a44",
@@ -285,7 +184,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983289"
+      "scraped_at": "2026-03-15T07:21:59.037934"
     },
     {
       "id": "19e288b0f34e",
@@ -302,7 +201,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983291"
+      "scraped_at": "2026-03-15T07:21:59.037935"
     },
     {
       "id": "dd478f73f564",
@@ -319,7 +218,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983292"
+      "scraped_at": "2026-03-15T07:21:59.037937"
     },
     {
       "id": "373e50a788a9",
@@ -336,7 +235,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983293"
+      "scraped_at": "2026-03-15T07:21:59.037938"
     },
     {
       "id": "ca70c4643b7a",
@@ -353,7 +252,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983512"
+      "scraped_at": "2026-03-15T07:21:59.037939"
     },
     {
       "id": "10a30987c45c",
@@ -370,7 +269,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983515"
+      "scraped_at": "2026-03-15T07:21:59.037940"
     },
     {
       "id": "f1680c333975",
@@ -387,7 +286,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983516"
+      "scraped_at": "2026-03-15T07:21:59.037941"
     },
     {
       "id": "0d2b1910d1b3",
@@ -404,7 +303,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983517"
+      "scraped_at": "2026-03-15T07:21:59.037942"
     },
     {
       "id": "2be4c03d1635",
@@ -421,7 +320,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983518"
+      "scraped_at": "2026-03-15T07:21:59.037943"
     },
     {
       "id": "8872e605e86e",
@@ -438,7 +337,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983519"
+      "scraped_at": "2026-03-15T07:21:59.037944"
     },
     {
       "id": "7d19144a3176",
@@ -455,7 +354,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983521"
+      "scraped_at": "2026-03-15T07:21:59.037945"
     },
     {
       "id": "cbb4bf5decaa",
@@ -472,7 +371,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983522"
+      "scraped_at": "2026-03-15T07:21:59.037947"
     },
     {
       "id": "1f0ca586ff27",
@@ -489,7 +388,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983523"
+      "scraped_at": "2026-03-15T07:21:59.037949"
     },
     {
       "id": "eb0d954d037f",
@@ -506,7 +405,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983524"
+      "scraped_at": "2026-03-15T07:21:59.037950"
     },
     {
       "id": "133052a9f816",
@@ -523,7 +422,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983525"
+      "scraped_at": "2026-03-15T07:21:59.037951"
     },
     {
       "id": "f8d84827d6ea",
@@ -540,7 +439,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983526"
+      "scraped_at": "2026-03-15T07:21:59.037952"
     },
     {
       "id": "86d6ae411259",
@@ -557,7 +456,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983528"
+      "scraped_at": "2026-03-15T07:21:59.037953"
     },
     {
       "id": "f09233c9a02b",
@@ -574,7 +473,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983529"
+      "scraped_at": "2026-03-15T07:21:59.037954"
     },
     {
       "id": "d53341eb1577",
@@ -591,7 +490,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983530"
+      "scraped_at": "2026-03-15T07:21:59.037955"
     },
     {
       "id": "fccee36d4e81",
@@ -608,7 +507,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983531"
+      "scraped_at": "2026-03-15T07:21:59.037956"
     },
     {
       "id": "35732d26ee0c",
@@ -625,7 +524,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983532"
+      "scraped_at": "2026-03-15T07:21:59.037957"
     },
     {
       "id": "d7ae2fdecf2f",
@@ -642,7 +541,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983533"
+      "scraped_at": "2026-03-15T07:21:59.037958"
     },
     {
       "id": "4c9be5d667e7",
@@ -659,7 +558,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983535"
+      "scraped_at": "2026-03-15T07:21:59.037960"
     },
     {
       "id": "918a708ba060",
@@ -676,7 +575,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983536"
+      "scraped_at": "2026-03-15T07:21:59.037961"
     },
     {
       "id": "6c93a304f6ca",
@@ -693,7 +592,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983537"
+      "scraped_at": "2026-03-15T07:21:59.037962"
     },
     {
       "id": "283c0638aba8",
@@ -710,7 +609,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983538"
+      "scraped_at": "2026-03-15T07:21:59.037963"
     },
     {
       "id": "21c0ba34ea9f",
@@ -727,7 +626,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983539"
+      "scraped_at": "2026-03-15T07:21:59.037964"
     },
     {
       "id": "d3c531743a01",
@@ -744,7 +643,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983540"
+      "scraped_at": "2026-03-15T07:21:59.037965"
     },
     {
       "id": "daae98259088",
@@ -761,7 +660,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983541"
+      "scraped_at": "2026-03-15T07:21:59.037966"
     },
     {
       "id": "e7d2116492c9",
@@ -778,7 +677,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983542"
+      "scraped_at": "2026-03-15T07:21:59.037967"
     },
     {
       "id": "f9ddb7ba25a9",
@@ -795,7 +694,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983543"
+      "scraped_at": "2026-03-15T07:21:59.037968"
     },
     {
       "id": "d31e08edba20",
@@ -812,7 +711,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983545"
+      "scraped_at": "2026-03-15T07:21:59.037969"
     },
     {
       "id": "2b8bc40d396a",
@@ -829,7 +728,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983546"
+      "scraped_at": "2026-03-15T07:21:59.037970"
     },
     {
       "id": "0312845eff5b",
@@ -846,7 +745,7 @@
       "source": "SneakerNews",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:28.983547"
+      "scraped_at": "2026-03-15T07:21:59.037971"
     },
     {
       "id": "20bae9695b0b",
@@ -863,24 +762,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983548"
-    },
-    {
-      "id": "d3446d7fb352",
-      "name": "The Nike Book 2 “Must Be The Denim” Releases On March 20th - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNNHlCTkJ3TTFfUzZ2V1doeVlpYWpSLWR0Z3JXVEtiNmpJOVprbWxCRzBtVG9KSlozVzFiMy1lUk1YVDljUEx5R2JyaWN3RGdRMTQxRUlXMGJYU1EwTzlBSmFsd0tzRXF4TzhxTHNWVXFmX1B1alQ1cFZJNGc5T0lucHhGcVROWlltNkdSWHVtNm1uUUtQazRhTlhB0gGaAUFVX3lxTE00eUJOQndNMV9TNnZXV2h5WWlhalItZHRncldUS2I2akk5WmttbEJHMG1Ub0pKWjNXMWIzLWVSTVhUOWNQTHlHYnJpY3dEZ1ExNDFFSVcwYlhTUTBPOUFKYWx3S3NFcXhPOHFMc1ZVcWZfUHVqVDVwVkk0ZzlPSW5weEZxVE5aWW02R1JYdW02bW5RS1BrNGFOWEE?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983549"
+      "scraped_at": "2026-03-15T07:21:59.037972"
     },
     {
       "id": "368647364296",
@@ -897,7 +779,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983550"
+      "scraped_at": "2026-03-15T07:21:59.037984"
     },
     {
       "id": "da092668bb77",
@@ -914,7 +796,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983552"
+      "scraped_at": "2026-03-15T07:21:59.037985"
     },
     {
       "id": "3e9483944db4",
@@ -931,7 +813,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983553"
+      "scraped_at": "2026-03-15T07:21:59.037986"
     },
     {
       "id": "18605fef4729",
@@ -948,24 +830,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983554"
-    },
-    {
-      "id": "1f45035c9be5",
-      "name": "Carbon Fiber Swooshes Land On This Nike Air Force 1 Low - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": 100,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNbXRDVlc4ZXVVeTJPVTFTS0VLN1ZCMGJHSlZKNE9GVnZlVHN5SmVsUHFwWGJWaEpjblNhdUJlSlpNZm1VemdyX1g0R2lJdXZhb1BkbFJOMXlPWUNkM1ZYc1ZuM0tpQTFsSm1HRFNzUFRVV2ZDcmhsdzF3UXBXUGxmODE5OUIyLW9DbTQ1WWFKM3PSAZABQVVfeXFMTW10Q1ZXOGV1VXkyT1UxU0tFSzdWQjBiR0pWSjRPRlZ2ZVRzeUplbFBxcFhiVmhKY25TYXVCZUpaTWZtVXpncl9YNEdpSXV2YW9QZGxSTjF5T1lDZDNWWHNWbjNLaUExbEptR0RTc1BUVVdmQ3JobHcxd1FwV1BsZjgxOTlCMi1vQ200NVlhSjNz?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983555"
+      "scraped_at": "2026-03-15T07:21:59.037987"
     },
     {
       "id": "7a8c38b7fee0",
@@ -982,7 +847,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983556"
+      "scraped_at": "2026-03-15T07:21:59.037988"
     },
     {
       "id": "53ebb46ce5c4",
@@ -999,7 +864,24 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983557"
+      "scraped_at": "2026-03-15T07:21:59.037990"
+    },
+    {
+      "id": "1f45035c9be5",
+      "name": "Carbon Fiber Swooshes Land On This Nike Air Force 1 Low - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": 100,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNbXRDVlc4ZXVVeTJPVTFTS0VLN1ZCMGJHSlZKNE9GVnZlVHN5SmVsUHFwWGJWaEpjblNhdUJlSlpNZm1VemdyX1g0R2lJdXZhb1BkbFJOMXlPWUNkM1ZYc1ZuM0tpQTFsSm1HRFNzUFRVV2ZDcmhsdzF3UXBXUGxmODE5OUIyLW9DbTQ1WWFKM3PSAZABQVVfeXFMTW10Q1ZXOGV1VXkyT1UxU0tFSzdWQjBiR0pWSjRPRlZ2ZVRzeUplbFBxcFhiVmhKY25TYXVCZUpaTWZtVXpncl9YNEdpSXV2YW9QZGxSTjF5T1lDZDNWWHNWbjNLaUExbEptR0RTc1BUVVdmQ3JobHcxd1FwV1BsZjgxOTlCMi1vQ200NVlhSjNz?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:21:59.037991"
     },
     {
       "id": "8bc2ee316366",
@@ -1016,7 +898,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983558"
+      "scraped_at": "2026-03-15T07:21:59.037992"
     },
     {
       "id": "a8c53680192a",
@@ -1033,7 +915,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983559"
+      "scraped_at": "2026-03-15T07:21:59.037993"
     },
     {
       "id": "087b46e74ea4",
@@ -1050,7 +932,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983560"
+      "scraped_at": "2026-03-15T07:21:59.037994"
     },
     {
       "id": "2a45a6db4a22",
@@ -1067,7 +949,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983562"
+      "scraped_at": "2026-03-15T07:21:59.037995"
     },
     {
       "id": "8257359abd6b",
@@ -1084,7 +966,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983563"
+      "scraped_at": "2026-03-15T07:21:59.037996"
     },
     {
       "id": "ab4c9faf2f23",
@@ -1101,7 +983,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983564"
+      "scraped_at": "2026-03-15T07:21:59.037997"
     },
     {
       "id": "74c25f6382e1",
@@ -1118,7 +1000,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983565"
+      "scraped_at": "2026-03-15T07:21:59.037998"
     },
     {
       "id": "164008628faa",
@@ -1135,7 +1017,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983566"
+      "scraped_at": "2026-03-15T07:21:59.038000"
     },
     {
       "id": "b7d365862091",
@@ -1152,7 +1034,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983567"
+      "scraped_at": "2026-03-15T07:21:59.038001"
     },
     {
       "id": "b160322b3be3",
@@ -1169,7 +1051,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983569"
+      "scraped_at": "2026-03-15T07:21:59.038002"
     },
     {
       "id": "b1b522a48f7f",
@@ -1186,7 +1068,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983570"
+      "scraped_at": "2026-03-15T07:21:59.038003"
     },
     {
       "id": "7dc03f6ce084",
@@ -1203,7 +1085,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983571"
+      "scraped_at": "2026-03-15T07:21:59.038004"
     },
     {
       "id": "fddb880c5d73",
@@ -1220,7 +1102,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983572"
+      "scraped_at": "2026-03-15T07:21:59.038005"
     },
     {
       "id": "5b1e5089552e",
@@ -1237,24 +1119,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983573"
-    },
-    {
-      "id": "6d6da24ff0f5",
-      "name": "Giannis Antetokounmpo’s Nike Giannis Freak 7 Launches On July 29th - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBoRjkzb2U5M1NpVjBhMlRzTGQ4alRFWHFTWlphTHdZc0J1b1BQSHN5VVNScm1tYk1zWVk5QjllQjFiaEcxT05IR1Ryd0lxUjJMc3RwWDhmTmxoUFh3enFyY1lTTVFaV0FLd1VNYkF6Wm4wUkNFdThsbtIBeEFVX3lxTFBoRjkzb2U5M1NpVjBhMlRzTGQ4alRFWHFTWlphTHdZc0J1b1BQSHN5VVNScm1tYk1zWVk5QjllQjFiaEcxT05IR1Ryd0lxUjJMc3RwWDhmTmxoUFh3enFyY1lTTVFaV0FLd1VNYkF6Wm4wUkNFdThsbg?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983574"
+      "scraped_at": "2026-03-15T07:21:59.038006"
     },
     {
       "id": "f64580d15b79",
@@ -1271,7 +1136,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983575"
+      "scraped_at": "2026-03-15T07:21:59.038015"
     },
     {
       "id": "9dc94a2d32a2",
@@ -1288,7 +1153,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983576"
+      "scraped_at": "2026-03-15T07:21:59.038016"
     },
     {
       "id": "d93dfebd7a89",
@@ -1305,7 +1170,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983577"
+      "scraped_at": "2026-03-15T07:21:59.038018"
     },
     {
       "id": "1936a34e8ae1",
@@ -1322,24 +1187,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983578"
-    },
-    {
-      "id": "e81cd2387591",
-      "name": "The Nike Structure Plus Launches February 5th - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE92c0ZPTWhWNzdCRldQcndBdlNQRDZLUlhnWTlJRTM3dHBiNXUwa2NZTk9jaEtuYkl5eThkV3JVOTV5TFFwRmZzVXowUEpaR1BrMXM0SENWNlFHaFRGSDd5LV9EUnBJUdIBZkFVX3lxTE92c0ZPTWhWNzdCRldQcndBdlNQRDZLUlhnWTlJRTM3dHBiNXUwa2NZTk9jaEtuYkl5eThkV3JVOTV5TFFwRmZzVXowUEpaR1BrMXM0SENWNlFHaFRGSDd5LV9EUnBJUQ?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983584"
+      "scraped_at": "2026-03-15T07:21:59.038019"
     },
     {
       "id": "4d25779c2f6a",
@@ -1356,7 +1204,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983586"
+      "scraped_at": "2026-03-15T07:21:59.038027"
     },
     {
       "id": "cae97f37936e",
@@ -1373,7 +1221,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983587"
+      "scraped_at": "2026-03-15T07:21:59.038028"
     },
     {
       "id": "4621964a615f",
@@ -1390,7 +1238,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983588"
+      "scraped_at": "2026-03-15T07:21:59.038029"
     },
     {
       "id": "18c4f46460fc",
@@ -1407,7 +1255,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983589"
+      "scraped_at": "2026-03-15T07:21:59.038030"
     },
     {
       "id": "75223bf3adff",
@@ -1424,7 +1272,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983590"
+      "scraped_at": "2026-03-15T07:21:59.038031"
     },
     {
       "id": "42c8a4e9f1be",
@@ -1441,7 +1289,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983591"
+      "scraped_at": "2026-03-15T07:21:59.038032"
     },
     {
       "id": "e93ce4f69722",
@@ -1458,7 +1306,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983592"
+      "scraped_at": "2026-03-15T07:21:59.038033"
     },
     {
       "id": "5fb919307748",
@@ -1475,7 +1323,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983593"
+      "scraped_at": "2026-03-15T07:21:59.038035"
     },
     {
       "id": "2612971ec228",
@@ -1492,7 +1340,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983594"
+      "scraped_at": "2026-03-15T07:21:59.038037"
     },
     {
       "id": "79e29489d1d4",
@@ -1509,7 +1357,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983595"
+      "scraped_at": "2026-03-15T07:21:59.038038"
     },
     {
       "id": "2858fb418f24",
@@ -1526,24 +1374,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983597"
-    },
-    {
-      "id": "ae739ede1cba",
-      "name": "The Nike Mind 002 “Black/Hyper Crimson” Releases On February 5th - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOcTYtWWhHTGk4T09CbElTMFpzT3J3dUF0OGxrNEVtY3AxeHRYRjc2WDVfQXlxQllnQzM4UXlGVHd5Y3d0NHdCTHZHS2kzSHZ1VEFGWi03UFJEUS01cG5ySGl2UGVjWlZ0OGpwSE5rdHgzZ3B0TW5kZ3p2Z3piV3ltOHdPczVyZ3NneFduWm1nMnDSAZABQVVfeXFMTnE2LVloR0xpOE9PQmxJUzBac09yd3VBdDhsazRFbWNwMXh0WEY3Nlg1X0F5cUJZZ0MzOFF5RlR3eWN3dDR3Qkx2R0tpM0h2dVRBRlotN1BSRFEtNXBuckhpdlBlY1pWdDhqcEhOa3R4M2dwdE1uZGd6dmd6Yld5bTh3T3M1cmdzZ3hXblptZzJw?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983598"
+      "scraped_at": "2026-03-15T07:21:59.038039"
     },
     {
       "id": "d5d5ff0d73b2",
@@ -1560,7 +1391,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983599"
+      "scraped_at": "2026-03-15T07:21:59.038047"
     },
     {
       "id": "fe7bcd444292",
@@ -1577,7 +1408,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983600"
+      "scraped_at": "2026-03-15T07:21:59.038048"
     },
     {
       "id": "48261536fec2",
@@ -1594,7 +1425,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983601"
+      "scraped_at": "2026-03-15T07:21:59.038049"
     },
     {
       "id": "c6fbafeea2a8",
@@ -1611,7 +1442,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:28.983602"
+      "scraped_at": "2026-03-15T07:21:59.038050"
     },
     {
       "id": "7b7df475c7e1",
@@ -1628,7 +1459,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983603"
+      "scraped_at": "2026-03-15T07:21:59.038051"
     },
     {
       "id": "aba5f553ef9a",
@@ -1645,7 +1476,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983604"
+      "scraped_at": "2026-03-15T07:21:59.038052"
     },
     {
       "id": "6354d073fae2",
@@ -1662,7 +1493,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983605"
+      "scraped_at": "2026-03-15T07:21:59.038053"
     },
     {
       "id": "efaa08853c9f",
@@ -1679,7 +1510,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983607"
+      "scraped_at": "2026-03-15T07:21:59.038054"
     },
     {
       "id": "73cc72b0eb76",
@@ -1696,7 +1527,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983608"
+      "scraped_at": "2026-03-15T07:21:59.038055"
     },
     {
       "id": "b7d2fbad4250",
@@ -1713,7 +1544,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983609"
+      "scraped_at": "2026-03-15T07:21:59.038056"
     },
     {
       "id": "9e2c964428f0",
@@ -1730,7 +1561,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983610"
+      "scraped_at": "2026-03-15T07:21:59.038057"
     },
     {
       "id": "87a30c675a88",
@@ -1747,7 +1578,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983611"
+      "scraped_at": "2026-03-15T07:21:59.038058"
     },
     {
       "id": "8b672779b7f7",
@@ -1764,7 +1595,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983612"
+      "scraped_at": "2026-03-15T07:21:59.038060"
     },
     {
       "id": "7efae606d9ed",
@@ -1781,7 +1612,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983613"
+      "scraped_at": "2026-03-15T07:21:59.038061"
     },
     {
       "id": "eb7bf68b74ec",
@@ -1798,7 +1629,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:28.983614"
+      "scraped_at": "2026-03-15T07:21:59.038062"
     },
     {
       "id": "35098f20afd0",
@@ -1815,7 +1646,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983615"
+      "scraped_at": "2026-03-15T07:21:59.038063"
     },
     {
       "id": "c4e5b2a7f542",
@@ -1832,7 +1663,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:28.983616"
+      "scraped_at": "2026-03-15T07:21:59.038064"
     },
     {
       "id": "aec3572f3c7f",
@@ -1849,7 +1680,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T07:09:28.983617"
+      "scraped_at": "2026-03-15T07:21:59.038065"
     },
     {
       "id": "1e5187225f35",
@@ -1866,7 +1697,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818921"
+      "scraped_at": "2026-03-15T07:22:00.895735"
     },
     {
       "id": "85c4ae5bde68",
@@ -1883,7 +1714,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818931"
+      "scraped_at": "2026-03-15T07:22:00.895741"
     },
     {
       "id": "7198edf6bdce",
@@ -1900,7 +1731,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:30.818935"
+      "scraped_at": "2026-03-15T07:22:00.895742"
     },
     {
       "id": "603de07cb6cc",
@@ -1917,7 +1748,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818938"
+      "scraped_at": "2026-03-15T07:22:00.895743"
     },
     {
       "id": "3b136d9c9d62",
@@ -1934,7 +1765,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818940"
+      "scraped_at": "2026-03-15T07:22:00.895745"
     },
     {
       "id": "621c9e10aca1",
@@ -1951,7 +1782,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818941"
+      "scraped_at": "2026-03-15T07:22:00.895746"
     },
     {
       "id": "485e2fb5dee2",
@@ -1968,7 +1799,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818943"
+      "scraped_at": "2026-03-15T07:22:00.895747"
     },
     {
       "id": "a93e9359aa79",
@@ -1985,7 +1816,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818945"
+      "scraped_at": "2026-03-15T07:22:00.895748"
     },
     {
       "id": "37d0b9e6a219",
@@ -2002,7 +1833,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818948"
+      "scraped_at": "2026-03-15T07:22:00.895749"
     },
     {
       "id": "964aef0434a7",
@@ -2019,7 +1850,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818950"
+      "scraped_at": "2026-03-15T07:22:00.895751"
     },
     {
       "id": "ae78fc2d50e7",
@@ -2036,7 +1867,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:30.818951"
+      "scraped_at": "2026-03-15T07:22:00.895752"
     },
     {
       "id": "dab16649b3c8",
@@ -2053,7 +1884,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:30.818953"
+      "scraped_at": "2026-03-15T07:22:00.895753"
     },
     {
       "id": "a735a26cfec8",
@@ -2070,7 +1901,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818955"
+      "scraped_at": "2026-03-15T07:22:00.895755"
     },
     {
       "id": "402c18210d5d",
@@ -2087,7 +1918,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:30.818957"
+      "scraped_at": "2026-03-15T07:22:00.895757"
     },
     {
       "id": "ca7a2cdf2038",
@@ -2104,7 +1935,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818960"
+      "scraped_at": "2026-03-15T07:22:00.895758"
     },
     {
       "id": "26a108bce4c4",
@@ -2121,7 +1952,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818961"
+      "scraped_at": "2026-03-15T07:22:00.895759"
     },
     {
       "id": "e15c93cda72a",
@@ -2138,7 +1969,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:30.818964"
+      "scraped_at": "2026-03-15T07:22:00.895760"
     },
     {
       "id": "d51377561f32",
@@ -2155,7 +1986,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T07:09:30.818966"
+      "scraped_at": "2026-03-15T07:22:00.895761"
     },
     {
       "id": "c678a84e7aed",
@@ -2172,7 +2003,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818969"
+      "scraped_at": "2026-03-15T07:22:00.895762"
     },
     {
       "id": "04cec4d0a50f",
@@ -2189,7 +2020,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818971"
+      "scraped_at": "2026-03-15T07:22:00.895764"
     },
     {
       "id": "31d00b873d27",
@@ -2206,7 +2037,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818973"
+      "scraped_at": "2026-03-15T07:22:00.895765"
     },
     {
       "id": "16ecd30ffc9c",
@@ -2223,7 +2054,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T07:09:30.818976"
+      "scraped_at": "2026-03-15T07:22:00.895766"
     },
     {
       "id": "ab3b3c1ce9d3",
@@ -2240,7 +2071,7 @@
       "source": "KicksOnFire",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:30.818978"
+      "scraped_at": "2026-03-15T07:22:00.895767"
     },
     {
       "id": "45d037b4a630",
@@ -2257,7 +2088,7 @@
       "source": "KicksOnFire",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T07:09:30.818981"
+      "scraped_at": "2026-03-15T07:22:00.895768"
     },
     {
       "id": "4319435d3e69",
@@ -2274,7 +2105,7 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:32.657955"
+      "scraped_at": "2026-03-15T07:22:02.953578"
     },
     {
       "id": "7a6dc6bc0841",
@@ -2291,7 +2122,7 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:32.657962"
+      "scraped_at": "2026-03-15T07:22:02.953584"
     },
     {
       "id": "923d7d566721",
@@ -2308,7 +2139,7 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:32.657964"
+      "scraped_at": "2026-03-15T07:22:02.953586"
     },
     {
       "id": "2e8efd7b6490",
@@ -2325,11 +2156,11 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T07:09:32.657965"
+      "scraped_at": "2026-03-15T07:22:02.953587"
     }
   ],
-  "last_updated": "2026-03-15T07:09:37.621548",
-  "count": 137,
+  "last_updated": "2026-03-15T07:22:07.983503",
+  "count": 127,
   "window_start": "2026-03-15",
   "window_end": "2026-06-13"
 }
