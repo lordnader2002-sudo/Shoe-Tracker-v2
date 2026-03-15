@@ -136,14 +136,13 @@ jobs:
     name: Scrape Latest Releases
     runs-on: ubuntu-latest
     needs: ci
-    # Only run the scraper on schedule, manual dispatch, or pushes to main/claude branches
+    # Only run the scraper on schedule, manual dispatch, or pushes to main
     if: >
       github.event_name == 'schedule' ||
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'push' && (
         github.ref == 'refs/heads/main' ||
-        github.ref == 'refs/heads/master' ||
-        startsWith(github.ref, 'refs/heads/claude/')
+        github.ref == 'refs/heads/master'
       ))
 
     steps:
@@ -246,7 +245,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/releases.json reports/sneaker_releases.xlsx index.html
+          # Only commit index.html (JSON/xlsx are in .gitignore — served at runtime)
+          git add index.html
           # Only commit if something actually changed
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           COUNT=$(python3 -c "import json; d=json.load(open('data/releases.json')); print(len(d.get('releases',[])))")
