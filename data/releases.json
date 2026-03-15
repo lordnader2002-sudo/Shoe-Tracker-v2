@@ -15,7 +15,7 @@
       "source": "SneakerBarDetroit",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:24.250039"
+      "scraped_at": "2026-03-15T07:04:52.433017"
     },
     {
       "id": "aa8e0e1761a9",
@@ -32,7 +32,7 @@
       "source": "SneakerBarDetroit",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:24.250051"
+      "scraped_at": "2026-03-15T07:04:52.433029"
     },
     {
       "id": "b9f1f8abfc88",
@@ -49,7 +49,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323075"
+      "scraped_at": "2026-03-15T07:04:46.752482"
     },
     {
       "id": "0bfafc4c0982",
@@ -66,7 +66,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323083"
+      "scraped_at": "2026-03-15T07:04:46.752488"
     },
     {
       "id": "54589a04c4de",
@@ -82,7 +82,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323086"
+      "scraped_at": "2026-03-15T07:04:46.752490"
     },
     {
       "id": "d607e461fa96",
@@ -99,7 +99,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323089"
+      "scraped_at": "2026-03-15T07:04:46.752491"
     },
     {
       "id": "a5147448d846",
@@ -116,7 +116,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323093"
+      "scraped_at": "2026-03-15T07:04:46.752493"
     },
     {
       "id": "a10978a9dcae",
@@ -133,7 +133,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323095"
+      "scraped_at": "2026-03-15T07:04:46.752494"
     },
     {
       "id": "24d0ea22b3de",
@@ -150,7 +150,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323098"
+      "scraped_at": "2026-03-15T07:04:46.752495"
     },
     {
       "id": "821d804d4bf6",
@@ -166,7 +166,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323105"
+      "scraped_at": "2026-03-15T07:04:46.752501"
     },
     {
       "id": "d962837a74c8",
@@ -183,7 +183,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323108"
+      "scraped_at": "2026-03-15T07:04:46.752502"
     },
     {
       "id": "0ad3484bdf8c",
@@ -200,7 +200,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323111"
+      "scraped_at": "2026-03-15T07:04:46.752504"
     },
     {
       "id": "73a94bbfcb7b",
@@ -217,7 +217,24 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323113"
+      "scraped_at": "2026-03-15T07:04:46.752505"
+    },
+    {
+      "id": "4a35459e9d35",
+      "name": "Air Jordan Release Dates 2026 - Sneaker News",
+      "brand": "Jordan",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9WV0J5dVNIUXpvX1NYTDNSeDZKY0d1ZVFNbExkTl9SdHgzOU5MY3J6X2RxTjVHQmtTSzFHNzhGeUMxbGJhVTlMbXFld2ZJMmhhSUwybnVKWGw2TnQ2VGfSAV5BVV95cUxPVldCeXVTSFF6b19TWEwzUng2SmNHdWVRTWxMZE5fUnR4MzlOTGNyel9kcU41R0JrU0sxRzc4RnlDMWxiYVU5TG1xZXdmSTJoYUlMMm51SlhsNk50NlRn?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 4,
+      "hype_label": "Limited",
+      "scraped_at": "2026-03-15T07:04:46.752507"
     },
     {
       "id": "fdbe7aa9e312",
@@ -234,7 +251,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323115"
+      "scraped_at": "2026-03-15T07:04:46.752508"
     },
     {
       "id": "9e1b455a9071",
@@ -251,109 +268,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323118"
-    },
-    {
-      "id": "9471d0c9a5cc",
-      "name": "Nike’s First Sight Collection Showcases The Future Of Women’s Footwear - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE42bGtlNUZ6cmZFTFRPU1NEeHNMOUd5aUhmbFUtU0paYkk4Ri1nVjQ4dnRaNGtJVDg3cWM3aUdaaFkxdWdzdEdaVTdyd1NfV0ZUVG5FazBlS0hXak9PQWVJUmxGb2JibGp1VmdUdUhwUHfSAXBBVV95cUxONmxrZTVGenJmRUxUT1NTRHhzTDlHeWlIZmxVLVNKWmJJOEYtZ1Y0OHZ0WjRrSVQ4N3FjN2lHWmhZMXVnc3RHWlU3cndTX1dGVFRuRWswZUtIV2pPT0FlSVJsRm9iYmxqdVZnVHVIcFB3?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323120"
-    },
-    {
-      "id": "19e288b0f34e",
-      "name": "Where To Buy The Teyana Taylor Air Jordan 3 “Concrete Rose” - Sneaker News",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": 200,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE92WmFZTVZoYUdtVVJwU2lvenplLW8zVnZzMEJJZFdrWXNMTmotS0lINm1GVjRtSFhOY0twOHE2cEJ1THVJQVY1MEV5XzJacURMTEVWY3RGN0dLeGVNYUl4RjUxbnFTYUhqRkHSAWpBVV95cUxPdlphWU1WaGFHbVVScFNpb3p6ZS1vM1Z2czBCSWRXa1lzTE5qLUtJSDZtRlY0bUhYTmNLcDhxNnBCdUx1SUFWNTBFeV8yWnFETExFVmN0RjdHS3hlTWFJeEY1MW5xU2FIakZB?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323123"
-    },
-    {
-      "id": "dd478f73f564",
-      "name": "The Nike Air Max Uptempo Odes To The Derick Fisher Lakers - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOa09UalJTVWtONDBDd0M5MnZ3UTl6WXVwMDlUV09XODh1aEJENHQzR0lfR2VzVkNCLWlNM1hHZ0w1X3pQU3pOc25BLXd6T2RBelV4LUIyYzd5N1g1amhuUXlUa0xzaUJnb1l2T3daUUlWOE5UWnc0RFJSelE2cTV0QXNScVFlM0o1d21RRHBtbVrSAZABQVVfeXFMTmtPVGpSU1VrTjQwQ3dDOTJ2d1E5ell1cDA5VFdPVzg4dWhCRDR0M0dJX0dlc1ZDQi1pTTNYR2dMNV96UFN6TnNuQS13ek9kQXpVeC1CMmM3eTdYNWpoblF5VGtMc2lCZ29Zdk93WlFJVjhOVFp3NERSUnpRNnE1dEFzUnFRZTNKNXdtUURwbW1a?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323126"
-    },
-    {
-      "id": "373e50a788a9",
-      "name": "LEGO And Nike Build The Air Max 95 “Neon” From The Ground Up - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5rMVR0Zk1NS1NfMjRuTXRrdy15NjRpNUU1RGcza25Ic21hTy13a1RxMDFDcTFkcVM1MEY3TTJ5QXc2cmdPVUc2R2FBRDFuN0ZWZWl4OHg5bm9iRGpuSldQTkdjSzM1QUh5VDVVUEwwSHZDd3PSAXNBVV95cUxOazFUdGZNTUtTXzI0bk10a3cteTY0aTVFNURnM2tuSHNtYU8td2tUcTAxQ3ExZHFTNTBGN00yeUF3NnJnT1VHNkdhQUQxbjdGVmVpeDh4OW5vYkRqbkpXUE5HY0szNUFIeVQ1VVBMMEh2Q3dz?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323128"
-    },
-    {
-      "id": "ca70c4643b7a",
-      "name": "The Nike Mind 001 And Liquid Undergoes Hiroshi Fujiwara’s Fragment Concept Testing - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNZk1QRG5HWVk0eFNIWnVPYS13TzBnOU9KWHBpNWdwbERlc19iM2ZIV1FoU2Zvck9ySlRDOU5oekxYMVBQdGxzMUJXUTNBenlVd0lhSU95OWxiWTAtVGNnTkkzalNzQ010UlhkbEd5RUhRRHQtN25vMWFDbVFwajREREpR0gGCAUFVX3lxTE1mTVBEbkdZWTR4U0hadU9hLXdPMGc5T0pYcGk1Z3BsRGVzX2IzZkhXUWhTZm9yT3JKVEM5Tmh6TFgxUFB0bHMxQldRM0F6eVV3SWFJT3k5bGJZMC1UY2dOSTNqU3NDTXRSWGRsR3lFSFFEdC03bm8xYUNtUXBqNERESlE?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 5,
-      "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323130"
-    },
-    {
-      "id": "c9569529af66",
-      "name": "adidas Has More FIFA Footwear Coming - Sneaker News",
-      "brand": "Adidas",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9MVVR4Nk1tYWMtS0ZDMUd0MzhaU0hZU3NBR3dra3B6ZERxVWdscXEzeUhhdTh6dTY1NmU4SXo5R25nYjUtcklpbWo0NFJWUVpZYWZtMDhNTDNZYUd1NGM1cU1Fcm1YdEczMFE0VWNwTGNueGxSZEQ2etIBeEFVX3lxTE9MVVR4Nk1tYWMtS0ZDMUd0MzhaU0hZU3NBR3dra3B6ZERxVWdscXEzeUhhdTh6dTY1NmU4SXo5R25nYjUtcklpbWo0NFJWUVpZYWZtMDhNTDNZYUd1NGM1cU1Fcm1YdEczMFE0VWNwTGNueGxSZEQ2eg?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323327"
+      "scraped_at": "2026-03-15T07:04:46.752510"
     },
     {
       "id": "37de878f2a44",
@@ -370,7 +285,75 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323329"
+      "scraped_at": "2026-03-15T07:04:46.752513"
+    },
+    {
+      "id": "19e288b0f34e",
+      "name": "Where To Buy The Teyana Taylor Air Jordan 3 “Concrete Rose” - Sneaker News",
+      "brand": "Jordan",
+      "release_date": "TBD",
+      "price": 200,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE92WmFZTVZoYUdtVVJwU2lvenplLW8zVnZzMEJJZFdrWXNMTmotS0lINm1GVjRtSFhOY0twOHE2cEJ1THVJQVY1MEV5XzJacURMTEVWY3RGN0dLeGVNYUl4RjUxbnFTYUhqRkHSAWpBVV95cUxPdlphWU1WaGFHbVVScFNpb3p6ZS1vM1Z2czBCSWRXa1lzTE5qLUtJSDZtRlY0bUhYTmNLcDhxNnBCdUx1SUFWNTBFeV8yWnFETExFVmN0RjdHS3hlTWFJeEY1MW5xU2FIakZB?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 4,
+      "hype_label": "Limited",
+      "scraped_at": "2026-03-15T07:04:46.752515"
+    },
+    {
+      "id": "dd478f73f564",
+      "name": "The Nike Air Max Uptempo Odes To The Derick Fisher Lakers - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOa09UalJTVWtONDBDd0M5MnZ3UTl6WXVwMDlUV09XODh1aEJENHQzR0lfR2VzVkNCLWlNM1hHZ0w1X3pQU3pOc25BLXd6T2RBelV4LUIyYzd5N1g1amhuUXlUa0xzaUJnb1l2T3daUUlWOE5UWnc0RFJSelE2cTV0QXNScVFlM0o1d21RRHBtbVrSAZABQVVfeXFMTmtPVGpSU1VrTjQwQ3dDOTJ2d1E5ell1cDA5VFdPVzg4dWhCRDR0M0dJX0dlc1ZDQi1pTTNYR2dMNV96UFN6TnNuQS13ek9kQXpVeC1CMmM3eTdYNWpoblF5VGtMc2lCZ29Zdk93WlFJVjhOVFp3NERSUnpRNnE1dEFzUnFRZTNKNXdtUURwbW1a?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752518"
+    },
+    {
+      "id": "373e50a788a9",
+      "name": "LEGO And Nike Build The Air Max 95 “Neon” From The Ground Up - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5rMVR0Zk1NS1NfMjRuTXRrdy15NjRpNUU1RGcza25Ic21hTy13a1RxMDFDcTFkcVM1MEY3TTJ5QXc2cmdPVUc2R2FBRDFuN0ZWZWl4OHg5bm9iRGpuSldQTkdjSzM1QUh5VDVVUEwwSHZDd3PSAXNBVV95cUxOazFUdGZNTUtTXzI0bk10a3cteTY0aTVFNURnM2tuSHNtYU8td2tUcTAxQ3ExZHFTNTBGN00yeUF3NnJnT1VHNkdhQUQxbjdGVmVpeDh4OW5vYkRqbkpXUE5HY0szNUFIeVQ1VVBMMEh2Q3dz?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752521"
+    },
+    {
+      "id": "ca70c4643b7a",
+      "name": "The Nike Mind 001 And Liquid Undergoes Hiroshi Fujiwara’s Fragment Concept Testing - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNZk1QRG5HWVk0eFNIWnVPYS13TzBnOU9KWHBpNWdwbERlc19iM2ZIV1FoU2Zvck9ySlRDOU5oekxYMVBQdGxzMUJXUTNBenlVd0lhSU95OWxiWTAtVGNnTkkzalNzQ010UlhkbEd5RUhRRHQtN25vMWFDbVFwajREREpR0gGCAUFVX3lxTE1mTVBEbkdZWTR4U0hadU9hLXdPMGc5T0pYcGk1Z3BsRGVzX2IzZkhXUWhTZm9yT3JKVEM5Tmh6TFgxUFB0bHMxQldRM0F6eVV3SWFJT3k5bGJZMC1UY2dOSTNqU3NDTXRSWGRsR3lFSFFEdC03bm8xYUNtUXBqNERESlE?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 5,
+      "hype_label": "Grail",
+      "scraped_at": "2026-03-15T07:04:46.752723"
     },
     {
       "id": "10a30987c45c",
@@ -387,7 +370,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323330"
+      "scraped_at": "2026-03-15T07:04:46.752726"
     },
     {
       "id": "f1680c333975",
@@ -404,7 +387,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323331"
+      "scraped_at": "2026-03-15T07:04:46.752727"
     },
     {
       "id": "0d2b1910d1b3",
@@ -421,7 +404,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323332"
+      "scraped_at": "2026-03-15T07:04:46.752728"
     },
     {
       "id": "2be4c03d1635",
@@ -438,7 +421,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323334"
+      "scraped_at": "2026-03-15T07:04:46.752729"
     },
     {
       "id": "8872e605e86e",
@@ -455,7 +438,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323335"
+      "scraped_at": "2026-03-15T07:04:46.752730"
     },
     {
       "id": "7d19144a3176",
@@ -472,24 +455,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323336"
-    },
-    {
-      "id": "1f0ca586ff27",
-      "name": "KITH Officially Reveals Their New Balance 991 And 991v2 - Sneaker News",
-      "brand": "New Balance",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE91R2xYeTVtOFMwWGVxb2JxSkJxeDZVVkwtamhROHpxbEtlUFVOajlabnNpeW01OGhiMG5IQVVibllFZHFoakVlVUFaWE5GTFdNT1lNSDVlMFZXSUh1RDZYY2E2cFQ2UG03OV9DeFVMSnnSAXBBVV95cUxPdUdsWHk1bThTMFhlcW9icUpCcXg2VVZMLWpoUTh6cWxLZVBVTmo5Wm5zaXltNThoYjBuSEFVYm5ZRWRxaGpFZVVBWlhORkxXTU9ZTUg1ZTBWV0lIdUQ2WGNhNnBUNlBtNzlfQ3hVTEp5?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 2,
-      "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323337"
+      "scraped_at": "2026-03-15T07:04:46.752732"
     },
     {
       "id": "cbb4bf5decaa",
@@ -506,7 +472,24 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323338"
+      "scraped_at": "2026-03-15T07:04:46.752733"
+    },
+    {
+      "id": "1f0ca586ff27",
+      "name": "KITH Officially Reveals Their New Balance 991 And 991v2 - Sneaker News",
+      "brand": "New Balance",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE91R2xYeTVtOFMwWGVxb2JxSkJxeDZVVkwtamhROHpxbEtlUFVOajlabnNpeW01OGhiMG5IQVVibllFZHFoakVlVUFaWE5GTFdNT1lNSDVlMFZXSUh1RDZYY2E2cFQ2UG03OV9DeFVMSnnSAXBBVV95cUxPdUdsWHk1bThTMFhlcW9icUpCcXg2VVZMLWpoUTh6cWxLZVBVTmo5Wm5zaXltNThoYjBuSEFVYm5ZRWRxaGpFZVVBWlhORkxXTU9ZTUg1ZTBWV0lIdUQ2WGNhNnBUNlBtNzlfQ3hVTEp5?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 2,
+      "hype_label": "Popular",
+      "scraped_at": "2026-03-15T07:04:46.752734"
     },
     {
       "id": "eb0d954d037f",
@@ -523,7 +506,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323339"
+      "scraped_at": "2026-03-15T07:04:46.752735"
     },
     {
       "id": "133052a9f816",
@@ -540,7 +523,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323340"
+      "scraped_at": "2026-03-15T07:04:46.752736"
     },
     {
       "id": "f8d84827d6ea",
@@ -557,7 +540,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323341"
+      "scraped_at": "2026-03-15T07:04:46.752737"
     },
     {
       "id": "86d6ae411259",
@@ -574,12 +557,12 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323342"
+      "scraped_at": "2026-03-15T07:04:46.752738"
     },
     {
-      "id": "561c76c7d0e3",
-      "name": "BOTTER And Reebok Join Forces For A Wild 3D-Printed Shoe - Sneaker News",
-      "brand": "Reebok",
+      "id": "f09233c9a02b",
+      "name": "Vans Rides The Patent Leather Craze With The Old Skool “Harajuku” - Sneaker News",
+      "brand": "Vans",
       "release_date": "TBD",
       "price": null,
       "sale_methods": [
@@ -587,11 +570,11 @@
         "In-Store"
       ],
       "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBHZGJjbTVIVHc5YU9jLUxHSDIxVlpxOUhmdW5FbmFzTTd5V0p6OVJVdEdVNmdJXy10ckdpYUFFdkZKQTZZNXJhZzVEMUZCWUFYXzhEZDg0RGdWbGJ2VUItSXlHdU8zMnN4OFY1Z21LZ3J1Wl9f0gF0QVVfeXFMUEdkYmNtNUhUdzlhT2MtTEdIMjFWWnE5SGZ1bkVuYXNNN3lXSno5UlV0R1U2Z0lfLXRyR2lhQUV2RkpBNlk1cmFnNUQxRkJZQVhfOERkODREZ1ZsYnZVQi1JeUd1TzMyc3g4VjVnbUtncnVaX18?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5wd3ZSdVhEZnl4cllMVEhnZHVsRlZVUXRJQ3R3RWVTQThKekdiZjVOU3JZd0FIQlA5RE9TXzI4UlNoMHU3ekRybUJneEs1U3BldUJ6WnZDbVYyUjMtLWVVczRkMFBRdG1pZzlRejRFTFhJQ29LTDRSeWx2RlFCYVnSAX9BVV95cUxOcHd2UnVYRGZ5eHJZTFRIZ2R1bEZWVVF0SUN0d0VlU0E4SnpHYmY1TlNyWXdBSEJQOURPU18yOFJTaDB1N3pEcm1CZ3hLNVNwZXVCelp2Q21WMlIzLS1lVXM0ZDBQUXRtaWc5UXo0RUxYSUNvS0w0UnlsdkZRQmFZ?oc=5",
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323343"
+      "scraped_at": "2026-03-15T07:04:46.752739"
     },
     {
       "id": "d53341eb1577",
@@ -608,24 +591,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323345"
-    },
-    {
-      "id": "178e70f81883",
-      "name": "Nigo’s Nike Air Force 3 “Kintsugi” Pack Embraces The Beauty Of Imperfection - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9KRnBxbGN3dFh0V18wWVloV2pQTlJneXpmdmdNbXFtZzV1cG9GR1l3U3lVeGQ1Q2pNNUdxdEtGbnZVOGFpTFA3eXZpQTlmb2EwbWNTb1lpNWRpZFZHbEtVRTkzQ01iNXVQb0N3ek1ST1BiWWt4clhoUjN6Y9IBe0FVX3lxTE9KRnBxbGN3dFh0V18wWVloV2pQTlJneXpmdmdNbXFtZzV1cG9GR1l3U3lVeGQ1Q2pNNUdxdEtGbnZVOGFpTFA3eXZpQTlmb2EwbWNTb1lpNWRpZFZHbEtVRTkzQ01iNXVQb0N3ek1ST1BiWWt4clhoUjN6Yw?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323346"
+      "scraped_at": "2026-03-15T07:04:46.752740"
     },
     {
       "id": "fccee36d4e81",
@@ -642,7 +608,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323347"
+      "scraped_at": "2026-03-15T07:04:46.752742"
     },
     {
       "id": "35732d26ee0c",
@@ -659,7 +625,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323348"
+      "scraped_at": "2026-03-15T07:04:46.752743"
     },
     {
       "id": "d7ae2fdecf2f",
@@ -676,24 +642,24 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323349"
+      "scraped_at": "2026-03-15T07:04:46.752744"
     },
     {
-      "id": "c20a5af29bc5",
-      "name": "Comme des Garçons Remembers Its Nike Air Max 180 Collab On The LD-1000 - Sneaker News",
-      "brand": "Nike",
+      "id": "8f0e11e6785e",
+      "name": "The Air Jordan 1 Low “Turqouise” Asks You To Connect The Dots - Sneaker News",
+      "brand": "Jordan",
       "release_date": "TBD",
-      "price": 110,
+      "price": 100,
       "sale_methods": [
         "Online",
         "In-Store"
       ],
       "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQYVktOS1taUNxYmdtZ0djRl9QY0h3NkptVkIyWncwMlo0RGMtUEJHYnV6NkY3bWxRcWZWR1UxSjNEXzRWSThQcHI2eU5HQ25YNjJuUWh2LVRoc1N6SVc4NkVFZ1JBTFVNTWRoOThOWW9Va3B1cmFLd0M0UDlBSDFDRDN6WElNRGlFUC1WdUtoUmlnMlA1ZXRPNVY3QTFkTlhxU3Q3TXlCeVk1Z3fSAasBQVVfeXFMUGFZLTktbWlDcWJnbWdHY0ZfUGNIdzZKbVZCMlp3MDJaNERjLVBCR2J1ejZGN21sUXFmVkdVMUozRF80Vkk4UHByNnlOR0NuWDYyblFodi1UaHNTeklXODZFRWdSQUxVTU1kaDk4TllvVWtwdXJhS3dDNFA5QUgxQ0QzelhJTURpRVAtVnVLaFJpZzJQNWV0TzVWN0ExZE5YcVN0N015QnlZNWd3?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1YU0JRbWdGNFpQSWVXZi1zOFo1T3UtcUltNW43ckxSTjV1M0hNUzlXbXlFVDNhNDlzYWl3OTlqcFRYUEhQZ3RHbVUzZk9NZ242ZDFkZXgyeElvTUhxbXdYODZIVUd2UERtZmdid3VfYnNUSGJnengxUGZENmJiZ9IBfkFVX3lxTE1YU0JRbWdGNFpQSWVXZi1zOFo1T3UtcUltNW43ckxSTjV1M0hNUzlXbXlFVDNhNDlzYWl3OTlqcFRYUEhQZ3RHbVUzZk9NZ242ZDFkZXgyeElvTUhxbXdYODZIVUd2UERtZmdid3VfYnNUSGJnengxUGZENmJiZw?oc=5",
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323350"
+      "scraped_at": "2026-03-15T07:04:46.752745"
     },
     {
       "id": "4c9be5d667e7",
@@ -710,24 +676,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323351"
-    },
-    {
-      "id": "765000370161",
-      "name": "Size? Unveils New Balance 550 Collaboration - Sneaker News",
-      "brand": "New Balance",
-      "release_date": "TBD",
-      "price": 110,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1JYkl3eGVCVVp3YmV0c245M0c2bE1kUEd3ZTQydV9tZzF5U01TMDA3akcwUmxObVVkTTB4Z1pYMGp1UXJUTlVzTkUzd1U0Z3Y3S2U0aU1PYm5JcGpGSWxGYTExQlc3SVU2ZHE4SS1nVTZEajN6akV3dNIBeEFVX3lxTE1JYkl3eGVCVVp3YmV0c245M0c2bE1kUEd3ZTQydV9tZzF5U01TMDA3akcwUmxObVVkTTB4Z1pYMGp1UXJUTlVzTkUzd1U0Z3Y3S2U0aU1PYm5JcGpGSWxGYTExQlc3SVU2ZHE4SS1nVTZEajN6akV3dA?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323352"
+      "scraped_at": "2026-03-15T07:04:46.752746"
     },
     {
       "id": "918a708ba060",
@@ -744,24 +693,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323354"
-    },
-    {
-      "id": "7ae327772acf",
-      "name": "Official Images Of The Nike Book 1 “Blue Blood” - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQc1M5RVZnSGNtVWRtN0dIT1hmZGwwWG5LS3pzdGZUNnlXaXdvSmRkd2QySlpnd1VLOE1jT29HUjREMnVMV2ZreUtJMTBURjV1V2pEb0dYRUdYSHdaNFZoMXp2NVY2TDFzRXhaRVpHOGxXaGNybTNCZm1NLW9XWGZkdXl2WmrSAYQBQVVfeXFMUHNTOUVWZ0hjbVVkbTdHSE9YZmRsMFhuS0t6c3RmVDZ5V2l3b0pkZHdkMkpaZ3dVSzhNY09vR1I0RDJ1TFdma3lLSTEwVEY1dVdqRG9HWEVHWEh3WjRWaDF6djVWNkwxc0V4WkVaRzhsV2hjcm0zQmZtTS1vV1hmZHV5dlpq?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323355"
+      "scraped_at": "2026-03-15T07:04:46.752747"
     },
     {
       "id": "6c93a304f6ca",
@@ -778,7 +710,24 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323356"
+      "scraped_at": "2026-03-15T07:04:46.752748"
+    },
+    {
+      "id": "b7c77e300b17",
+      "name": "Official Images Of The Nike Ja 3 “Unseen Hours” - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOQ3lodEZLMW9oSUpEQ3I1UmdPWVA3c0d5ck9LZkw5aFljU0hkaFJVWEdDbjlwWVE0WUttTm9UcWctTmRnUGlQc1JnX2V4ckItcjlwLXB1dFRiZC1Wbkk2TGlwUG9iWWpNY1drTENEcWo1cy1MdmxsMGRiRG5yaGJiV1dONNIBgwFBVV95cUxOQ3lodEZLMW9oSUpEQ3I1UmdPWVA3c0d5ck9LZkw5aFljU0hkaFJVWEdDbjlwWVE0WUttTm9UcWctTmRnUGlQc1JnX2V4ckItcjlwLXB1dFRiZC1Wbkk2TGlwUG9iWWpNY1drTENEcWo1cy1MdmxsMGRiRG5yaGJiV1dONA?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752749"
     },
     {
       "id": "283c0638aba8",
@@ -795,7 +744,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323357"
+      "scraped_at": "2026-03-15T07:04:46.752750"
     },
     {
       "id": "21c0ba34ea9f",
@@ -812,7 +761,24 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323358"
+      "scraped_at": "2026-03-15T07:04:46.752752"
+    },
+    {
+      "id": "d3c531743a01",
+      "name": "Off-White x Nike Air Force 1 Low “Sesame” Releasing Fall 2025 - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": 100,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPYnhpMGpMMHBiQ1JoNTZ0RWdQQTUzVi16bi1mSnF6cEREMmpDNDQ3M1ZQWGVRRkF0NUNPdzU3RDdjb2E5RC1md3ltTlUxWUtKTFExRDhjNWQ5Rlgzb1Ixb0cxTG1Tem1kelo2SDJTenI4d1BvY05JRXc1WF9WNEpqQjZ6Y2RIdE1hSW9jTdIBjAFBVV95cUxPYnhpMGpMMHBiQ1JoNTZ0RWdQQTUzVi16bi1mSnF6cEREMmpDNDQ3M1ZQWGVRRkF0NUNPdzU3RDdjb2E5RC1md3ltTlUxWUtKTFExRDhjNWQ5Rlgzb1Ixb0cxTG1Tem1kelo2SDJTenI4d1BvY05JRXc1WF9WNEpqQjZ6Y2RIdE1hSW9jTQ?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 5,
+      "hype_label": "Grail",
+      "scraped_at": "2026-03-15T07:04:46.752753"
     },
     {
       "id": "daae98259088",
@@ -829,7 +795,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323359"
+      "scraped_at": "2026-03-15T07:04:46.752754"
     },
     {
       "id": "e7d2116492c9",
@@ -846,7 +812,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323360"
+      "scraped_at": "2026-03-15T07:04:46.752755"
     },
     {
       "id": "d31e08edba20",
@@ -863,7 +829,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323361"
+      "scraped_at": "2026-03-15T07:04:46.752756"
     },
     {
       "id": "2b8bc40d396a",
@@ -880,7 +846,24 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323362"
+      "scraped_at": "2026-03-15T07:04:46.752757"
+    },
+    {
+      "id": "0312845eff5b",
+      "name": "LaMelo Ball Shoes - 2025 Release Dates - Sneaker News",
+      "brand": "Other",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBrT0t4aENxYTdzcU82VS1fbEVHaXBCQi1DNFpMd2hSajJ5eU9oX05tZ3hLUlVVQU9qbEp0YmNJRGo2M0hUWVp5WllwcDJfVU01VUE?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 1,
+      "hype_label": "General Release",
+      "scraped_at": "2026-03-15T07:04:46.752758"
     },
     {
       "id": "20bae9695b0b",
@@ -897,7 +880,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323363"
+      "scraped_at": "2026-03-15T07:04:46.752759"
     },
     {
       "id": "d3446d7fb352",
@@ -914,7 +897,24 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323364"
+      "scraped_at": "2026-03-15T07:04:46.752760"
+    },
+    {
+      "id": "368647364296",
+      "name": "The Nike Ja 3 “Let Me Be Ja” Could Be Among The Last Drops Of The Model - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQTTlVYVFkQTBHakRtSVMzMG9hTFA3ZldwbllMZnRXb0FHZXk3V1ZDbUJDM1ZqTEFOcldnQlMtMzR4T0lIX3FKN1NYOUN0S3NYU3hHSXJOcWw4QjBsRVhUWDNMZ1BreVN3ZWsxLVRsNEJjaWhiVkpMQ1NrMmo1czBlU2tYZUlEMTFRVWVWV0prV1JycE3SAZMBQVVfeXFMUE05VWFRZEEwR2pEbUlTMzBvYUxQN2ZXcG5ZTGZ0V29BR2V5N1dWQ21CQzNWakxBTnJXZ0JTLTM0eE9JSF9xSjdTWDlDdEtzWFN4R0lyTnFsOEIwbEVYVFgzTGdQa3lTd2VrMS1UbDRCY2loYlZKTENTazJqNXMwZVNrWGVJRDExUVVlVldKa1dScnBN?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752761"
     },
     {
       "id": "da092668bb77",
@@ -931,7 +931,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323365"
+      "scraped_at": "2026-03-15T07:04:46.752763"
     },
     {
       "id": "3e9483944db4",
@@ -948,24 +948,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323367"
-    },
-    {
-      "id": "dcd00929a99a",
-      "name": "Official Images Of The Air Jordan 1 Retro Low OG “Medium Olive” - Sneaker News",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": 130,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPbjNZNmtkRmF4bHFXZURzQXFpeTcybFZuaTNWdk1OLVFPeEZWMkFLbzFoVmlsNWYyQ2ptbzhmemtUWFRDVHdMb0tXU0dUam11bjJIdmxiRzBjU0Q5bHEwNUFsVlBlblpOSXE3NGV0alBCSktmRDVYcWpETUxoLXpZclpoTllxeUxpVDhkMXlnUm7SAZABQVVfeXFMT24zWTZrZEZheGxxV2VEc0FxaXk3MmxWbmkzVnZNTi1RT3hGVjJBS28xaFZpbDVmMkNqbW84ZnprVFhUQ1R3TG9LV1NHVGptdW4ySHZsYkcwY1NEOWxxMDVBbFZQZW5aTklxNzRldGpQQkpLZkQ1WHFqRE1MaC16WXJaaE5ZcXlMaVQ4ZDF5Z1Ju?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323368"
+      "scraped_at": "2026-03-15T07:04:46.752764"
     },
     {
       "id": "18605fef4729",
@@ -982,7 +965,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323369"
+      "scraped_at": "2026-03-15T07:04:46.752765"
     },
     {
       "id": "1f45035c9be5",
@@ -999,7 +982,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323370"
+      "scraped_at": "2026-03-15T07:04:46.752766"
     },
     {
       "id": "7a8c38b7fee0",
@@ -1016,24 +999,24 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323371"
+      "scraped_at": "2026-03-15T07:04:46.752767"
     },
     {
-      "id": "66a5267d1815",
-      "name": "Detailed Look At The Air Jordan 5 “Wolf Grey” - Sneaker News",
-      "brand": "Jordan",
+      "id": "53ebb46ce5c4",
+      "name": "The Satoshi Nakamoto Influence Continues On The Vans Slip-On For Spring - Sneaker News",
+      "brand": "Vans",
       "release_date": "TBD",
-      "price": 200,
+      "price": null,
       "sale_methods": [
         "Online",
         "In-Store"
       ],
       "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAwQUZiQktBRDlWQmJSVlRpYjdVSVRZZUYycVFjZ053cG0tM2stODZRX0UtRHdnVW1EbHg1Z3lXejZfWU1RODkza190cGJLQmxtandjdFlBc2xZSGVpa3dIcjFoVUNLRTNWcHfSAWpBVV95cUxQMEFGYkJLQUQ5VkJiUlZUaWI3VUlUWWVGMnFRY2dOd3BtLTNrLTg2UV9FLUR3Z1VtRGx4NWd5V3o2X1lNUTg5M2tfdHBiS0JsbWp3Y3RZQXNsWUhlaWt3SHIxaFVDS0UzVnB3?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE92TGJYZnFYYkNyUjdQRVZnRUF0SWhMUmZzYXVZd3NFanFaU0hlZVRGVVhXWThldzYwMEJDek9Yb2x1T2JjTnZvNXliTVIxazB6RG1WZEhpU3JTQnZTN2FmRk9WOXp5Z1VRYmtOc1pRTDJBa0ZDbTNOV9IBeEFVX3lxTE92TGJYZnFYYkNyUjdQRVZnRUF0SWhMUmZzYXVZd3NFanFaU0hlZVRGVVhXWThldzYwMEJDek9Yb2x1T2JjTnZvNXliTVIxazB6RG1WZEhpU3JTQnZTN2FmRk9WOXp5Z1VRYmtOc1pRTDJBa0ZDbTNOVw?oc=5",
       "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323372"
+      "hype_level": 2,
+      "hype_label": "Popular",
+      "scraped_at": "2026-03-15T07:04:46.752768"
     },
     {
       "id": "8bc2ee316366",
@@ -1050,11 +1033,11 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323373"
+      "scraped_at": "2026-03-15T07:04:46.752769"
     },
     {
-      "id": "8650514383aa",
-      "name": "The Nike ACG LDV Tells The Origin Story Of All-Conditions Gear - Sneaker News",
+      "id": "cf0b163de3b7",
+      "name": "Where To Buy The Ja Morant x Nike Air Force 1 “Let Me Be Ja” - Sneaker News",
       "brand": "Nike",
       "release_date": "TBD",
       "price": null,
@@ -1063,11 +1046,11 @@
         "In-Store"
       ],
       "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5IdXF1aDZ3Q3gyOUJVb2FVeVZHWG4wcTVwYUk5cGU0cUFMZjhWeFBnZzhkR0ZXaVNhOXEzTU41cUx5VDcwTFB3T0o3a0ZqTzNmSXFxTERwS2YzZG81cEVyR3JXUl9BRUVza2tHRHFn0gFuQVVfeXFMTkh1cXVoNndDeDI5QlVvYVV5VkdYbjBxNXBhSTlwZTRxQUxmOFZ4UGdnOGRHRldpU2E5cTNNTjVxTHlUNzBMUHdPSjdrRmpPM2ZJcXFMRHBLZjNkbzVwRXJHcldSX0FFRXNra0dEcWc?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQazRsSmVtSFl3RkpQOVRuZGtuZWJxQ3MzR1dMNmpRS3VmTFJYbldhTXY3Vjl1T3JuaHc4RXduekFwTHNCZzZxS2szXzNpay1yN3hkS1owTVI2cW16SzdoOHVCaW1iNVRxLTZ4UEZNQWhDbDlCQzhWNlBKZGRoOE9RUlBB0gGCAUFVX3lxTFBrNGxKZW1IWXdGSlA5VG5ka25lYnFDczNHV0w2alFLdWZMUlhuV2FNdjdWOXVPcm5odzhFd256QXBMc0JnNnFLazNfM2lrLXI3eGRLWjBNUjZxbXpLN2g4dUJpbWI1VHEtNnhQRk1BaENsOUJDOFY2UEpkZGg4T1FSUEE?oc=5",
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323375"
+      "scraped_at": "2026-03-15T07:04:46.752770"
     },
     {
       "id": "a8c53680192a",
@@ -1084,7 +1067,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323376"
+      "scraped_at": "2026-03-15T07:04:46.752771"
     },
     {
       "id": "087b46e74ea4",
@@ -1101,7 +1084,24 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323377"
+      "scraped_at": "2026-03-15T07:04:46.752772"
+    },
+    {
+      "id": "2a45a6db4a22",
+      "name": "Nike Air Max 97 – History + Official Releases 2025 - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": 175,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5mU01lTzVJUU5lZ1d5NmxPbEpiaWI5enZZNXJkdG5EVmlQYk13Y3RvcjJFS0ZiWG9iZjhMWVBISGZoNlZpdmd2SjUzMmFKeTB4X0JYZ2VDTQ?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752773"
     },
     {
       "id": "ab4c9faf2f23",
@@ -1118,24 +1118,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323378"
-    },
-    {
-      "id": "f5c9880dde36",
-      "name": "Reebok Is Restocking The Angel Reese 1 “Receipts Ready” On February 6th - Sneaker News",
-      "brand": "Reebok",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFAyUERwV1laRVJfbGpzU3BaUWFJdTFqeDNkcFpMemVQSkcwNjdTNWlUM0ttMmNqWlpMa3hrZnpncTNqM242SWdBUEhnWVhDSE1SM3A0Q1NkcDlRV3F3QVJKZVB6dktwNHlRZjI4dzVYYU9oa3FrenJ4QdIBeEFVX3lxTFAyUERwV1laRVJfbGpzU3BaUWFJdTFqeDNkcFpMemVQSkcwNjdTNWlUM0ttMmNqWlpMa3hrZnpncTNqM242SWdBUEhnWVhDSE1SM3A0Q1NkcDlRV3F3QVJKZVB6dktwNHlRZjI4dzVYYU9oa3FrenJ4QQ?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 2,
-      "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323379"
+      "scraped_at": "2026-03-15T07:04:46.752774"
     },
     {
       "id": "8257359abd6b",
@@ -1152,24 +1135,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323380"
-    },
-    {
-      "id": "38da3b62458a",
-      "name": "Where To Buy The Nike Ja 3 “Light Show” - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE13M1JfZjJrYmwzdUs0N0FiS1Q2NEJQbS01TnJLbEVpNzUwMUt1NFphVmtoWTBFeU90NmNqbVNwNnNlay1HZXBHcGtRTk1wRFR5WV92MnpxSTlQUmpmUGFkNXN5QnJJaUxfOFZLVmNaMnRnUWp3TGfSAXZBVV95cUxNdzNSX2Yya2JsM3VLNDdBYktUNjRCUG0tNU5yS2xFaTc1MDFLdTRaYVZraFkwRXlPdDZjam1TcDZzZWstR2VwR3BrUU5NcERUeVlfdjJ6cUk5UFJqZlBhZDVzeUJySWlMXzhWS1ZjWjJ0Z1Fqd0xn?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323381"
+      "scraped_at": "2026-03-15T07:04:46.752775"
     },
     {
       "id": "164008628faa",
@@ -1186,7 +1152,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323382"
+      "scraped_at": "2026-03-15T07:04:46.752777"
     },
     {
       "id": "b7d365862091",
@@ -1203,7 +1169,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323384"
+      "scraped_at": "2026-03-15T07:04:46.752778"
     },
     {
       "id": "b160322b3be3",
@@ -1220,7 +1186,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323385"
+      "scraped_at": "2026-03-15T07:04:46.752779"
     },
     {
       "id": "b1b522a48f7f",
@@ -1237,7 +1203,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323386"
+      "scraped_at": "2026-03-15T07:04:46.752780"
     },
     {
       "id": "7dc03f6ce084",
@@ -1254,7 +1220,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323387"
+      "scraped_at": "2026-03-15T07:04:46.752781"
     },
     {
       "id": "fddb880c5d73",
@@ -1271,41 +1237,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323388"
-    },
-    {
-      "id": "dde8b030d6d1",
-      "name": "Dylan Harper’s Nike GT Cut 1 “Tri-State” Drops March 19th - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOb0ROYk0wWW5EMUNqbmNuVmFvdmtRTXVkQVNrVFJmVDB6RUttdWk0cUw5Y0NlbnNmSHhDZWMydXdnWndoWjNlQURkMlRFWHBCVXpOZVlXdzZ4RmRtSDJRcW10S0wxTVRTd1VyeVhYVEpMMTQzbmo1QzNEWjdfRm1aN9IBgAFBVV95cUxOb0ROYk0wWW5EMUNqbmNuVmFvdmtRTXVkQVNrVFJmVDB6RUttdWk0cUw5Y0NlbnNmSHhDZWMydXdnWndoWjNlQURkMlRFWHBCVXpOZVlXdzZ4RmRtSDJRcW10S0wxTVRTd1VyeVhYVEpMMTQzbmo1QzNEWjdfRm1aNw?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323389"
-    },
-    {
-      "id": "271d62ec3ec5",
-      "name": "The Nike KD 4 Retro “Easter” Releases On April 18th - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOMnBtTnMtOFdWZ3p3Q1lSVG9jNG94VFZvWndfb3k4SUg2MVdsZV9ZS3RhZHpfVmNsQzYwUW80VUNqdlE1UUU0a1doaEJqT0V5UXNkQXI0ZU93RU5ZVjg4YTNLcEZKMlhUQ044aFpFR2hYc2FmSXFENFFsYzFvZlRHVmFR0gGCAUFVX3lxTE4ycG1Ocy04V1ZnendDWVJUb2M0b3hUVm9ad19veThJSDYxV2xlX1lLdGFkel9WY2xDNjBRbzRVQ2p2UTVRRTRrV2hoQmpPRXlRc2RBcjRlT3dFTllWODhhM0twRkoyWFRDTjhoWkVHaFhzYWZJcUQ0UWxjMW9mVEdWYVE?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323390"
+      "scraped_at": "2026-03-15T07:04:46.752782"
     },
     {
       "id": "5b1e5089552e",
@@ -1322,41 +1254,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323391"
-    },
-    {
-      "id": "d67a5a355201",
-      "name": "Meet The Newest New Balance Basketball Shoe, The P400 - Sneaker News",
-      "brand": "New Balance",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE13Q0d5X0VaTDlsSndTUDhUYUxLTjJMX1ZnQWFiRktEN1I4S3lEazc5R1BXYXJnSUd3QUpZeWpzMW5UQS1vWHNuQ2VFM19SWEhRVDhNSmRWWC1pVENGa0N3RkptRnhZVTN3bElHQkFoS3lPV3PSAXNBVV95cUxNd0NHeV9FWkw5bEp3U1A4VGFMS04yTF9WZ0FhYkZLRDdSOEt5RGs3OUdQV2FyZ0lHd0FKWXlqczFuVEEtb1hzbkNlRTNfUlhIUVQ4TUpkVlgtaVRDRmtDd0ZKbUZ4WVUzd2xJR0JBaEt5T1dz?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 2,
-      "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323396"
-    },
-    {
-      "id": "c1b6fa730516",
-      "name": "Jordan Brand Officially Unveils The Jordan Heir Series 2 - Sneaker News",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1hakFSQ0JtX1VFeURiZVhHWnVKMnN4dk9VWVNLTmd4alBZcG8tOVhieXVWaG9OUVJqcWpnSXU3QnhqYTJIMUplRGdIam5NUDNxRVM1Nnd0Qmg1ay1RNlQ1RUFPZHNCMVFYRlRkT2tIcE4yWkd3WlBHSdIBeEFVX3lxTE1hakFSQ0JtX1VFeURiZVhHWnVKMnN4dk9VWVNLTmd4alBZcG8tOVhieXVWaG9OUVJqcWpnSXU3QnhqYTJIMUplRGdIam5NUDNxRVM1Nnd0Qmg1ay1RNlQ1RUFPZHNCMVFYRlRkT2tIcE4yWkd3WlBHSQ?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323397"
+      "scraped_at": "2026-03-15T07:04:46.752784"
     },
     {
       "id": "6d6da24ff0f5",
@@ -1373,24 +1271,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323398"
-    },
-    {
-      "id": "503cc43aee03",
-      "name": "Official Images Of The Nike Sabrina 3 “Blueprint” - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOYXRTM3V2MWdaYmp3M2FITldSbG8yRWhLdGhscE9wcGs3dEpVY21XVVRGRTllNEVIRlI0Ukwzb05FcmsxQnJMSHZsZGcwSVE5bGZTVDdmbHFNcmk3LUxnTG5kRVR4X1Vna25WYzVLZEp3OHE1bEdnUmRoX3NPQTRmMUZRYXJzV0MyUWJRMdIBjAFBVV95cUxOYXRTM3V2MWdaYmp3M2FITldSbG8yRWhLdGhscE9wcGs3dEpVY21XVVRGRTllNEVIRlI0Ukwzb05FcmsxQnJMSHZsZGcwSVE5bGZTVDdmbHFNcmk3LUxnTG5kRVR4X1Vna25WYzVLZEp3OHE1bEdnUmRoX3NPQTRmMUZRYXJzV0MyUWJRMQ?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323400"
+      "scraped_at": "2026-03-15T07:04:46.752785"
     },
     {
       "id": "f64580d15b79",
@@ -1407,24 +1288,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323401"
-    },
-    {
-      "id": "5fe55644303b",
-      "name": "The Travis Scott Fragment Air Jordan 1 Is The Most Wanted Sneaker Release Of All Time - Sneaker News",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNdktzbHl1SlhFUndNYzV6ZDY5WEJiYmdHb0FkTmNXMU9mSVo5Q0dPcGFmS1RFS3h3amlWZFplUy1qb2tBUl9ISWgtQXdPVGsxMVN0MC1BMFVMalhTZmh0UDNsem93bjJ3VkdfSUt6R2tidzBja3NaNGRHRlpZN3pYSzJmcFB3MW01UTZQMEtTdFPSAZABQVVfeXFMTXZLc2x5dUpYRVJ3TWM1emQ2OVhCYmJnR29BZE5jVzFPZklaOUNHT3BhZktURUt4d2ppVmRaZVMtam9rQVJfSEloLUF3T1RrMTFTdDAtQTBVTGpYU2ZodFAzbHpvd24yd1ZHX0lLekdrYncwY2tzWjRkR0ZaWTd6WEsyZnBQdzFtNVE2UDBLU3RT?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 5,
-      "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323402"
+      "scraped_at": "2026-03-15T07:04:46.752786"
     },
     {
       "id": "9dc94a2d32a2",
@@ -1441,7 +1305,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323403"
+      "scraped_at": "2026-03-15T07:04:46.752787"
     },
     {
       "id": "d93dfebd7a89",
@@ -1458,7 +1322,24 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323404"
+      "scraped_at": "2026-03-15T07:04:46.752788"
+    },
+    {
+      "id": "1936a34e8ae1",
+      "name": "The Nike Air Max 1 Low Poly “Donkey Kong” Releases On Air Max Day - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": 110,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPQ2JjMWQ3RHItN0FBaDlWZ1Z4NlV2WWZsTkRtQjJldVNEaGhGRXhpMjNsUnpUY1dRM0tvZ1lQZEpacDVRd29vZnRlNVlNRU5DVWdjSzlWU0NMRFFZZWI5d3gzVTdGU3FBQzEyY1FUNEUtczZicm0xc1M5QXdYc0M4Rmp4c0JSaDhKMmfSAYoBQVVfeXFMT0NiYzFkN0RyLTdBQWg5VmdWeDZVdllmbE5EbUIyZXVTRGhoRkV4aTIzbFJ6VGNXUTNLb2dZUGRKWnA1UXdvb2Z0ZTVZTUVOQ1VnY0s5VlNDTERRWWViOXd4M1U3RlNxQUMxMmNRVDRFLXM2YnJtMXNTOUF3WHNDOEZqeHNCUmg4SjJn?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752793"
     },
     {
       "id": "e81cd2387591",
@@ -1475,7 +1356,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323405"
+      "scraped_at": "2026-03-15T07:04:46.752795"
     },
     {
       "id": "4d25779c2f6a",
@@ -1492,24 +1373,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323406"
-    },
-    {
-      "id": "b88962dfde01",
-      "name": "Caitlin Clark’s Nike Kobe 5 Protro “Indiana Fever” Dropping In June - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQQlhMZ0g0WWNOcFVQc2Y2NDdXUzZfVTVCQW1tY3ZhSHhXdGV1QmxiWEo1ZXN3YmJsN2d2QVhpbkE1QXpaUGVvendzYzBHVmREX1RoMFFEc25naEV1aFdWcFVIMkxHeWVqR2NBY0FOY0xDVk1TSVdKVDVVcVpGVTdkZ0VFQmFlVVNJMDRETTdlVzNFNkxsSGNNU9IBmAFBVV95cUxQQlhMZ0g0WWNOcFVQc2Y2NDdXUzZfVTVCQW1tY3ZhSHhXdGV1QmxiWEo1ZXN3YmJsN2d2QVhpbkE1QXpaUGVvendzYzBHVmREX1RoMFFEc25naEV1aFdWcFVIMkxHeWVqR2NBY0FOY0xDVk1TSVdKVDVVcVpGVTdkZ0VFQmFlVVNJMDRETTdlVzNFNkxsSGNNUw?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323407"
+      "scraped_at": "2026-03-15T07:04:46.752796"
     },
     {
       "id": "cae97f37936e",
@@ -1526,7 +1390,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323408"
+      "scraped_at": "2026-03-15T07:04:46.752797"
     },
     {
       "id": "4621964a615f",
@@ -1543,7 +1407,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323409"
+      "scraped_at": "2026-03-15T07:04:46.752798"
     },
     {
       "id": "18c4f46460fc",
@@ -1560,7 +1424,7 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323410"
+      "scraped_at": "2026-03-15T07:04:46.752799"
     },
     {
       "id": "75223bf3adff",
@@ -1577,12 +1441,12 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323411"
+      "scraped_at": "2026-03-15T07:04:46.752800"
     },
     {
-      "id": "49dce0a1654f",
-      "name": "Nike LeBron 23 Unveiled - Sneaker News",
-      "brand": "Nike",
+      "id": "42c8a4e9f1be",
+      "name": "It’s “Melo World” And The PUMA MB.05 Is Just Living In it - Sneaker News",
+      "brand": "Puma",
       "release_date": "TBD",
       "price": null,
       "sale_methods": [
@@ -1590,28 +1454,11 @@
         "In-Store"
       ],
       "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9iaUkzUDRSbVRzUE5sTlczbGNtbEZjRVFwb0JsTkRjMW9lQXRnZ2FjVlZUOWhFeFZsSUxnLW1URnl1S0tTdldXYnVfNlVBOUNlWkpoVHItaUFLcnhiellj0gFfQVVfeXFMT2JpSTNQNFJtVHNQTmxOVzNsY21sRmNFUXBvQmxORGMxb2VBdGdnYWNWVlQ5aEV4VmxJTGctbVRGeXVLS1N2V1didV82VUE5Q2VaSmhUci1pQUtyeGJ6WWM?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9VdmVOd0FPN3hQNXh5NEN5dGpBektnbS1vSlJFS2lBNVJKMHQxYy0wT0JRTDZ6YS02eXNWV2RaSlNDN095b0JyTnFLdlRIeDZxY295R2JDa1Buc0tUSktleUFSd05jaTFJWG0yOGxDeFlzLVJReWfSAXZBVV95cUxPVXZlTndBTzd4UDV4eTRDeXRqQXpLZ20tb0pSRUtpQTVSSjB0MWMtME9CUUw2emEtNnlzVldkWkpTQzdPeW9Cck5xS3ZUSHg2cWNveUdiQ2tQbnNLVEpLZXlBUndOY2kxSVhtMjhsQ3hZcy1SUXln?oc=5",
       "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323412"
-    },
-    {
-      "id": "e93ce4f69722",
-      "name": "Nike Zoom Huarache 2k4 “All-Star” Returning In 2026 - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNMF9pQmlnZ0swQ2hxVk5NeXlfOUFnTGVwZllMWTZGQUw3TWE4TkR3c1VFc3A0R2NWdmMwNEVIUl9uLXd0SlNWbDVJOGlla1c2TXAwRmpQeVdVdGZvdTFTTHlnVjM1RGJhOE4tTFB3cHgyRE5naklVZmtwR09MQUZ3V05CbVrSAYQBQVVfeXFMTTBfaUJpZ2dLMENocVZOTXl5XzlBZ0xlcGZZTFk2RkFMN01hOE5Ed3NVRXNwNEdjVnZjMDRFSFJfbi13dEpTVmw1SThpZWtXNk1wMEZqUHlXVXRmb3UxU0x5Z1YzNURiYThOLUxQd3B4MkROZ2pJVWZrcEdPTEFGd1dOQm1a?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323414"
+      "hype_level": 2,
+      "hype_label": "Popular",
+      "scraped_at": "2026-03-15T07:04:46.752801"
     },
     {
       "id": "5fb919307748",
@@ -1628,7 +1475,24 @@
       "source": "SneakerNews",
       "hype_level": 2,
       "hype_label": "Popular",
-      "scraped_at": "2026-03-15T06:53:18.323415"
+      "scraped_at": "2026-03-15T07:04:46.752802"
+    },
+    {
+      "id": "3abbc3cf1c32",
+      "name": "Nike KD 6 “Peanut Butter Jelly” Returns On January 23rd - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNbmJSdjNrQmhwQmx0NVVXeWdSbWdpc3lacXFlTnZ1T2RkVG80OGdPWnZ0Ui1nY1FubFF0LVpxNDZsQXRlQnRYa0NwRno5OGp1ZDIzQ1pYeF82eXJ5blh3Z2NoaHJKMzgtQ1JyNmJfNTFWTk1GTFNET3B5TTc5MGpzVjNB0gGCAUFVX3lxTE1uYlJ2M2tCaHBCbHQ1VVd5Z1JtZ2lzeVpxcWVOdnVPZGRUbzQ4Z09adnRSLWdjUW5sUXQtWnE0NmxBdGVCdFhrQ3BGejk4anVkMjNDWlh4XzZ5cnluWHdnY2hockozOC1DUnI2Yl81MVZOTUZMU0RPcHlNNzkwanNWM0E?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752803"
     },
     {
       "id": "2612971ec228",
@@ -1645,7 +1509,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323416"
+      "scraped_at": "2026-03-15T07:04:46.752804"
     },
     {
       "id": "79e29489d1d4",
@@ -1662,58 +1526,7 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323417"
-    },
-    {
-      "id": "28b2ad4130e4",
-      "name": "Nike Mind 001 / 002, Jordan Luka 5, And This Week’s Best Releases - Sneaker News",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOdnkwZWZXT0REVVhjQnBXZzBVaGFPT3JDZGxCck12dHhwbXE2aDFUWDNfTWdyTTJpNnJwMzFqR2w1RkNrbFpkZExyQXRWMDU2UGpiSnA5T0V2MVNBcDRuVFcxeFNEd2U4eC1mLVNreHh6ZWlPVHE0cGJGYlF5SDV0amRnSkvSAYQBQVVfeXFMTnZ5MGVmV09ERFVYY0JwV2cwVWhhT09yQ2RsQnJNdnR4cG1xNmgxVFgzX01nck0yaTZycDMxakdsNUZDa2xaZGRMckF0VjA1NlBqYkpwOU9FdjFTQXA0blRXMXhTRHdlOHgtZi1Ta3h4emVpT1RxNHBiRmJReUg1dGpkZ0pL?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323418"
-    },
-    {
-      "id": "a50e4f60d831",
-      "name": "Nike Ja 3 “Murray State” Launches On March 5th - Sneaker News",
-      "brand": "Nike",
-      "release_date": "TBD",
-      "price": null,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOekNBTnN0OEJSY0ZWWXd5T3hDeVA0ZHlhWHJmWWRlUm5RU3VmSVg3UFM2blFpQm1Ic3VseGY2RC1QdEZEVXEzZml1WmFjVC00Q1FJYVpORjdVZjREMjNIalN2R25SbVVXNFhQbm04c25SSjNfYXVpTG02dmxaUGNCMHJzakthTGZ4RXfSAYoBQVVfeXFMTnpDQU5zdDhCUmNGVll3eU94Q3lQNGR5YVhyZllkZVJuUVN1ZklYN1BTNm5RaUJtSHN1bHhmNkQtUHRGRFVxM2ZpdVphY1QtNENRSWFaTkY3VWY0RDIzSGpTdkduUm1VVzRYUG5tOHNuUkozX2F1aUxtNnZsWlBjQjByc2pLYUxmeEV3?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 3,
-      "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323419"
-    },
-    {
-      "id": "2858fb418f24",
-      "name": "Air Jordan 5 “Wolf Grey” Postponed To February 28th - Sneaker News",
-      "brand": "Jordan",
-      "release_date": "TBD",
-      "price": 200,
-      "sale_methods": [
-        "Online",
-        "In-Store"
-      ],
-      "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1xZHFjb1Q4RmZpbXB4cTFoblVaZmJOUUFVZEtWWWttelpYSGN4czg2bGx4WVN2Z1hWTkQ2bnNvbVhHbFcybmdDLXlCd29fNVNRYU9GVXItdnc0MjV2TFhwamY1MWpFQlJTSmNlNmN0d1VzSUNEc0V2dFFYUnI3RTjSAX9BVV95cUxNcWRxY29UOEZmaW1weHExaG5VWmZiTlFBVWRLVllrbXpaWEhjeHM4NmxseFlTdmdYVk5ENm5zb21YR2xXMm5nQy15QndvXzVTUWFPRlVyLXZ3NDI1dkxYcGpmNTFqRUJSU0pjZTZjdHdVc0lDRHNFdnRRWFJyN0U4?oc=5",
-      "source": "SneakerNews",
-      "hype_level": 4,
-      "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323420"
+      "scraped_at": "2026-03-15T07:04:46.752805"
     },
     {
       "id": "ae739ede1cba",
@@ -1730,7 +1543,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323421"
+      "scraped_at": "2026-03-15T07:04:46.752807"
     },
     {
       "id": "d5d5ff0d73b2",
@@ -1747,7 +1560,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323422"
+      "scraped_at": "2026-03-15T07:04:46.752808"
     },
     {
       "id": "48261536fec2",
@@ -1764,7 +1577,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323423"
+      "scraped_at": "2026-03-15T07:04:46.752809"
     },
     {
       "id": "c6fbafeea2a8",
@@ -1781,7 +1594,7 @@
       "source": "SneakerNews",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:18.323424"
+      "scraped_at": "2026-03-15T07:04:46.752810"
     },
     {
       "id": "7b7df475c7e1",
@@ -1798,7 +1611,7 @@
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323426"
+      "scraped_at": "2026-03-15T07:04:46.752811"
     },
     {
       "id": "aba5f553ef9a",
@@ -1815,11 +1628,11 @@
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323427"
+      "scraped_at": "2026-03-15T07:04:46.752812"
     },
     {
-      "id": "805ce7a1fd42",
-      "name": "Where To Buy The Air Jordan 1 “All-Star” - Sneaker News",
+      "id": "f27f56ae4057",
+      "name": "Air Jordan Release Dates 2024 - Sneaker News",
       "brand": "Jordan",
       "release_date": "TBD",
       "price": null,
@@ -1828,15 +1641,66 @@
         "In-Store"
       ],
       "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1FLW1lUEs3dWMxX0MzZFJaMUF2Wmp1clV3bk92VDNqbDN4LXFHOE0xZkRJYl9VVlRiSzJKZE5RVnlYWVZZaU1xR2IzSDAtR3NycHI3VE02UmJGcHNDWWFkem1nSkRqSTlZQVpFQnZ6czQ0aFdOeG930gF3QVVfeXFMTUUtbWVQSzd1YzFfQzNkUloxQXZaanVyVXduT3ZUM2psM3gtcUc4TTFmREliX1VWVGJLMkpkTlFWeVhZVllpTXFHYjNIMC1Hc3JwcjdUTTZSYkZwc0NZYWR6bWdKRGpJOVlBWkVCdnpzNDRoV054b3c?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5fazN4dnFXQktKbzZ3cHI4SDFaVHNqX1B5QjAyZmdlMDVEZFI4Njliay1JQ21pMmlzaDgzZmR2bXBlRVlZXy1Db05lU3NjWGRDaFlvTWhVeGNNSXUyVFNDRm5HWUc?oc=5",
       "source": "SneakerNews",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:18.323428"
+      "scraped_at": "2026-03-15T07:04:46.752813"
     },
     {
-      "id": "1650c6faf7b4",
-      "name": "Paul Rodriguez Previews Upcoming Nike SB P-Rod 1 Drops For 2026 - Sneaker News",
+      "id": "6354d073fae2",
+      "name": "The ASICS GEL-Kayano 14 Pounds The Pavement In “Concrete” - Sneaker News",
+      "brand": "ASICS",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOaGpiQjhhMWd3ZVhQZVJ4N2ozM1JPeHNvYURaa1BGbzhseW9hdFlQNC1ZaWRST3RQTEhJaElqanpVRldWVzBVLVd5ZUo1RW0tcFliQXJWdVVkbi13NlVMRDJ2aUI3eGxGY2w1TlhVVTYtU0ZWekRSMEtVa1ZNbEhXV0tqMktlckZMaUNqLVh3WUU3Y2fSAZMBQVVfeXFMTmhqYkI4YTFnd2VYUGVSeDdqMzNST3hzb2FEWmtQRm84bHlvYXRZUDQtWWlkUk90UExISWhJamp6VUZXVlcwVS1XeWVKNUVtLXBZYkFyVnVVZG4tdzZVTEQydmlCN3hsRmNsNU5YVVU2LVNGVnpEUjBLVWtWTWxIV1dLajJLZXJGTGlDai1Yd1lFN2Nn?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 2,
+      "hype_label": "Popular",
+      "scraped_at": "2026-03-15T07:04:46.752814"
+    },
+    {
+      "id": "efaa08853c9f",
+      "name": "The Cult Classic Nike Air Max Plus VII Drips On “Blue Crystal” - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": 160,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQeEpmWW9SS0I3TUtfNXpSaUx4ZTRuODBKeFR3eHBVZlo5bk9CbkdmRVJjd3dsOXRuNTlCX0tDXzhBUk1NZ0I3WUdQWUhiN2VzQkhETEtYbEdVWXAwWF9JRjRfV2NQeTFDbDIwMmxGOWdlQzBMck1iVWZPQWZRYUpfN1Y5NjdqRVBVQWhyZ1lIYjNOSFBFc3F1YWRUR1JIeUs1dk5XN2ZR0gGmAUFVX3lxTFB4SmZZb1JLQjdNS181elJpTHhlNG44MEp4VHd4cFVmWjluT0JuR2ZFUmN3d2w5dG41OUJfS0NfOEFSTU1nQjdZR1BZSGI3ZXNCSERMS1hsR1VZcDBYX0lGNF9XY1B5MUNsMjAybEY5Z2VDMExyTWJVZk9BZlFhSl83Vjk2N2pFUFVBaHJnWUhiM05IUEVzcXVhZFRHUkh5SzV2Tlc3ZlE?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752815"
+    },
+    {
+      "id": "73cc72b0eb76",
+      "name": "Nike Air Max 270 MLB City Connect Pack Is Available Now - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": 150,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5FVUN2bXpiRDgteEQ3bWxaSlZEZ3dZR1VFWU9RN2JnYVBHb1JTR0EyZDhydVluczN2MnRUaml3S0luWEZmb2p4WmlLY2pMd3I2UmtZS2xZNFdZSmlQREhMRDRMOWtDWEhsUUhSTjdkOUppbkJHQ3lrZGZyejVoZUHSAX9BVV95cUxORVVDdm16YkQ4LXhEN21sWkpWRGd3WUdVRVlPUTdiZ2FQR29SU0dBMmQ4cnVZbnMzdjJ0VGppd0tJblhGZm9qeFppS2NqTHdyNlJrWUtsWTRXWUppUERITEQ0TDlrQ1hIbFFIUk43ZDlKaW5CR0N5a2Rmcno1aGVB?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752816"
+    },
+    {
+      "id": "b7d2fbad4250",
+      "name": "Nike Reloads The Mesh-Backed Air Force 1 Low For Spring - Sneaker News",
       "brand": "Nike",
       "release_date": "TBD",
       "price": null,
@@ -1845,11 +1709,147 @@
         "In-Store"
       ],
       "image_url": "",
-      "source_url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBPVHg0cElyWDdpZmZveXFOUzl6cHNLUVFmaHNuQ0g5X0NjY2F3M3c0OXBiYjJETGZtbG9QQldUS09BUThaOHk3ZFZ4cVhyNkZjNDFFT3NraGNFbUlwMWFWQS05dXEyZWvSAWdBVV95cUxQT1R4NHBJclg3aWZmb3lxTlM5enBzS1FRZmhzbkNIOV9DY2NhdzN3NDlwYmIyRExmbWxvUEJXVEtPQVE4Wjh5N2RWeHFYcjZGYzQxRU9za2hjRW1JcDFhVkEtOXVxMmVr?oc=5",
+      "source_url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOVE1tb0YxejhwZFVEMW8zS0V5WkVvckZVT2FwVDNNTU5nRkU4SnZ4Yk12bElLdjRhUXhBaWN3eDdYVkJtV2wxNFJEdmtPN2FNTzZRblBrRTFORENkd1FEWTdvRTJTUDN2N3M2dGdzVExJelhVczM2ZzJTSjNpd2t5cEpDdjFhUXhteHduQktHcTTSAZABQVVfeXFMTlRNbW9GMXo4cGRVRDFvM0tFeVpFb3JGVU9hcFQzTU1OZ0ZFOEp2eGJNdmxJS3Y0YVF4QWljd3g3WFZCbVdsMTRSRHZrTzdhTU82UW5Qa0UxTkRDZHdRRFk3b0UyU1AzdjdzNnRnc1RMSXpYVXMzNmcyU0ozaXdreXBKQ3YxYVF4bXh3bkJLR3E0?oc=5",
       "source": "SneakerNews",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:18.323429"
+      "scraped_at": "2026-03-15T07:04:46.752817"
+    },
+    {
+      "id": "87a30c675a88",
+      "name": "Nike Zoom GT Cut 3 “Christmas” Has Pockets Of Snowy Glitter - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNMXNwZy1kLUJaQmhEVEFOdC1mZXhuaURoTUpwVjFzb0tpLTBuTXlvZVZ1QWYtSDBuMUkyZFZCYkpMZGlHN0c0WWc2dWJ4VXRxbjNNaWg4TjhMT19XQzdQQTk1QWFpaU9md1BOX2V2VFp6TkZwdWhzc3pnMnpKbVFtTdIBgAFBVV95cUxNMXNwZy1kLUJaQmhEVEFOdC1mZXhuaURoTUpwVjFzb0tpLTBuTXlvZVZ1QWYtSDBuMUkyZFZCYkpMZGlHN0c0WWc2dWJ4VXRxbjNNaWg4TjhMT19XQzdQQTk1QWFpaU9md1BOX2V2VFp6TkZwdWhzc3pnMnpKbVFtTQ?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752818"
+    },
+    {
+      "id": "8b672779b7f7",
+      "name": "The Air Jordan 3 Is Ready For Spring Flowers - Sneaker News",
+      "brand": "Jordan",
+      "release_date": "TBD",
+      "price": 200,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBKNm5kUk1FRzlhaHI1T0MwTUJQNXd5eEdfX0ZGcXJsOTI3REpwRER2bXRJMVBlNk1Qa1lsNE4yTWhMcHhQUzlpTGdLeXVwZzFUc2lGWjM5R2R2ckdLMjZlMm9KZnlQRHV6bE5FenpBQ3k5ZjZ6QWFIaGZ5OGJyLTjSAX9BVV95cUxQSjZuZFJNRUc5YWhyNU9DME1CUDV3eXhHX19GRnFybDkyN0RKcEREdm10STFQZTZNUGtZbDROMk1oTHB4UFM5aUxnS3l1cGcxVHNpRlozOUdkdnJHSzI2ZTJvSmZ5UER1emxORXp6QUN5OWY2ekFhSGhmeThici04?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 4,
+      "hype_label": "Limited",
+      "scraped_at": "2026-03-15T07:04:46.752820"
+    },
+    {
+      "id": "eb7bf68b74ec",
+      "name": "Air Jordan 12 “Taxi,” Air Jordan 11 “Rare Air,” And This Week’s Best Releases - Sneaker News",
+      "brand": "Jordan",
+      "release_date": "TBD",
+      "price": 220,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5TVzdKTERaMGY0Mi1iRzhPMjBMbUQwaVhVTGUwR013bER2VGFRVXRxc2xYcXBjTjhkY2NnR1FER3ItNDJFeW9LQ3dkTF9wUTZySmozc2dXZ2pRSmoybnhIRzdkc193dHFGMTBXTlZtNHRlSmo4eXRjQWVzYXlEYkHSAX9BVV95cUxOU1c3SkxEWjBmNDItYkc4TzIwTG1EMGlYVUxlMEdNd2xEdlRhUVV0cXNsWHFwY044ZGNjZ0dRREdyLTQyRXlvS0N3ZExfcFE2ckpqM3NnV2dqUUpqMm54SEc3ZHNfd3RxRjEwV05WbTR0ZUpqOHl0Y0Flc2F5RGJB?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 4,
+      "hype_label": "Limited",
+      "scraped_at": "2026-03-15T07:04:46.752821"
+    },
+    {
+      "id": "35098f20afd0",
+      "name": "Air Max 95 “Blue Spark,” Ja 3 “Light Show” And This Week’s Best Releases - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQRWY1bXUwM1Z4WmNnQlJIdmFnSXJ4T2NMdVZrbHc1WmdCYWN2WVJ0YlpOX1VVWTE5VlBYNEJuQ1Fnd1dUUXR0U0pMamVUQnJpLURQYkMtWnYzaUtzNWd3aWhScDBSbVpjTTljcFBhMURiQ0kzTzlmcy1PT3QtcFZpatIBgAFBVV95cUxQRWY1bXUwM1Z4WmNnQlJIdmFnSXJ4T2NMdVZrbHc1WmdCYWN2WVJ0YlpOX1VVWTE5VlBYNEJuQ1Fnd1dUUXR0U0pMamVUQnJpLURQYkMtWnYzaUtzNWd3aWhScDBSbVpjTTljcFBhMURiQ0kzTzlmcy1PT3QtcFZpag?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752822"
+    },
+    {
+      "id": "c4e5b2a7f542",
+      "name": "Nike Unveils Neuroscience-Based Footwear In The Mind 001 & 002 - Sneaker News",
+      "brand": "Nike",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9kREhtM1JIVmlkTXNvYzdjbjRnanVYUXloUDZ6U3dJUTdyRUNFenFJYTAwYzlMeG5ycDBMVG9FYldWWGJKU3J1MWFSZHFXRDBLYkVya0hUX2x6SGxoWWfSAV5BVV95cUxPZERIbTNSSFZpZE1zb2M3Y240Z2p1WFF5aFA2elN3SVE3ckVDRXpxSWEwMGM5THhucnAwTFRvRWJXVlhiSlNydTFhUmRxV0QwS2JFcmtIVF9sekhsaFln?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 3,
+      "hype_label": "Hyped",
+      "scraped_at": "2026-03-15T07:04:46.752823"
+    },
+    {
+      "id": "436ea4d89e71",
+      "name": "Reebok LTD Premier Road Ultra Releases On November 22nd - Sneaker News",
+      "brand": "Reebok",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNcENSRThhRmxPUTFyZUxVN2RTeTZOTlJiTU4yREFCZnhJQW1qVDIzWXVxZzF0ZnJQRmF3bEFlX0kzQllYWVEtSWliY3FWR2w3eS0tSHp6RkJKZFBmZ0FLZG0wN2o5V3dvMHB6RVdyZ0VDcUFjdHNYaUdNQXNOS1Nsamt2SmpONUNIMmNvbEdqS3N3anFJUmt2T0lB0gGaAUFVX3lxTE1wQ1JFOGFGbE9RMXJlTFU3ZFN5Nk5OUmJNTjJEQUJmeElBbWpUMjNZdXFnMXRmclBGYXdsQWVfSTNCWVhZUS1JaWJjcVZHbDd5LS1IenpGQkpkUGZnQUtkbTA3ajlXd28wcHpFV3JnRUNxQWN0c1hpR01Bc05LU2xqa3ZKak41Q0gyY29sR2pLc3dqcUlSa3ZPSUE?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 2,
+      "hype_label": "Popular",
+      "scraped_at": "2026-03-15T07:04:46.752824"
+    },
+    {
+      "id": "aec3572f3c7f",
+      "name": "ASICS Goes Techy And Low-Profile With The Hypersync - Sneaker News",
+      "brand": "ASICS",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBwMzZCdVFBOVhyZDdpeWFrMGRKNkpmT0hfNF8xWVc1ektQSk5pNU5adnRVbTh1NEl1emJxdkVndTl0dGoxU3dXdUlaSEZ0TW9DZkxwSkREVXVkVXRBbjJGdU5waGFWblRKcVBIVG82MS1OZ2loWnpVdNIBeEFVX3lxTFBwMzZCdVFBOVhyZDdpeWFrMGRKNkpmT0hfNF8xWVc1ektQSk5pNU5adnRVbTh1NEl1emJxdkVndTl0dGoxU3dXdUlaSEZ0TW9DZkxwSkREVXVkVXRBbjJGdU5waGFWblRKcVBIVG82MS1OZ2loWnpVdA?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 2,
+      "hype_label": "Popular",
+      "scraped_at": "2026-03-15T07:04:46.752825"
+    },
+    {
+      "id": "f08f2c2dc16e",
+      "name": "Jordan MVP 92 2026 Release Dates - Sneaker News",
+      "brand": "Jordan",
+      "release_date": "TBD",
+      "price": null,
+      "sale_methods": [
+        "Online",
+        "In-Store"
+      ],
+      "image_url": "",
+      "source_url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1YR3NvVVktS1BaMVhvWGlOa3JUQ09kOGRhMlU3Q1ZZMk9tV2l3aWU3MjlRV3lDQ1JubEhvQkwyZDdNLWx3Uk9vWkVwQmhrSVBldVpZMA?oc=5",
+      "source": "SneakerNews",
+      "hype_level": 4,
+      "hype_label": "Limited",
+      "scraped_at": "2026-03-15T07:04:46.752826"
     },
     {
       "id": "1e5187225f35",
@@ -1866,7 +1866,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408185"
+      "scraped_at": "2026-03-15T07:04:48.589302"
     },
     {
       "id": "603de07cb6cc",
@@ -1883,7 +1883,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408189"
+      "scraped_at": "2026-03-15T07:04:48.589307"
     },
     {
       "id": "85c4ae5bde68",
@@ -1900,7 +1900,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408192"
+      "scraped_at": "2026-03-15T07:04:48.589309"
     },
     {
       "id": "7198edf6bdce",
@@ -1917,7 +1917,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:20.408193"
+      "scraped_at": "2026-03-15T07:04:48.589310"
     },
     {
       "id": "3b136d9c9d62",
@@ -1934,7 +1934,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408194"
+      "scraped_at": "2026-03-15T07:04:48.589312"
     },
     {
       "id": "621c9e10aca1",
@@ -1951,7 +1951,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408195"
+      "scraped_at": "2026-03-15T07:04:48.589313"
     },
     {
       "id": "485e2fb5dee2",
@@ -1968,7 +1968,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408197"
+      "scraped_at": "2026-03-15T07:04:48.589314"
     },
     {
       "id": "a93e9359aa79",
@@ -1985,7 +1985,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408198"
+      "scraped_at": "2026-03-15T07:04:48.589315"
     },
     {
       "id": "37d0b9e6a219",
@@ -2002,7 +2002,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408199"
+      "scraped_at": "2026-03-15T07:04:48.589316"
     },
     {
       "id": "964aef0434a7",
@@ -2019,7 +2019,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408200"
+      "scraped_at": "2026-03-15T07:04:48.589317"
     },
     {
       "id": "ae78fc2d50e7",
@@ -2036,7 +2036,7 @@
       "source": "KicksOnFire",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:20.408201"
+      "scraped_at": "2026-03-15T07:04:48.589319"
     },
     {
       "id": "dab16649b3c8",
@@ -2053,7 +2053,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:20.408202"
+      "scraped_at": "2026-03-15T07:04:48.589320"
     },
     {
       "id": "a735a26cfec8",
@@ -2070,7 +2070,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408203"
+      "scraped_at": "2026-03-15T07:04:48.589321"
     },
     {
       "id": "402c18210d5d",
@@ -2087,7 +2087,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:20.408205"
+      "scraped_at": "2026-03-15T07:04:48.589322"
     },
     {
       "id": "ca7a2cdf2038",
@@ -2104,7 +2104,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408206"
+      "scraped_at": "2026-03-15T07:04:48.589323"
     },
     {
       "id": "26a108bce4c4",
@@ -2121,7 +2121,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408207"
+      "scraped_at": "2026-03-15T07:04:48.589325"
     },
     {
       "id": "e15c93cda72a",
@@ -2138,7 +2138,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:20.408208"
+      "scraped_at": "2026-03-15T07:04:48.589326"
     },
     {
       "id": "d51377561f32",
@@ -2155,7 +2155,7 @@
       "source": "KicksOnFire",
       "hype_level": 5,
       "hype_label": "Grail",
-      "scraped_at": "2026-03-15T06:53:20.408209"
+      "scraped_at": "2026-03-15T07:04:48.589327"
     },
     {
       "id": "c678a84e7aed",
@@ -2172,7 +2172,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408210"
+      "scraped_at": "2026-03-15T07:04:48.589328"
     },
     {
       "id": "04cec4d0a50f",
@@ -2189,7 +2189,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408211"
+      "scraped_at": "2026-03-15T07:04:48.589329"
     },
     {
       "id": "31d00b873d27",
@@ -2206,7 +2206,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408212"
+      "scraped_at": "2026-03-15T07:04:48.589330"
     },
     {
       "id": "16ecd30ffc9c",
@@ -2223,7 +2223,7 @@
       "source": "KicksOnFire",
       "hype_level": 3,
       "hype_label": "Hyped",
-      "scraped_at": "2026-03-15T06:53:20.408213"
+      "scraped_at": "2026-03-15T07:04:48.589332"
     },
     {
       "id": "ab3b3c1ce9d3",
@@ -2240,7 +2240,7 @@
       "source": "KicksOnFire",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:20.408215"
+      "scraped_at": "2026-03-15T07:04:48.589333"
     },
     {
       "id": "45d037b4a630",
@@ -2257,7 +2257,7 @@
       "source": "KicksOnFire",
       "hype_level": 4,
       "hype_label": "Limited",
-      "scraped_at": "2026-03-15T06:53:20.408216"
+      "scraped_at": "2026-03-15T07:04:48.589334"
     },
     {
       "id": "4319435d3e69",
@@ -2274,7 +2274,7 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:22.424856"
+      "scraped_at": "2026-03-15T07:04:50.534256"
     },
     {
       "id": "7a6dc6bc0841",
@@ -2291,7 +2291,7 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:22.424863"
+      "scraped_at": "2026-03-15T07:04:50.534262"
     },
     {
       "id": "923d7d566721",
@@ -2308,7 +2308,7 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:22.424865"
+      "scraped_at": "2026-03-15T07:04:50.534264"
     },
     {
       "id": "2e8efd7b6490",
@@ -2325,10 +2325,10 @@
       "source": "SoleCollector",
       "hype_level": 1,
       "hype_label": "General Release",
-      "scraped_at": "2026-03-15T06:53:22.424866"
+      "scraped_at": "2026-03-15T07:04:50.534265"
     }
   ],
-  "last_updated": "2026-03-15T06:53:27.498655",
+  "last_updated": "2026-03-15T07:04:55.630528",
   "count": 137,
   "window_start": "2026-03-15",
   "window_end": "2026-06-13"
