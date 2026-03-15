@@ -175,7 +175,6 @@ COLS = [
     ("Shoe Name",        42),
     ("Brand",            18),
     ("Release Date",     15),
-    ("Retail Price",     13),
     ("Sale Methods",     36),
     ("Hype ★",          12),
     ("Status",           20),
@@ -211,12 +210,10 @@ def _releases_sheet(wb, releases):
         hc      = HYPE_COLORS.get(hype, C["default"])
         brand   = rel.get("brand", "Other")
         bc      = BRAND_COLORS.get(brand, C["default"])
-        price   = rel.get("price")
         url     = rel.get("source_url", "") or ""
         methods = ", ".join(rel.get("sale_methods") or []) or "TBD"
         date    = rel.get("release_date", "TBD") or "TBD"
         name    = rel.get("name", "")
-        price_s = f"${price:.0f}" if price else "TBD"
         stars   = f"{'★' * hype}{'☆' * (5 - hype)}  {hype}/5"
 
         ws.row_dimensions[ri].height = 20
@@ -225,15 +222,13 @@ def _releases_sheet(wb, releases):
         _dc(ws, ri, 2, brand,   bg, bc,       bold=True,  align="center", wrap=False)
         _dc(ws, ri, 3, date,    bg, C["blue"] if date != "TBD" else C["muted"],
             bold=False, align="center", wrap=False)
-        _dc(ws, ri, 4, price_s, bg, C["green"] if price else C["muted"],
-            bold=True, align="center", wrap=False)
-        _dc(ws, ri, 5, methods, bg, C["muted"], size=9)
-        _dc(ws, ri, 6, stars,   bg, hc, bold=True, align="center", wrap=False)
-        _dc(ws, ri, 7, HYPE_LABELS.get(hype, ""), bg, hc, bold=True, align="center")
-        _dc(ws, ri, 8, url,     bg, C["blue"], size=9, underline="single",
+        _dc(ws, ri, 4, methods, bg, C["muted"], size=9)
+        _dc(ws, ri, 5, stars,   bg, hc, bold=True, align="center", wrap=False)
+        _dc(ws, ri, 6, HYPE_LABELS.get(hype, ""), bg, hc, bold=True, align="center")
+        _dc(ws, ri, 7, url,     bg, C["blue"], size=9, underline="single",
             align="left", wrap=False, url=url if url else None)
 
-        for ci, v in enumerate([name, brand, date, price_s, methods, stars,
+        for ci, v in enumerate([name, brand, date, methods, stars,
                                  HYPE_LABELS.get(hype, ""), url], 1):
             col_vals[ci].append(v)
 
@@ -271,12 +266,10 @@ def _summary_sheet(wb, releases):
     _title_bar(ws, 1, f"📊  SNEAKER TRACKER — SUMMARY   ·   {now}", C["purple"], 4)
 
     # ── Aggregate stats ───────────────────────────────────────────────────
-    prices     = [r["price"] for r in releases if r.get("price")]
     upcoming   = [r for r in releases
                   if r.get("release_date", "TBD") not in ("TBD", "")
                   and r["release_date"] >= today]
     grails     = [r for r in releases if r.get("hype_level") == 5]
-    avg_price  = sum(prices) / len(prices) if prices else 0
 
     brands_map: dict = {}
     hype_map:   dict = {}
@@ -285,11 +278,9 @@ def _summary_sheet(wb, releases):
     for r in releases:
         b = r.get("brand", "Other")
         if b not in brands_map:
-            brands_map[b] = {"count": 0, "hype_sum": 0, "prices": []}
+            brands_map[b] = {"count": 0, "hype_sum": 0}
         brands_map[b]["count"]    += 1
         brands_map[b]["hype_sum"] += r.get("hype_level", 1)
-        if r.get("price"):
-            brands_map[b]["prices"].append(r["price"])
 
         h = r.get("hype_level", 1)
         hype_map[h] = hype_map.get(h, 0) + 1
@@ -306,10 +297,9 @@ def _summary_sheet(wb, releases):
     row += 1
 
     kpis = [
-        ("Total Releases",  len(releases),                       C["blue"]),
-        ("Upcoming",        len(upcoming),                       C["green"]),
-        ("Grails 🟣",       len(grails),                         C["purple"]),
-        ("Avg Retail",      f"${avg_price:.0f}" if avg_price else "N/A", C["yellow"]),
+        ("Total Releases",  len(releases),  C["blue"]),
+        ("Upcoming",        len(upcoming),  C["green"]),
+        ("Grails 🟣",       len(grails),    C["purple"]),
     ]
     label_row = row
     val_row   = row + 1
@@ -330,21 +320,18 @@ def _summary_sheet(wb, releases):
     row += 1
     _section_hdr(ws, row, "👟  BRAND BREAKDOWN", 4)
     row += 1
-    for ci, h in enumerate(["Brand", "Releases", "Avg Hype", "Avg Price"], 1):
-        _col_hdr(ws, row, ci, h)
+    for ci, h in enumerate(["Brand", "Releases", "Avg Hype", ""], 1):
+        _col_hdr(ws, row, ci, h) if h else None
     row += 1
 
     for i, (brand, info) in enumerate(sorted(brands_map.items(), key=lambda x: -x[1]["count"])):
         bg    = C["bg_alt"] if i % 2 else C["bg1"]
         bc    = BRAND_COLORS.get(brand, C["default"])
         ahype = info["hype_sum"] / info["count"]
-        ap    = sum(info["prices"]) / len(info["prices"]) if info["prices"] else None
-        _dc(ws, row, 1, brand,                 bg, bc, bold=True)
-        _dc(ws, row, 2, info["count"],          bg, C["txt"],  align="center")
-        _dc(ws, row, 3, f"{ahype:.1f} / 5",   bg, HYPE_COLORS.get(round(ahype), C["muted"]),
+        _dc(ws, row, 1, brand,               bg, bc, bold=True)
+        _dc(ws, row, 2, info["count"],        bg, C["txt"],  align="center")
+        _dc(ws, row, 3, f"{ahype:.1f} / 5", bg, HYPE_COLORS.get(round(ahype), C["muted"]),
             bold=True, align="center")
-        _dc(ws, row, 4, f"${ap:.0f}" if ap else "—",
-            bg, C["green"] if ap else C["muted"], bold=bool(ap), align="center")
         row += 1
 
     # ── Hype distribution ─────────────────────────────────────────────────
@@ -477,7 +464,6 @@ def _legend_sheet(wb):
         ("Shoe Name",    "Text",   "Full name including colorway / collab partner."),
         ("Brand",        "Text",   "Nike · Jordan · Adidas · Adidas (Yeezy) · New Balance · Puma · Under Armour · etc."),
         ("Release Date", "Date",   "YYYY-MM-DD (US release, Eastern time). TBD = not yet announced."),
-        ("Retail Price", "USD $",  "Official retail price in USD. Does NOT reflect resale/StockX value."),
         ("Sale Methods", "Text",   "How to buy at retail — SNKRS, Raffle, In-Store, Online, etc."),
         ("Hype ★",       "1–5",   "Proprietary hype score. See Hype Level Guide above."),
         ("Status",       "Text",   "Human-readable label (General Release → Grail)."),

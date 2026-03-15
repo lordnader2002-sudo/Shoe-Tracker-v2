@@ -15,6 +15,7 @@ const state = {
   stats:        null,
   loading:      false,
   viewMode:     "grid",   // "grid" | "list"
+  lastUpdatedAt: null,    // ISO string from server
 };
 
 // ============================================================
@@ -103,15 +104,12 @@ function methodChipClass(method) {
 function buildCard(rel) {
   const hype   = rel.hype_level || 1;
   const brand  = rel.brand || "Other";
-  const price  = rel.price ? `$${Math.round(rel.price)}` : "TBD";
   const date   = rel.release_date && rel.release_date !== "TBD"
                    ? formatDate(rel.release_date)
                    : "TBD";
 
   const dateClass  = date === "TBD" ? "card__meta-value card__meta-value--tbd"
                                     : "card__meta-value card__meta-value--date";
-  const priceClass = rel.price ? "card__meta-value card__meta-value--price"
-                                : "card__meta-value card__meta-value--tbd";
 
   // Image
   let imgHtml = `<div class="card__image-placeholder">👟</div>`;
@@ -158,10 +156,6 @@ function buildCard(rel) {
           <span class="card__meta-key">📅 Release</span>
           <span class="${dateClass}">${date}</span>
         </div>
-        <div class="card__meta-item">
-          <span class="card__meta-key">💰 Retail</span>
-          <span class="${priceClass}">${price}</span>
-        </div>
       </div>
 
       <div class="card__hype-row">
@@ -197,12 +191,10 @@ function buildCard(rel) {
 function buildRow(rel) {
   const hype   = rel.hype_level || 1;
   const brand  = rel.brand || "Other";
-  const price  = rel.price ? `$${Math.round(rel.price)}` : "TBD";
   const date   = rel.release_date && rel.release_date !== "TBD"
                    ? formatDate(rel.release_date) : "TBD";
 
-  const dateC  = date  === "TBD" ? "lt-date-tbd"  : "lt-date-val";
-  const priceC = rel.price       ? "lt-price-val" : "lt-price-tbd";
+  const dateC  = date === "TBD" ? "lt-date-tbd" : "lt-date-val";
 
   const methodsHtml = (rel.sale_methods || [])
     .slice(0, 4)
@@ -218,7 +210,6 @@ function buildRow(rel) {
       <span class="brand-badge ${brandClass(brand)}">${escHtml(brand)}</span>
     </td>
     <td><span class="${dateC}">${date}</span></td>
-    <td><span class="${priceC}">${price}</span></td>
     <td>
       <span class="hype-stars ${HYPE_TEXT[hype]}" style="font-size:12px">${hypeStars(hype)}</span>
       <span class="hype-label-text ${HYPE_TEXT[hype]}" style="font-size:10px;display:block">
@@ -301,7 +292,8 @@ async function loadReleases() {
 
     dom.totalBadge.textContent = data.total ?? data.count ?? state.releases.length;
     if (data.last_updated) {
-      dom.lastUpdated.textContent = "Updated " + timeAgo(data.last_updated);
+      state.lastUpdatedAt = data.last_updated;
+      refreshLastUpdatedTicker();
     }
   } catch (err) {
     console.error("loadReleases error:", err);
@@ -455,15 +447,23 @@ function setLoading(on) {
 }
 
 // ============================================================
-// Time ago helper
+// Last updated ticker
 // ============================================================
 function timeAgo(isoStr) {
   const diff = Math.floor((Date.now() - new Date(isoStr)) / 1000);
-  if (diff < 60)   return "just now";
-  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
-  if (diff < 86400)return `${Math.floor(diff / 3600)}h ago`;
+  if (diff < 60)    return "just now";
+  if (diff < 3600)  return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
   return `${Math.floor(diff / 86400)}d ago`;
 }
+
+function refreshLastUpdatedTicker() {
+  if (!state.lastUpdatedAt) return;
+  dom.lastUpdated.textContent = "Updated " + timeAgo(state.lastUpdatedAt);
+}
+
+// Refresh the ticker every 30 seconds so "5m ago" stays accurate
+setInterval(refreshLastUpdatedTicker, 30_000);
 
 // ============================================================
 // Debounce
