@@ -207,8 +207,23 @@ def _parse_date(text: str, element=None, url: str = ""):
         except Exception:
             pass
 
-    # 3. "Month DD, YYYY" full date anywhere in text
-    for m in re.finditer(r"([A-Z][a-z]+ \d{1,2},\s*\d{4})", text or ""):
+    # 3. Context-aware: "dropping/releasing/available [on] <date>"
+    context_pat = re.search(
+        r"(?:drop(?:s|ping)?|releas(?:e[sd]?|ing)|available|launch(?:es|ing)?|scheduled(?:\s+for)?)"
+        r"\s+(?:on\s+)?"
+        r"([A-Za-z]+ \d{1,2}(?:st|nd|rd|th)?(?:,?\s*\d{4})?|\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2})",
+        text or "", re.IGNORECASE,
+    )
+    if context_pat:
+        try:
+            r = _validate(dateparser.parse(context_pat.group(1)))
+            if r:
+                return r
+        except Exception:
+            pass
+
+    # 4. "Month DD, YYYY" full date anywhere in text
+    for m in re.finditer(r"([A-Z][a-z]+ \d{1,2}(?:st|nd|rd|th)?,\s*\d{4})", text or ""):
         try:
             r = _validate(dateparser.parse(m.group(1)))
             if r:
@@ -216,7 +231,16 @@ def _parse_date(text: str, element=None, url: str = ""):
         except Exception:
             pass
 
-    # 4. ISO date in text
+    # 5. US date: MM/DD/YYYY
+    for m in re.finditer(r"\b(\d{1,2}/\d{1,2}/\d{4})\b", text or ""):
+        try:
+            r = _validate(dateparser.parse(m.group(1)))
+            if r:
+                return r
+        except Exception:
+            pass
+
+    # 6. ISO date in text
     for m in re.finditer(r"(\d{4}-\d{2}-\d{2})", text or ""):
         try:
             r = _validate(dateparser.parse(m.group(1)))
@@ -224,6 +248,19 @@ def _parse_date(text: str, element=None, url: str = ""):
                 return r
         except Exception:
             pass
+
+    # 7. Last resort: extract YYYY/MM/DD from URL path (publication date ≈ release date)
+    if url:
+        url_date = re.search(r"/(\d{4})/(\d{2})/(\d{2})/", url)
+        if url_date:
+            try:
+                r = _validate(dateparser.parse(
+                    f"{url_date.group(1)}-{url_date.group(2)}-{url_date.group(3)}"
+                ))
+                if r:
+                    return r
+            except Exception:
+                pass
 
     return "TBD"
 
