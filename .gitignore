@@ -7,3 +7,7 @@ dist/
 build/
 .venv/
 venv/
+
+# Auto-generated at runtime — not tracked in git
+data/releases.json
+reports/sneaker_releases.xlsx
