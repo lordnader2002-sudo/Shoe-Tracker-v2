@@ -136,11 +136,15 @@ jobs:
     name: Scrape Latest Releases
     runs-on: ubuntu-latest
     needs: ci
-    # Only run the scraper on schedule or manual dispatch (not every PR)
+    # Only run the scraper on schedule, manual dispatch, or pushes to main/claude branches
     if: >
       github.event_name == 'schedule' ||
       github.event_name == 'workflow_dispatch' ||
-      (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'))
+      (github.event_name == 'push' && (
+        github.ref == 'refs/heads/main' ||
+        github.ref == 'refs/heads/master' ||
+        startsWith(github.ref, 'refs/heads/claude/')
+      ))
 
     steps:
       - name: Checkout code
@@ -206,6 +210,17 @@ jobs:
           print(f"Excel report generated at reports/sneaker_releases.xlsx ({ts})")
           print(f"  {len(releases)} releases across all brands")
           EOF
+
+      - name: Commit updated data back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/releases.json reports/sneaker_releases.xlsx
+          # Only commit if something actually changed
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          COUNT=$(python3 -c "import json; d=json.load(open('data/releases.json')); print(len(d.get('releases',[])))")
+          git commit -m "chore: scrape update — ${COUNT} releases [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          git push
 
       - name: Upload releases JSON as artifact
         uses: actions/upload-artifact@v4
