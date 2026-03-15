@@ -138,6 +138,28 @@ a:hover{text-decoration:underline}
 .cvbtn{font-size:10px;font-weight:700;color:var(--blue);background:transparent;border:1px solid var(--blue-dim);border-radius:6px;padding:3px 9px;cursor:pointer;flex-shrink:0;transition:.2s;font-family:inherit}
 .cvbtn:hover{background:var(--blue-dim)}
 
+/* ── VIEW TOGGLE ── */
+.view-toggle{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex-shrink:0}
+.vt-btn{background:transparent;border:none;color:var(--txt2);padding:6px 10px;font-size:15px;cursor:pointer;line-height:1;transition:.2s}
+.vt-btn:hover{background:var(--bg2);color:var(--txt)}
+.vt-active{background:var(--blue-dim)!important;color:var(--blue)!important}
+
+/* ── LIST VIEW ── */
+.list-wrap{overflow-x:auto}
+.rtable{width:100%;border-collapse:collapse;font-size:13px}
+.rtable thead th{background:var(--bg2);color:var(--blue);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:10px 12px;text-align:left;border-bottom:2px solid var(--blue);white-space:nowrap;position:sticky;top:0;z-index:1}
+.rtable tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+.rtable tbody tr:nth-child(even){background:var(--bg3)}
+.rtable tbody tr:hover{background:var(--bg2)}
+.rtable td{padding:10px 12px;vertical-align:middle}
+.rt-name{min-width:200px}.rt-brand{width:110px}.rt-date{width:110px;white-space:nowrap}
+.rt-price{width:80px;white-space:nowrap}.rt-hype{width:120px}.rt-methods{min-width:180px}.rt-link{width:70px;text-align:right}
+.rname{font-weight:700;color:var(--txt)}
+.rdate{color:var(--blue);font-weight:600}.rtbd{color:var(--txt2);font-style:italic}
+.rprice{color:var(--green);font-weight:700}
+.rvbtn{font-size:11px;color:var(--blue);border:1px solid var(--blue-dim);background:transparent;border-radius:6px;padding:3px 9px;white-space:nowrap;text-decoration:none;display:inline-block;transition:.2s}
+.rvbtn:hover{background:var(--blue-dim);text-decoration:none}
+
 /* ── MODAL ── */
 .overlay{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(4px)}
 .modal{background:var(--bg1);border:1px solid var(--border);border-radius:14px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow)}
@@ -193,6 +215,10 @@ a:hover{text-decoration:underline}
   </div>
   <div class="nav-actions">
     <span class="nav-sync" id="syncLabel">Showing seed data</span>
+    <div class="view-toggle" id="viewToggle">
+      <button class="vt-btn vt-active" data-view="grid" title="Grid view">⊞</button>
+      <button class="vt-btn" data-view="list" title="List view">☰</button>
+    </div>
     <button class="btn btn-outline" id="legendBtn">📖 Legend</button>
     <button class="btn btn-excel" id="exportBtn">📥 Export CSV</button>
   </div>
@@ -260,6 +286,23 @@ a:hover{text-decoration:underline}
     <button class="btn btn-outline" onclick="clearAll()">✕ Clear Filters</button>
   </div>
   <div class="grid" id="grid"></div>
+
+  <div class="list-wrap hidden" id="listWrap">
+    <table class="rtable">
+      <thead>
+        <tr>
+          <th class="rt-name">Shoe Name</th>
+          <th class="rt-brand">Brand</th>
+          <th class="rt-date">Release Date</th>
+          <th class="rt-price">Price</th>
+          <th class="rt-hype">Hype</th>
+          <th class="rt-methods">Sale Methods</th>
+          <th class="rt-link"></th>
+        </tr>
+      </thead>
+      <tbody id="listBody"></tbody>
+    </table>
+  </div>
 </main>
 
 <!-- LEGEND MODAL -->
@@ -306,6 +349,9 @@ a:hover{text-decoration:underline}
 <script>
 // ── Seed data (embedded – no server needed) ──────────────────────────
 const SEED = [{"id":"a1b2c3d4e5f6","name":"Air Jordan 1 Retro High OG \"Lost & Found\"","brand":"Jordan","release_date":"2025-04-19","price":180,"sale_methods":["SNKRS App","Raffle"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/09/Air-Jordan-1-Lost-Found-DZ5485-612.jpg","source_url":"https://sneakernews.com/2022/09/air-jordan-1-lost-found-release-date/","source":"SneakerNews","hype_level":5,"hype_label":"Grail"},{"id":"b2c3d4e5f6a1","name":"Nike Dunk Low \"Panda\"","brand":"Nike","release_date":"2025-04-25","price":110,"sale_methods":["Online","In-Store","Foot Locker"],"image_url":"https://sneakernews.com/wp-content/uploads/2021/08/Nike-Dunk-Low-Panda-DD1391-100.jpg","source_url":"https://sneakernews.com/2021/08/nike-dunk-low-panda-release-date/","source":"KicksOnFire","hype_level":3,"hype_label":"Hyped"},{"id":"c3d4e5f6a1b2","name":"Adidas Yeezy Boost 350 V2 \"Bone\"","brand":"Adidas (Yeezy)","release_date":"2025-05-03","price":230,"sale_methods":["Confirmed App","Online"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/03/yeezy-boost-350-v2-bone-HQ6316.jpg","source_url":"https://sneakernews.com/2022/03/yeezy-350-v2-bone-release-date/","source":"SneakerNews","hype_level":4,"hype_label":"Limited"},{"id":"d4e5f6a1b2c3","name":"New Balance 990v4 \"Grey Day\"","brand":"New Balance","release_date":"2025-04-30","price":185,"sale_methods":["Online","In-Store"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/05/new-balance-990v4-grey-day-M990GD4.jpg","source_url":"https://sneakernews.com/2022/05/new-balance-990v4-grey-day-release-date/","source":"SoleCollector","hype_level":3,"hype_label":"Hyped"},{"id":"e5f6a1b2c3d4","name":"Puma Suede Classic \"Varsity Blue\"","brand":"Puma","release_date":"2025-05-10","price":75,"sale_methods":["In-Store","Online"],"image_url":"","source_url":"https://puma.com","source":"KicksOnFire","hype_level":2,"hype_label":"Popular"},{"id":"f6a1b2c3d4e5","name":"Under Armour Curry 12 \"FNF\"","brand":"Under Armour","release_date":"2025-05-15","price":160,"sale_methods":["Online","In-Store"],"image_url":"","source_url":"https://underarmour.com","source":"SneakerNews","hype_level":2,"hype_label":"Popular"},{"id":"a2b3c4d5e6f1","name":"Off-White x Nike Air Force 1 Low \"The 50\"","brand":"Nike","release_date":"2025-05-20","price":170,"sale_methods":["SNKRS App","Raffle"],"image_url":"https://sneakernews.com/wp-content/uploads/2021/06/off-white-nike-air-force-1-low-the-50-DX1419-100.jpg","source_url":"https://sneakernews.com/2021/06/off-white-nike-air-force-1-the-50/","source":"SneakerNews","hype_level":5,"hype_label":"Grail"},{"id":"b3c4d5e6f1a2","name":"Adidas Samba OG \"Cloud White\"","brand":"Adidas","release_date":"2025-04-22","price":100,"sale_methods":["Online","In-Store"],"image_url":"https://sneakernews.com/wp-content/uploads/2022/08/adidas-samba-og-white-B75806.jpg","source_url":"https://sneakernews.com/2022/08/adidas-samba-og-white-release/","source":"KicksOnFire","hype_level":3,"hype_label":"Hyped"},{"id":"c4d5e6f1a2b3","name":"Nike Air Max 1 \"Anniversary Red\"","brand":"Nike","release_date":"2025-06-01","price":140,"sale_methods":["SNKRS App","Online","In-Store"],"image_url":"","source_url":"https://sneakernews.com/2022/10/nike-air-max-1-anniversary-red/","source":"SneakerNews","hype_level":4,"hype_label":"Limited"},{"id":"d5e6f1a2b3c4","name":"Jordan 4 Retro \"Bred Reimagined\"","brand":"Jordan","release_date":"2025-06-07","price":215,"sale_methods":["SNKRS App","Raffle","Draw"],"image_url":"https://sneakernews.com/wp-content/uploads/2023/06/Air-Jordan-4-Bred-Reimagined-FV5029-006.jpg","source_url":"https://sneakernews.com/2023/06/air-jordan-4-bred-reimagined/","source":"SneakerNews","hype_level":5,"hype_label":"Grail"},{"id":"e6f1a2b3c4d5","name":"New Balance 550 \"White Grey\"","brand":"New Balance","release_date":"2025-05-28","price":110,"sale_methods":["Online","In-Store"],"image_url":"","source_url":"https://kicksonfire.com/new-balance-550-white-grey/","source":"KicksOnFire","hype_level":2,"hype_label":"Popular"},{"id":"f1a2b3c4d5e6","name":"Converse Chuck 70 \"Patchwork\"","brand":"Converse","release_date":"TBD","price":90,"sale_methods":["Online","In-Store"],"image_url":"","source_url":"https://solecollector.com","source":"SoleCollector","hype_level":1,"hype_label":"General Release"}];
+
+// ── View mode ─────────────────────────────────────────────────────────
+let viewMode = 'grid';
 
 // ── Hype helpers ─────────────────────────────────────────────────────
 const HYPE_LABEL = {1:"⚪ General Release",2:"🟡 Popular",3:"🟠 Hyped",4:"🔴 Limited",5:"🟣 Grail"};
@@ -403,17 +449,52 @@ function getFiltered(){
   return list;
 }
 
+function buildRow(r){
+  const h=r.hype_level||1;
+  const brand=r.brand||"Other";
+  const price=r.price?`$${Math.round(r.price)}`:"TBD";
+  const date=fmtDate(r.release_date);
+  const bc=BRAND_CLS[brand]||"bOther";
+  const methods=(r.sale_methods||[]).slice(0,4).map(m=>`<span class="${chipCls(m)}">${esc(m)}</span>`).join(" ");
+  const tr=document.createElement("tr");
+  tr.innerHTML=`
+    <td><span class="rname">${esc(r.name)}</span></td>
+    <td><span class="bbadge ${bc}">${esc(brand)}</span></td>
+    <td><span class="${date==="TBD"?"rtbd":"rdate"}">${date}</span></td>
+    <td><span class="${r.price?"rprice":"rtbd"}">${price}</span></td>
+    <td>
+      <span class="cstars ${HYPE_TEXT[h]}" style="font-size:12px">${stars(h)}</span>
+      <span class="clabel ${HYPE_TEXT[h]}" style="font-size:10px;display:block">${HYPE_LABEL[h]}</span>
+    </td>
+    <td>${methods}</td>
+    <td><a class="rvbtn" href="${esc(r.source_url||"#")}" target="_blank" rel="noopener">View →</a></td>`;
+  return tr;
+}
+
 function render(){
   const list=getFiltered();
   const grid=document.getElementById("grid");
+  const listWrap=document.getElementById("listWrap");
+  const listBody=document.getElementById("listBody");
   const empty=document.getElementById("emptyState");
-  grid.innerHTML="";
-  if(list.length===0){empty.classList.remove("hidden");grid.classList.add("hidden")}
-  else{
-    empty.classList.add("hidden");grid.classList.remove("hidden");
-    const frag=document.createDocumentFragment();
-    list.forEach(r=>frag.appendChild(buildCard(r)));
-    grid.appendChild(frag);
+  grid.innerHTML="";listBody.innerHTML="";
+
+  if(list.length===0){
+    empty.classList.remove("hidden");
+    grid.classList.add("hidden");listWrap.classList.add("hidden");
+  } else {
+    empty.classList.add("hidden");
+    if(viewMode==="list"){
+      grid.classList.add("hidden");listWrap.classList.remove("hidden");
+      const frag=document.createDocumentFragment();
+      list.forEach(r=>frag.appendChild(buildRow(r)));
+      listBody.appendChild(frag);
+    } else {
+      listWrap.classList.add("hidden");grid.classList.remove("hidden");
+      const frag=document.createDocumentFragment();
+      list.forEach(r=>frag.appendChild(buildCard(r)));
+      grid.appendChild(frag);
+    }
   }
   document.getElementById("sShowing").textContent=list.length;
 }
@@ -498,6 +579,15 @@ document.getElementById("searchInput").addEventListener("input",debounce(render,
   });
 });
 document.getElementById("clearBtn").addEventListener("click",clearAll);
+document.getElementById("viewToggle").addEventListener("click",e=>{
+  const btn=e.target.closest(".vt-btn");
+  if(!btn)return;
+  const v=btn.dataset.view;
+  if(v===viewMode)return;
+  viewMode=v;
+  document.querySelectorAll(".vt-btn").forEach(b=>b.classList.toggle("vt-active",b.dataset.view===v));
+  render();
+});
 document.getElementById("exportBtn").addEventListener("click",exportCSV);
 document.getElementById("legendBtn").addEventListener("click",()=>document.getElementById("legendModal").classList.remove("hidden"));
 document.getElementById("mClose").addEventListener("click",()=>document.getElementById("legendModal").classList.add("hidden"));

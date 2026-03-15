@@ -14,6 +14,7 @@ const state = {
   saleMethods:  [],
   stats:        null,
   loading:      false,
+  viewMode:     "grid",   // "grid" | "list"
 };
 
 // ============================================================
@@ -25,6 +26,9 @@ const dom = {
   loader:       $("loader"),
   emptyState:   $("emptyState"),
   cardsGrid:    $("cardsGrid"),
+  listView:     $("listView"),
+  listBody:     $("listBody"),
+  viewToggle:   $("viewToggle"),
   searchInput:  $("searchInput"),
   brandFilter:  $("brandFilter"),
   hypeLow:      $("hypeLow"),
@@ -187,6 +191,49 @@ function buildCard(rel) {
   return card;
 }
 
+// ============================================================
+// List row renderer
+// ============================================================
+function buildRow(rel) {
+  const hype   = rel.hype_level || 1;
+  const brand  = rel.brand || "Other";
+  const price  = rel.price ? `$${Math.round(rel.price)}` : "TBD";
+  const date   = rel.release_date && rel.release_date !== "TBD"
+                   ? formatDate(rel.release_date) : "TBD";
+
+  const dateC  = date  === "TBD" ? "lt-date-tbd"  : "lt-date-val";
+  const priceC = rel.price       ? "lt-price-val" : "lt-price-tbd";
+
+  const methodsHtml = (rel.sale_methods || [])
+    .slice(0, 4)
+    .map(m => `<span class="${methodChipClass(m)}">${escHtml(m)}</span>`)
+    .join(" ");
+
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>
+      <span class="lt-name-text">${escHtml(rel.name || "Unknown")}</span>
+    </td>
+    <td>
+      <span class="brand-badge ${brandClass(brand)}">${escHtml(brand)}</span>
+    </td>
+    <td><span class="${dateC}">${date}</span></td>
+    <td><span class="${priceC}">${price}</span></td>
+    <td>
+      <span class="hype-stars ${HYPE_TEXT[hype]}" style="font-size:12px">${hypeStars(hype)}</span>
+      <span class="hype-label-text ${HYPE_TEXT[hype]}" style="font-size:10px;display:block">
+        ${HYPE_LABEL[hype]}
+      </span>
+    </td>
+    <td>${methodsHtml}</td>
+    <td>
+      <a class="lt-view-btn"
+         href="${escHtml(rel.source_url || "#")}"
+         target="_blank" rel="noopener noreferrer">View →</a>
+    </td>`;
+  return tr;
+}
+
 function formatDate(dateStr) {
   try {
     const d = new Date(dateStr + "T00:00:00");  // avoid timezone shift
@@ -207,19 +254,30 @@ function escHtml(str) {
 // ============================================================
 function render(releases) {
   dom.cardsGrid.innerHTML = "";
+  if (dom.listBody) dom.listBody.innerHTML = "";
 
   if (releases.length === 0) {
     dom.cardsGrid.classList.add("hidden");
+    if (dom.listView) dom.listView.classList.add("hidden");
     dom.emptyState.classList.remove("hidden");
   } else {
     dom.emptyState.classList.add("hidden");
-    dom.cardsGrid.classList.remove("hidden");
-    const frag = document.createDocumentFragment();
-    releases.forEach(r => frag.appendChild(buildCard(r)));
-    dom.cardsGrid.appendChild(frag);
+
+    if (state.viewMode === "list" && dom.listView) {
+      dom.cardsGrid.classList.add("hidden");
+      dom.listView.classList.remove("hidden");
+      const frag = document.createDocumentFragment();
+      releases.forEach(r => frag.appendChild(buildRow(r)));
+      dom.listBody.appendChild(frag);
+    } else {
+      if (dom.listView) dom.listView.classList.add("hidden");
+      dom.cardsGrid.classList.remove("hidden");
+      const frag = document.createDocumentFragment();
+      releases.forEach(r => frag.appendChild(buildCard(r)));
+      dom.cardsGrid.appendChild(frag);
+    }
   }
 
-  // Update "showing" stat
   dom.statShowing.querySelector(".stat-value").textContent = releases.length;
 }
 
@@ -469,6 +527,21 @@ function attachListeners() {
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") dom.legendModal.classList.add("hidden");
   });
+
+  // View toggle (grid / list)
+  if (dom.viewToggle) {
+    dom.viewToggle.addEventListener("click", e => {
+      const btn = e.target.closest(".vt-btn");
+      if (!btn) return;
+      const view = btn.dataset.view;
+      if (view === state.viewMode) return;
+      state.viewMode = view;
+      dom.viewToggle.querySelectorAll(".vt-btn").forEach(b => {
+        b.classList.toggle("vt-btn--active", b.dataset.view === view);
+      });
+      render(state.releases);
+    });
+  }
 }
 
 // ============================================================
