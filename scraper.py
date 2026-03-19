@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
 """
-Sneaker Release Tracker — Main scraper script.
-Fetches upcoming sneaker releases from The Sneaker Database API (RapidAPI)
-and exports them to a formatted Excel report.
+Sneaker Release Tracker — Scrapes upcoming US sneaker releases from
+multiple sneaker news sites and exports to Excel.
+
+Sources (in priority order):
+  1. SneakerFiles.com/release-dates/
+  2. NiceKicks.com/sneaker-release-dates/
+  3. SneakerBarDetroit.com/sneaker-release-dates/
 """
 
 import os
+import re
 import sys
-import time
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone, date
 
 import requests
+from bs4 import BeautifulSoup
 
 from hype import calculate_hype_score
 from excel_export import export_to_excel
@@ -27,273 +32,413 @@ log = logging.getLogger(__name__)
 # Configuration
 # ---------------------------------------------------------------------------
 
-API_HOST = "the-sneaker-database.p.rapidapi.com"
-API_BASE = f"https://{API_HOST}"
-
-TARGET_BRANDS = ["Nike", "Jordan", "Adidas", "Under Armour", "Yeezy", "New Balance"]
-
-LOOKAHEAD_DAYS = 30  # How far ahead to look for releases
-RESULTS_PER_PAGE = 100
-
+LOOKAHEAD_DAYS = 30
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "reports", "sneaker_releases.xlsx")
 
+TARGET_BRANDS = {"nike", "jordan", "air jordan", "adidas", "under armour",
+                 "yeezy", "new balance"}
 
-def get_api_key() -> str:
-    """Read the RapidAPI key from the environment."""
-    key = os.environ.get("RAPIDAPI_KEY", "").strip()
-    if not key:
-        log.error("RAPIDAPI_KEY environment variable is not set.")
-        sys.exit(1)
-    return key
+HTTP_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/122.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+# ---------------------------------------------------------------------------
+# Date / price parsing helpers
+# ---------------------------------------------------------------------------
+
+# Common date patterns found on sneaker sites
+DATE_PATTERNS = [
+    # "March 22, 2026" or "Mar 22, 2026"
+    re.compile(
+        r"(January|February|March|April|May|June|July|August|September|October|November|December"
+        r"|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+        r"\.?\s+(\d{1,2}),?\s+(\d{4})",
+        re.IGNORECASE,
+    ),
+    # "03/22/2026" or "3/22/2026"
+    re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})"),
+    # "2026-03-22"
+    re.compile(r"(\d{4})-(\d{2})-(\d{2})"),
+]
+
+PRICE_PATTERN = re.compile(r"\$\s?(\d{1,4}(?:,\d{3})*(?:\.\d{2})?)")
+
+MONTH_MAP = {
+    "january": 1, "jan": 1, "february": 2, "feb": 2, "march": 3, "mar": 3,
+    "april": 4, "apr": 4, "may": 5, "june": 6, "jun": 6, "july": 7, "jul": 7,
+    "august": 8, "aug": 8, "september": 9, "sep": 9, "october": 10, "oct": 10,
+    "november": 11, "nov": 11, "december": 12, "dec": 12,
+}
 
 
-def _fetch_page(url: str, headers: dict, params: dict, brand: str, page: int) -> dict | None:
-    """Fetch a single page from the API. Returns parsed JSON or None on failure."""
-    try:
-        resp = requests.get(url, headers=headers, params=params, timeout=15)
-    except requests.RequestException as exc:
-        log.warning("Network error fetching %s page %d: %s", brand, page, exc)
+def parse_date_from_text(text: str) -> date | None:
+    """Extract the first valid date from a text string."""
+    if not text:
         return None
 
-    if resp.status_code == 429:
-        log.warning("Rate limited on %s — stopping.", brand)
-        return None
-    if resp.status_code in (401, 403):
-        log.error("API auth error (%d). Check your RAPIDAPI_KEY.", resp.status_code)
-        sys.exit(1)
-    if resp.status_code != 200:
-        body_preview = resp.text[:500] if resp.text else "(empty)"
-        log.warning("HTTP %d for %s page %d. Response: %s", resp.status_code, brand, page, body_preview)
-        return None
+    # Pattern 1: "March 22, 2026"
+    m = DATE_PATTERNS[0].search(text)
+    if m:
+        month_str, day_str, year_str = m.group(1), m.group(2), m.group(3)
+        month = MONTH_MAP.get(month_str.lower().rstrip("."))
+        if month:
+            try:
+                return date(int(year_str), month, int(day_str))
+            except ValueError:
+                pass
 
-    return resp.json()
-
-
-def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
-    """
-    Fetch sneakers for a single brand from The Sneaker Database API.
-    Tries multiple releaseYear values to find upcoming releases.
-    Returns a list of raw sneaker dicts from the API response.
-    """
-    headers = {
-        "X-RapidAPI-Key": api_key,
-        "X-RapidAPI-Host": API_HOST,
-    }
-
-    today = datetime.now(timezone.utc).date()
-    current_year = today.year
-    url = f"{API_BASE}/sneakers"
-
-    all_sneakers = []
-
-    # Try current year, previous year (for late releases), and next year
-    # The API may label releases by their announcement year, not release year
-    years_to_try = [str(current_year), str(current_year - 1)]
-    if today.month >= 10:
-        years_to_try.append(str(current_year + 1))
-
-    found_with_year_filter = False
-
-    for year in years_to_try:
-        params = {
-            "brand": brand,
-            "limit": str(RESULTS_PER_PAGE),
-            "page": "1",
-            "releaseYear": year,
-        }
-
-        log.info("Fetching %s releaseYear=%s page 1 ...", brand, year)
-        data = _fetch_page(url, headers, params, brand, 1)
-
-        if data is None:
-            continue
-
-        if isinstance(data, dict):
-            count = data.get("count", 0)
-            log.info("%s releaseYear=%s: %s results available", brand, year, count)
-            if count and count > 0:
-                found_with_year_filter = True
-                results = data.get("results", [])
-                if results:
-                    # Log samples
-                    for i, s in enumerate(results[:3]):
-                        log.info(
-                            "  Sample[%d]: name=%s, releaseDate=%s, retailPrice=%s",
-                            i, s.get("name", "?")[:60], s.get("releaseDate", "?"), s.get("retailPrice", "?"),
-                        )
-                    all_sneakers.extend(results)
-
-                    # Paginate if there are more
-                    total_pages = data.get("totalPages", 1)
-                    page = 2
-                    while page <= min(total_pages, 5):
-                        params["page"] = str(page)
-                        log.info("Fetching %s releaseYear=%s page %d ...", brand, year, page)
-                        pdata = _fetch_page(url, headers, params, brand, page)
-                        if pdata is None:
-                            break
-                        presults = pdata if isinstance(pdata, list) else pdata.get("results", [])
-                        if not presults:
-                            break
-                        all_sneakers.extend(presults)
-                        if len(presults) < RESULTS_PER_PAGE:
-                            break
-                        page += 1
-                        time.sleep(0.3)
-
-        time.sleep(0.3)
-
-    # Fallback: if year filter returned nothing, fetch without it
-    if not found_with_year_filter:
-        log.info("No results with releaseYear filter for %s. Fetching without filter...", brand)
-        for page in range(1, 6):
-            params = {
-                "brand": brand,
-                "limit": str(RESULTS_PER_PAGE),
-                "page": str(page),
-            }
-            log.info("Fetching %s (no year filter) page %d ...", brand, page)
-            data = _fetch_page(url, headers, params, brand, page)
-            if data is None:
-                break
-
-            results = data if isinstance(data, list) else data.get("results", [])
-
-            if page == 1 and results:
-                for i, s in enumerate(results[:5]):
-                    log.info(
-                        "  Sample[%d]: name=%s, releaseDate=%s, retailPrice=%s",
-                        i, s.get("name", "?")[:60], s.get("releaseDate", "?"), s.get("retailPrice", "?"),
-                    )
-
-            if not results:
-                break
-            all_sneakers.extend(results)
-            if len(results) < RESULTS_PER_PAGE:
-                break
-            time.sleep(0.3)
-
-    log.info("Fetched %d raw results for %s.", len(all_sneakers), brand)
-    return all_sneakers
-
-
-def parse_release_date(date_str: str | None) -> datetime | None:
-    """
-    Parse a release date string into a datetime object.
-    Handles multiple formats the API might return.
-    """
-    if not date_str:
-        return None
-
-    date_str = str(date_str).strip()
-
-    formats = [
-        "%Y-%m-%d",
-        "%Y-%m-%dT%H:%M:%S.%fZ",
-        "%Y-%m-%dT%H:%M:%SZ",
-        "%Y-%m-%dT%H:%M:%S",
-        "%m/%d/%Y",
-        "%B %d, %Y",
-    ]
-
-    for fmt in formats:
+    # Pattern 2: "03/22/2026"
+    m = DATE_PATTERNS[1].search(text)
+    if m:
         try:
-            return datetime.strptime(date_str, fmt)
+            return date(int(m.group(3)), int(m.group(1)), int(m.group(2)))
         except ValueError:
-            continue
+            pass
 
-    log.debug("Could not parse date: %s", date_str)
+    # Pattern 3: "2026-03-22"
+    m = DATE_PATTERNS[2].search(text)
+    if m:
+        try:
+            return date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+        except ValueError:
+            pass
+
     return None
 
 
-def parse_price(value) -> float | None:
-    """Parse a price value into a float. Returns None if invalid."""
-    if value is None:
+def parse_price_from_text(text: str) -> float | None:
+    """Extract the first price (e.g. $170) from text."""
+    if not text:
         return None
-    if isinstance(value, (int, float)):
-        return float(value) if value > 0 else None
-    if isinstance(value, str):
-        cleaned = value.replace("$", "").replace(",", "").strip()
+    m = PRICE_PATTERN.search(text)
+    if m:
         try:
-            price = float(cleaned)
-            return price if price > 0 else None
+            return float(m.group(1).replace(",", ""))
         except ValueError:
             return None
     return None
 
 
-def normalize_sneaker(raw: dict) -> dict | None:
-    """
-    Normalize a raw API sneaker dict into our standard format.
-    Returns None if the sneaker should be skipped (missing date, etc.).
-    """
-    # Try multiple possible field names the API might use
-    release_date = parse_release_date(
-        raw.get("releaseDate") or raw.get("release_date") or raw.get("releasedate")
-    )
+def detect_brand(text: str) -> str:
+    """Detect the sneaker brand from the shoe name/text."""
+    t = text.lower()
+    if "jordan" in t or "air jordan" in t:
+        return "Jordan"
+    if "yeezy" in t:
+        return "Yeezy"
+    if "nike" in t or "dunk" in t or "air force" in t or "air max" in t:
+        return "Nike"
+    if "adidas" in t or "ultraboost" in t or "samba" in t:
+        return "Adidas"
+    if "new balance" in t:
+        return "New Balance"
+    if "under armour" in t or "ua " in t or "curry" in t:
+        return "Under Armour"
+    if "reebok" in t:
+        return "Reebok"
+    if "puma" in t:
+        return "Puma"
+    if "converse" in t:
+        return "Converse"
+    if "asics" in t:
+        return "ASICS"
+    return "Other"
 
-    if release_date is None:
+
+def is_target_brand(brand: str) -> bool:
+    """Check if a brand is one of our target brands."""
+    return brand.lower() in TARGET_BRANDS
+
+
+def fetch_html(url: str) -> str | None:
+    """Fetch HTML from a URL with proper headers."""
+    try:
+        resp = requests.get(url, headers=HTTP_HEADERS, timeout=20)
+        if resp.status_code == 200:
+            log.info("Fetched %s (%d bytes)", url, len(resp.text))
+            return resp.text
+        else:
+            log.warning("HTTP %d from %s", resp.status_code, url)
+            return None
+    except requests.RequestException as exc:
+        log.warning("Error fetching %s: %s", url, exc)
         return None
 
-    today = datetime.now(timezone.utc)
-    cutoff = today + timedelta(days=LOOKAHEAD_DAYS)
 
-    # Only include upcoming releases (today through cutoff)
-    if release_date.date() < today.date() or release_date.date() > cutoff.date():
-        return None
+# ---------------------------------------------------------------------------
+# Source 1: SneakerFiles.com
+# ---------------------------------------------------------------------------
 
-    retail_price = parse_price(
-        raw.get("retailPrice") or raw.get("retail_price") or raw.get("retailprice")
+def scrape_sneakerfiles() -> list[dict]:
+    """Scrape upcoming releases from SneakerFiles.com."""
+    url = "https://www.sneakerfiles.com/release-dates/"
+    html = fetch_html(url)
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    releases = []
+
+    # SneakerFiles lists releases as article/post entries
+    # Try multiple selectors for resilience
+    articles = (
+        soup.select("article") or
+        soup.select(".post") or
+        soup.select(".release-entry") or
+        soup.select(".entry")
     )
-    estimated_market_value = parse_price(
-        raw.get("estimatedMarketValue")
-        or raw.get("estimated_market_value")
-        or raw.get("marketValue")
-        or raw.get("market_value")
+
+    log.info("SneakerFiles: found %d article elements", len(articles))
+
+    for article in articles:
+        text = article.get_text(separator=" ", strip=True)
+        title_el = article.select_one("h2 a, h3 a, .entry-title a, h2, h3")
+        name = title_el.get_text(strip=True) if title_el else ""
+
+        if not name:
+            continue
+
+        release_date = parse_date_from_text(text)
+        price = parse_price_from_text(text)
+        brand = detect_brand(name)
+
+        if release_date and name:
+            releases.append({
+                "name": name,
+                "brand": brand,
+                "release_date": release_date,
+                "retail_price": price,
+                "colorway": "N/A",
+                "style_code": "N/A",
+                "source": "SneakerFiles",
+            })
+
+    # Also try to parse from plain text blocks / divs if articles didn't work
+    if not releases:
+        log.info("SneakerFiles: trying text-block parsing...")
+        releases = _parse_release_blocks(soup, "SneakerFiles")
+
+    log.info("SneakerFiles: extracted %d releases", len(releases))
+    return releases
+
+
+# ---------------------------------------------------------------------------
+# Source 2: NiceKicks.com
+# ---------------------------------------------------------------------------
+
+def scrape_nicekicks() -> list[dict]:
+    """Scrape upcoming releases from NiceKicks.com."""
+    url = "https://www.nicekicks.com/sneaker-release-dates/"
+    html = fetch_html(url)
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    releases = []
+
+    # NiceKicks uses card-style layouts
+    cards = (
+        soup.select(".release-entry") or
+        soup.select("article") or
+        soup.select(".post-card") or
+        soup.select(".sneaker-card") or
+        soup.select(".card")
     )
 
-    name = (
-        raw.get("name") or raw.get("title") or raw.get("shoeName") or "Unknown"
-    ).strip()
-    brand = (raw.get("brand") or raw.get("make") or "Unknown").strip()
-    colorway = (raw.get("colorway") or raw.get("colour") or "N/A").strip()
-    style_code = (
-        raw.get("sku") or raw.get("styleId") or raw.get("style_id") or "N/A"
-    ).strip()
-    silhouette = (raw.get("silhouette") or raw.get("model") or "").strip()
+    log.info("NiceKicks: found %d card elements", len(cards))
 
-    # Image can be a nested object {"original": url, "small": url, "thumbnail": url}
-    # or a plain string
-    image_raw = raw.get("image") or raw.get("thumbnail") or ""
-    if isinstance(image_raw, dict):
-        image_url = (
-            image_raw.get("original") or image_raw.get("small") or image_raw.get("thumbnail") or ""
+    for card in cards:
+        text = card.get_text(separator=" ", strip=True)
+        title_el = card.select_one("h2 a, h3 a, h4 a, .title a, h2, h3, h4")
+        name = title_el.get_text(strip=True) if title_el else ""
+
+        if not name:
+            continue
+
+        release_date = parse_date_from_text(text)
+        price = parse_price_from_text(text)
+        brand = detect_brand(name)
+
+        if release_date and name:
+            releases.append({
+                "name": name,
+                "brand": brand,
+                "release_date": release_date,
+                "retail_price": price,
+                "colorway": "N/A",
+                "style_code": "N/A",
+                "source": "NiceKicks",
+            })
+
+    if not releases:
+        log.info("NiceKicks: trying text-block parsing...")
+        releases = _parse_release_blocks(soup, "NiceKicks")
+
+    log.info("NiceKicks: extracted %d releases", len(releases))
+    return releases
+
+
+# ---------------------------------------------------------------------------
+# Source 3: SneakerBarDetroit.com
+# ---------------------------------------------------------------------------
+
+def scrape_sneakerbardetroit() -> list[dict]:
+    """Scrape upcoming releases from SneakerBarDetroit.com."""
+    url = "https://sneakerbardetroit.com/sneaker-release-dates/"
+    html = fetch_html(url)
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    releases = []
+
+    # SneakerBarDetroit lists releases in article/post format
+    articles = (
+        soup.select("article") or
+        soup.select(".post") or
+        soup.select(".release-post") or
+        soup.select(".entry")
+    )
+
+    log.info("SneakerBarDetroit: found %d article elements", len(articles))
+
+    for article in articles:
+        text = article.get_text(separator=" ", strip=True)
+        title_el = article.select_one("h2 a, h3 a, .entry-title a, h2, h3")
+        name = title_el.get_text(strip=True) if title_el else ""
+
+        if not name:
+            continue
+
+        release_date = parse_date_from_text(text)
+        price = parse_price_from_text(text)
+        brand = detect_brand(name)
+
+        if release_date and name:
+            releases.append({
+                "name": name,
+                "brand": brand,
+                "release_date": release_date,
+                "retail_price": price,
+                "colorway": "N/A",
+                "style_code": "N/A",
+                "source": "SneakerBarDetroit",
+            })
+
+    if not releases:
+        log.info("SneakerBarDetroit: trying text-block parsing...")
+        releases = _parse_release_blocks(soup, "SneakerBarDetroit")
+
+    log.info("SneakerBarDetroit: extracted %d releases", len(releases))
+    return releases
+
+
+# ---------------------------------------------------------------------------
+# Fallback: generic text-block parser
+# ---------------------------------------------------------------------------
+
+def _parse_release_blocks(soup: BeautifulSoup, source: str) -> list[dict]:
+    """
+    Fallback parser that scans the entire page for sneaker release patterns.
+    Looks for shoe names near dates and prices in text content.
+    """
+    releases = []
+    body = soup.select_one("main, .content, #content, .site-content, body")
+    if not body:
+        body = soup
+
+    # Get all text-containing elements
+    elements = body.find_all(["div", "li", "p", "span", "td", "article", "section"])
+
+    for el in elements:
+        text = el.get_text(separator=" ", strip=True)
+        if len(text) < 15 or len(text) > 500:
+            continue
+
+        release_date = parse_date_from_text(text)
+        if not release_date:
+            continue
+
+        # Look for a shoe name — typically contains brand keywords
+        has_brand_keyword = any(
+            kw in text.lower()
+            for kw in ["nike", "jordan", "adidas", "yeezy", "new balance",
+                       "under armour", "dunk", "air force", "air max",
+                       "air jordan", "retro", "boost"]
         )
-    else:
-        image_url = str(image_raw).strip()
+        if not has_brand_keyword:
+            continue
 
-    days_until = (release_date.date() - today.date()).days
+        # Try to extract the shoe name (first line or bolded text)
+        name_el = el.find(["strong", "b", "a", "h2", "h3", "h4", "h5"])
+        name = name_el.get_text(strip=True) if name_el else text[:80]
 
-    return {
-        "name": name,
-        "brand": brand,
-        "silhouette": silhouette,
-        "colorway": colorway,
-        "style_code": style_code,
-        "retail_price": retail_price,
-        "estimated_market_value": estimated_market_value,
-        "release_date": release_date,
-        "days_until_release": days_until,
-        "image_url": image_url,
-    }
+        # Clean up name — remove date and price from it
+        name = DATE_PATTERNS[0].sub("", name).strip()
+        name = PRICE_PATTERN.sub("", name).strip()
+        name = name.rstrip(" -–—|,").strip()
 
+        if len(name) < 5:
+            continue
+
+        price = parse_price_from_text(text)
+        brand = detect_brand(name)
+
+        releases.append({
+            "name": name,
+            "brand": brand,
+            "release_date": release_date,
+            "retail_price": price,
+            "colorway": "N/A",
+            "style_code": "N/A",
+            "source": source,
+        })
+
+    return releases
+
+
+# ---------------------------------------------------------------------------
+# Enrichment: extract colorway / style code from name
+# ---------------------------------------------------------------------------
+
+STYLE_CODE_PATTERN = re.compile(r"\b([A-Z]{1,3}\d{3,5}[-–]\d{2,4})\b")
+COLORWAY_SEPARATORS = re.compile(r"['\"]([^'\"]+)['\"]")
+
+
+def enrich_sneaker(sneaker: dict) -> dict:
+    """Try to extract colorway and style code from the shoe name."""
+    name = sneaker["name"]
+
+    # Style code (e.g., "DV0833-108")
+    m = STYLE_CODE_PATTERN.search(name)
+    if m and sneaker["style_code"] == "N/A":
+        sneaker["style_code"] = m.group(1)
+
+    # Colorway in quotes (e.g., Air Jordan 1 "Bred")
+    m = COLORWAY_SEPARATORS.search(name)
+    if m and sneaker["colorway"] == "N/A":
+        sneaker["colorway"] = m.group(1)
+
+    return sneaker
+
+
+# ---------------------------------------------------------------------------
+# Main orchestration
+# ---------------------------------------------------------------------------
 
 def deduplicate(sneakers: list[dict]) -> list[dict]:
-    """Remove duplicates based on style_code (or name if style_code is N/A)."""
+    """Remove duplicates based on name similarity."""
     seen = set()
     unique = []
     for s in sneakers:
-        key = s["style_code"] if s["style_code"] != "N/A" else s["name"]
+        # Normalize key: lowercase name, remove special chars
+        key = re.sub(r"[^a-z0-9]", "", s["name"].lower())
         if key not in seen:
             seen.add(key)
             unique.append(s)
@@ -302,37 +447,80 @@ def deduplicate(sneakers: list[dict]) -> list[dict]:
 
 def main():
     log.info("=== Sneaker Release Tracker ===")
-    log.info("Looking ahead %d days from today.", LOOKAHEAD_DAYS)
 
-    api_key = get_api_key()
-    all_sneakers = []
+    today = date.today()
+    cutoff = today + timedelta(days=LOOKAHEAD_DAYS)
+    log.info("Date range: %s to %s (%d days)", today, cutoff, LOOKAHEAD_DAYS)
 
-    for brand in TARGET_BRANDS:
-        raw = fetch_sneakers_for_brand(brand, api_key)
-        for item in raw:
-            normalized = normalize_sneaker(item)
-            if normalized:
-                all_sneakers.append(normalized)
+    # Scrape from multiple sources
+    all_releases = []
 
-    log.info("Total sneakers after filtering: %d", len(all_sneakers))
+    sources = [
+        ("SneakerFiles", scrape_sneakerfiles),
+        ("NiceKicks", scrape_nicekicks),
+        ("SneakerBarDetroit", scrape_sneakerbardetroit),
+    ]
 
-    # Deduplicate
-    all_sneakers = deduplicate(all_sneakers)
-    log.info("After deduplication: %d", len(all_sneakers))
+    for name, scraper_fn in sources:
+        log.info("--- Scraping %s ---", name)
+        try:
+            releases = scraper_fn()
+            all_releases.extend(releases)
+        except Exception as exc:
+            log.error("Error scraping %s: %s", name, exc)
+
+    log.info("Total raw releases from all sources: %d", len(all_releases))
+
+    # Filter to target brands and upcoming date range
+    filtered = []
+    for r in all_releases:
+        if not is_target_brand(r["brand"]):
+            log.debug("Skipping non-target brand: %s (%s)", r["name"], r["brand"])
+            continue
+        rd = r["release_date"]
+        if rd < today or rd > cutoff:
+            continue
+        # Enrich with colorway/style code parsing
+        r = enrich_sneaker(r)
+        r["days_until_release"] = (rd - today).days
+        # Convert date to datetime for Excel export compatibility
+        r["release_date"] = datetime.combine(rd, datetime.min.time())
+        r["estimated_market_value"] = None
+        r["silhouette"] = ""
+        r["image_url"] = ""
+        filtered.append(r)
+
+    log.info("After brand + date filtering: %d", len(filtered))
+
+    # Deduplicate (same shoe from multiple sources)
+    filtered = deduplicate(filtered)
+    log.info("After deduplication: %d", len(filtered))
 
     # Calculate hype scores
-    for sneaker in all_sneakers:
+    for sneaker in filtered:
         score, level = calculate_hype_score(sneaker)
         sneaker["hype_score"] = score
         sneaker["hype_level"] = level
 
     # Sort by release date
-    all_sneakers.sort(key=lambda s: s["release_date"])
+    filtered.sort(key=lambda s: s["release_date"])
+
+    # Log what we found
+    for s in filtered[:20]:
+        log.info(
+            "  %s | %-8s | %s | $%s | Hype: %d (%s)",
+            s["release_date"].strftime("%Y-%m-%d"),
+            s["brand"],
+            s["name"][:50],
+            s["retail_price"] or "TBD",
+            s["hype_score"],
+            s["hype_level"],
+        )
 
     # Export to Excel
-    export_to_excel(all_sneakers, OUTPUT_PATH)
+    export_to_excel(filtered, OUTPUT_PATH)
     log.info("Report saved to %s", OUTPUT_PATH)
-    log.info("Done.")
+    log.info("Done. %d releases tracked.", len(filtered))
 
 
 if __name__ == "__main__":
