@@ -1,23 +1,7 @@
 {
-  "generated_at": "2026-03-19T10:44:05Z",
+  "generated_at": "2026-03-19T10:52:05Z",
   "total": 60,
   "releases": [
-    {
-      "name": "Nike GT Future \u201cUnseen Hours\u201d",
-      "brand": "Nike",
-      "release_date": "2026-03-19",
-      "retail_price": 210.0,
-      "colorway": "N/A",
-      "style_code": "N/A",
-      "source": "SneakerFiles",
-      "source_url": "https://www.sneakerfiles.com/nike-gt-future-unseen-hours/",
-      "days_until_release": 0,
-      "estimated_market_value": null,
-      "silhouette": "",
-      "image_url": "",
-      "hype_score": 4,
-      "hype_level": "MEDIUM"
-    },
     {
       "name": "Dylan Harper x Nike GT Cut 1 \u201cUnseen Hours\u201d",
       "brand": "Nike",
@@ -43,6 +27,22 @@
       "style_code": "N/A",
       "source": "SneakerFiles",
       "source_url": "https://www.sneakerfiles.com/nike-ja-3-at-dawn/",
+      "days_until_release": 0,
+      "estimated_market_value": null,
+      "silhouette": "",
+      "image_url": "",
+      "hype_score": 4,
+      "hype_level": "MEDIUM"
+    },
+    {
+      "name": "Nike GT Future \u201cUnseen Hours\u201d",
+      "brand": "Nike",
+      "release_date": "2026-03-19",
+      "retail_price": 210.0,
+      "colorway": "N/A",
+      "style_code": "N/A",
+      "source": "SneakerFiles",
+      "source_url": "https://www.sneakerfiles.com/nike-gt-future-unseen-hours/",
       "days_until_release": 0,
       "estimated_market_value": null,
       "silhouette": "",
@@ -195,22 +195,6 @@
       "hype_level": "MEDIUM"
     },
     {
-      "name": "Air Jordan 14 \u201cBlack University Blue\u201d 2026",
-      "brand": "Jordan",
-      "release_date": "2026-03-21",
-      "retail_price": 215.0,
-      "colorway": "N/A",
-      "style_code": "N/A",
-      "source": "SneakerFiles",
-      "source_url": "https://www.sneakerfiles.com/air-jordan-14-black-university-blue-2026/",
-      "days_until_release": 2,
-      "estimated_market_value": null,
-      "silhouette": "",
-      "image_url": "",
-      "hype_score": 7,
-      "hype_level": "HIGH"
-    },
-    {
       "name": "Pharrell adidas Adistar Jellyfish \u201cTriple Black\u201d",
       "brand": "Adidas",
       "release_date": "2026-03-21",
@@ -257,6 +241,22 @@
       "image_url": "",
       "hype_score": 9,
       "hype_level": "EXTREME"
+    },
+    {
+      "name": "Air Jordan 14 \u201cBlack University Blue\u201d 2026",
+      "brand": "Jordan",
+      "release_date": "2026-03-21",
+      "retail_price": 215.0,
+      "colorway": "N/A",
+      "style_code": "N/A",
+      "source": "SneakerFiles",
+      "source_url": "https://www.sneakerfiles.com/air-jordan-14-black-university-blue-2026/",
+      "days_until_release": 2,
+      "estimated_market_value": null,
+      "silhouette": "",
+      "image_url": "",
+      "hype_score": 7,
+      "hype_level": "HIGH"
     },
     {
       "name": "Avirex x adidas Superstar 82",
@@ -515,22 +515,6 @@
       "hype_level": "HIGH"
     },
     {
-      "name": "Virgil Abloh Archive x Air Jordan 1 High OG \u201cAlaska\u201d",
-      "brand": "Jordan",
-      "release_date": "2026-03-28",
-      "retail_price": 230.0,
-      "colorway": "N/A",
-      "style_code": "N/A",
-      "source": "SneakerFiles",
-      "source_url": "https://www.sneakerfiles.com/off-white-air-jordan-1-high-og-alaska-white-2026/",
-      "days_until_release": 9,
-      "estimated_market_value": null,
-      "silhouette": "",
-      "image_url": "",
-      "hype_score": 9,
-      "hype_level": "EXTREME"
-    },
-    {
       "name": "Air Jordan 3 \u201cSpring is in the Air\u201d",
       "brand": "Jordan",
       "release_date": "2026-03-28",
@@ -609,6 +593,22 @@
       "image_url": "",
       "hype_score": 3,
       "hype_level": "LOW"
+    },
+    {
+      "name": "Virgil Abloh Archive x Air Jordan 1 High OG \u201cAlaska\u201d",
+      "brand": "Jordan",
+      "release_date": "2026-03-28",
+      "retail_price": 230.0,
+      "colorway": "N/A",
+      "style_code": "N/A",
+      "source": "SneakerFiles",
+      "source_url": "https://www.sneakerfiles.com/off-white-air-jordan-1-high-og-alaska-white-2026/",
+      "days_until_release": 9,
+      "estimated_market_value": null,
+      "silhouette": "",
+      "image_url": "",
+      "hype_score": 9,
+      "hype_level": "EXTREME"
     },
     {
       "name": "LEGO x Nike Air Max 95 (GS)",
@@ -819,22 +819,6 @@
       "hype_level": "MEDIUM"
     },
     {
-      "name": "Nike Air Max Uptempo 95 \u201cDerek Fisher\u201d",
-      "brand": "Nike",
-      "release_date": "2026-04-11",
-      "retail_price": 170.0,
-      "colorway": "N/A",
-      "style_code": "N/A",
-      "source": "SneakerFiles",
-      "source_url": "https://www.sneakerfiles.com/nike-air-max-uptempo-95-derek-fisher-2026/",
-      "days_until_release": 23,
-      "estimated_market_value": null,
-      "silhouette": "",
-      "image_url": "",
-      "hype_score": 4,
-      "hype_level": "MEDIUM"
-    },
-    {
       "name": "Air Jordan 1 High OG \u201cFlight Club\u201d",
       "brand": "Jordan",
       "release_date": "2026-04-11",
@@ -849,6 +833,22 @@
       "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH"
+    },
+    {
+      "name": "Nike Air Max Uptempo 95 \u201cDerek Fisher\u201d",
+      "brand": "Nike",
+      "release_date": "2026-04-11",
+      "retail_price": 170.0,
+      "colorway": "N/A",
+      "style_code": "N/A",
+      "source": "SneakerFiles",
+      "source_url": "https://www.sneakerfiles.com/nike-air-max-uptempo-95-derek-fisher-2026/",
+      "days_until_release": 23,
+      "estimated_market_value": null,
+      "silhouette": "",
+      "image_url": "",
+      "hype_score": 4,
+      "hype_level": "MEDIUM"
     },
     {
       "name": "adidas Anthony Edwards 2 \u201cLime Burst\u201d",
