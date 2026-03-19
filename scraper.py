@@ -47,9 +47,32 @@ def get_api_key() -> str:
     return key
 
 
+def _fetch_page(url: str, headers: dict, params: dict, brand: str, page: int) -> dict | None:
+    """Fetch a single page from the API. Returns parsed JSON or None on failure."""
+    try:
+        resp = requests.get(url, headers=headers, params=params, timeout=15)
+    except requests.RequestException as exc:
+        log.warning("Network error fetching %s page %d: %s", brand, page, exc)
+        return None
+
+    if resp.status_code == 429:
+        log.warning("Rate limited on %s — stopping.", brand)
+        return None
+    if resp.status_code in (401, 403):
+        log.error("API auth error (%d). Check your RAPIDAPI_KEY.", resp.status_code)
+        sys.exit(1)
+    if resp.status_code != 200:
+        body_preview = resp.text[:500] if resp.text else "(empty)"
+        log.warning("HTTP %d for %s page %d. Response: %s", resp.status_code, brand, page, body_preview)
+        return None
+
+    return resp.json()
+
+
 def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
     """
     Fetch sneakers for a single brand from The Sneaker Database API.
+    Uses releaseYear filter to narrow results to current/next year.
     Returns a list of raw sneaker dicts from the API response.
     """
     headers = {
@@ -58,87 +81,77 @@ def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
     }
 
     today = datetime.now(timezone.utc).date()
-    cutoff = today + timedelta(days=LOOKAHEAD_DAYS)
     current_year = today.year
+    url = f"{API_BASE}/sneakers"
 
     all_sneakers = []
-    page = 1
 
-    while True:
-        # Use only confirmed API params: brand, limit, page
-        # releaseYear and sort may cause 500 errors
-        params = {
-            "brand": brand,
-            "limit": str(RESULTS_PER_PAGE),
-            "page": str(page),
-        }
+    # Fetch current year's releases (and next year if we're in Nov/Dec)
+    years_to_fetch = [str(current_year)]
+    if today.month >= 11:
+        years_to_fetch.append(str(current_year + 1))
 
-        log.info("Fetching %s page %d ...", brand, page)
+    for year in years_to_fetch:
+        page = 1
+        while True:
+            params = {
+                "brand": brand,
+                "limit": str(RESULTS_PER_PAGE),
+                "page": str(page),
+                "releaseYear": year,
+            }
 
-        try:
-            resp = requests.get(
-                f"{API_BASE}/sneakers",
-                headers=headers,
-                params=params,
-                timeout=15,
-            )
-        except requests.RequestException as exc:
-            log.warning("Network error fetching %s page %d: %s", brand, page, exc)
-            break
+            log.info("Fetching %s year=%s page %d ...", brand, year, page)
+            data = _fetch_page(url, headers, params, brand, page)
 
-        if resp.status_code == 429:
-            log.warning("Rate limited on %s — stopping pagination for this brand.", brand)
-            break
-        if resp.status_code in (401, 403):
-            log.error("API auth error (%d). Check your RAPIDAPI_KEY.", resp.status_code)
-            sys.exit(1)
-        if resp.status_code != 200:
-            body_preview = resp.text[:500] if resp.text else "(empty)"
-            log.warning(
-                "HTTP %d for %s page %d. Response: %s",
-                resp.status_code, brand, page, body_preview,
-            )
-            break
+            if data is None:
+                # releaseYear might have caused the error — try without it
+                if page == 1 and "releaseYear" in params:
+                    log.info("Retrying %s without releaseYear filter...", brand)
+                    del params["releaseYear"]
+                    data = _fetch_page(url, headers, params, brand, page)
+                if data is None:
+                    break
 
-        data = resp.json()
+            # Log response shape on first call
+            if page == 1:
+                if isinstance(data, dict):
+                    log.info("Response keys for %s: %s", brand, list(data.keys()))
+                    count = data.get("count", "?")
+                    total_pages = data.get("totalPages", "?")
+                    log.info("Total results: %s, pages: %s", count, total_pages)
 
-        # Log response shape on first call to help debug
-        if page == 1:
-            if isinstance(data, dict):
-                log.info("Response keys for %s: %s", brand, list(data.keys()))
-                total_pages = data.get("totalPages", "?")
-                count = data.get("count", "?")
-                log.info("Total results: %s, pages: %s", count, total_pages)
-            elif isinstance(data, list):
-                log.info("Response is a list with %d items for %s.", len(data), brand)
+                    # Log sample release dates to debug filtering
+                    results_sample = data.get("results", [])[:3]
+                    for i, s in enumerate(results_sample):
+                        log.info(
+                            "  Sample[%d]: name=%s, releaseDate=%s, retailPrice=%s",
+                            i, s.get("name", "?")[:50], s.get("releaseDate", "?"), s.get("retailPrice", "?"),
+                        )
 
-        # The API returns {"results": [...], "count": N, "totalPages": N}
-        results = data if isinstance(data, list) else data.get("results", [])
-
-        if not results:
-            break
-
-        all_sneakers.extend(results)
-
-        # Check if there are more pages
-        if isinstance(data, dict):
-            total_pages = data.get("totalPages", 1)
-            if page >= total_pages:
+            results = data if isinstance(data, list) else data.get("results", [])
+            if not results:
                 break
 
-        # If we got fewer than the limit, we've reached the last page
-        if len(results) < RESULTS_PER_PAGE:
-            break
+            all_sneakers.extend(results)
 
-        page += 1
+            # Check pagination
+            if isinstance(data, dict):
+                total_pages = data.get("totalPages", 1)
+                if page >= total_pages:
+                    break
 
-        # Safety: don't fetch more than 3 pages per brand (to stay within API budget)
-        if page > 3:
-            log.info("Hit page limit for %s, moving on.", brand)
-            break
+            if len(results) < RESULTS_PER_PAGE:
+                break
 
-        # Brief pause to be respectful of rate limits
-        time.sleep(0.5)
+            page += 1
+
+            # Safety: limit pages per year per brand to stay in API budget
+            if page > 5:
+                log.info("Hit page limit for %s year=%s, moving on.", brand, year)
+                break
+
+            time.sleep(0.3)
 
     log.info("Fetched %d raw results for %s.", len(all_sneakers), brand)
     return all_sneakers
