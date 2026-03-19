@@ -449,6 +449,61 @@ def _parse_release_blocks(soup: BeautifulSoup, source: str, page_url: str = "") 
 STYLE_CODE_PATTERN = re.compile(r"\b([A-Z]{1,3}\d{3,5}[-–]\d{2,4})\b")
 COLORWAY_SEPARATORS = re.compile(r"['\"]([^'\"]+)['\"]")
 
+# ---------------------------------------------------------------------------
+# Sale method detection
+# ---------------------------------------------------------------------------
+
+# Collab names that typically drop via raffle for HIGH/EXTREME releases
+_COLLAB_NAMES = [
+    "travis scott", "off-white", "off white", "supreme", "sacai",
+    "bad bunny", "fragment", "union", "a ma maniere", "atmos",
+    "concepts", "kith", "fear of god", "clot", "patta", "j balvin",
+    "swarovski", "cpfm", "virgil abloh", "cactus jack", "pharrell",
+    "division st", "thug club", "avirex", "stüssy", "stussy",
+]
+
+
+def detect_sale_method(name: str, brand: str, hype_level: str) -> str:
+    """Infer how a shoe will be sold based on name, brand, and hype level."""
+    t = name.lower()
+
+    # Explicit keywords in the name take priority
+    if "raffle" in t:
+        return "Raffle"
+    if "giveaway" in t:
+        return "Giveaway"
+    if "snkrs" in t:
+        return "SNKRS App"
+    if "confirmed app" in t or "adidas confirmed" in t:
+        return "Confirmed App"
+    if "in-store only" in t or "in store only" in t:
+        return "In-Store"
+    if "online only" in t:
+        return "Online"
+
+    # Collab shoes at HIGH/EXTREME hype → typically raffled
+    is_collab = any(kw in t for kw in _COLLAB_NAMES)
+    if is_collab and hype_level in ("EXTREME", "HIGH"):
+        return "Raffle"
+
+    # Brand + hype heuristics
+    if brand in ("Jordan", "Nike"):
+        if hype_level in ("EXTREME", "HIGH"):
+            return "SNKRS App"
+        return "Online + Retail"
+
+    if brand in ("Adidas", "Yeezy"):
+        if hype_level in ("EXTREME", "HIGH"):
+            return "Confirmed App"
+        return "Online + Retail"
+
+    if brand == "New Balance":
+        if hype_level == "EXTREME":
+            return "Online"
+        return "Online + Retail"
+
+    return "Online + Retail"
+
 
 def enrich_sneaker(sneaker: dict) -> dict:
     """Try to extract colorway and style code from the shoe name."""
@@ -536,11 +591,12 @@ def main():
     filtered = deduplicate(filtered)
     log.info("After deduplication: %d", len(filtered))
 
-    # Calculate hype scores
+    # Calculate hype scores then infer sale method
     for sneaker in filtered:
         score, level = calculate_hype_score(sneaker)
         sneaker["hype_score"] = score
         sneaker["hype_level"] = level
+        sneaker["sale_method"] = detect_sale_method(sneaker["name"], sneaker["brand"], level)
 
     # Sort by release date
     filtered.sort(key=lambda s: s["release_date"])

@@ -62,11 +62,12 @@ HYPE_DISPLAY = {
 # ---------------------------------------------------------------------------
 
 COLUMNS = [
-    ("Date",   "release_date",        12, CENTER, "M/D/YYYY"),
-    ("Retail", "retail_price",        10, CENTER, "$#,##0"),
-    ("Hype",   "hype_level",          11, CENTER, None),
-    ("Brand",  "brand",               14, CENTER, None),
-    ("Style",  "name",                46, CENTER, None),
+    ("Date",        "release_date",  12, CENTER, "M/D/YYYY"),
+    ("Retail",      "retail_price",  10, CENTER, "$#,##0"),
+    ("Hype",        "hype_level",    11, CENTER, None),
+    ("Sale Method", "sale_method",   17, CENTER, None),
+    ("Brand",       "brand",         14, CENTER, None),
+    ("Style",       "name",          46, CENTER, None),
 ]
 
 NUM_COLS = len(COLUMNS)

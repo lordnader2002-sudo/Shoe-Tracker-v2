@@ -295,7 +295,7 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 .list-view { display:flex; flex-direction:column; gap:2px; }
 .list-header, .list-row {
   display:grid;
-  grid-template-columns: 22px 1fr 80px 70px 44px 52px 36px 28px;
+  grid-template-columns: 22px 1fr 72px 108px 62px 40px 50px 34px 26px;
   gap:0.5rem; align-items:center;
   padding:0 0.75rem;
 }
@@ -333,6 +333,33 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 .list-score { font-size:0.72rem; font-weight:800; text-align:center; }
 .list-link  { font-size:0.8rem; font-weight:700; color:var(--accent); text-decoration:none; text-align:center; transition:color 0.12s, opacity 0.12s; opacity:0.75; }
 .list-link:hover { color:var(--accent2); opacity:1; }
+
+/* ── SALE METHOD BADGES ──────────────────────────── */
+.sale-badge {
+  display:inline-flex; align-items:center;
+  font-size:0.62rem; font-weight:800; letter-spacing:0.04em;
+  padding:2px 6px; border-radius:4px;
+  white-space:nowrap; text-transform:uppercase;
+  border:1px solid transparent;
+}
+/* SNKRS App — Nike black/white */
+.sm-snkrs        { background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.2); }
+/* Confirmed App — Adidas blue */
+.sm-confirmed    { background:rgba(59,158,255,0.15); color:#3b9eff; border-color:rgba(59,158,255,0.35); }
+/* Raffle — orange/amber heat */
+.sm-raffle       { background:rgba(255,152,0,0.15);  color:#ff9800; border-color:rgba(255,152,0,0.4); }
+/* Giveaway — green */
+.sm-giveaway     { background:rgba(67,201,106,0.15); color:#43c96a; border-color:rgba(67,201,106,0.35); }
+/* Online-only — teal */
+.sm-online       { background:rgba(0,188,212,0.12);  color:#00bcd4; border-color:rgba(0,188,212,0.3); }
+/* Online + Retail — neutral */
+.sm-online-retail{ background:rgba(255,255,255,0.06);color:var(--text-muted); border-color:rgba(255,255,255,0.12); }
+/* In-Store — warm gray */
+.sm-instore      { background:rgba(255,193,7,0.12);  color:#ffc107; border-color:rgba(255,193,7,0.3); }
+/* Retail — dim */
+.sm-retail       { background:rgba(255,255,255,0.05);color:var(--text-dim); border-color:rgba(255,255,255,0.09); }
+
+.card-sale-row { margin:0.3rem 0 0.1rem; }
 
 /* ── CALENDAR ────────────────────────────────── */
 .calendar-section { padding:1.75rem; }
@@ -541,7 +568,9 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
   .navbar { padding:0 1rem; gap:1rem; }
   .nav-title { display:none; }
   .hero, .filters-bar, .cards-section, .calendar-section, .hype-breakdown, .hype-legend, .summary-grid { padding-left:1rem; padding-right:1rem; }
-  .list-header, .list-row { grid-template-columns:18px 1fr 58px 54px 40px 44px 30px 24px; font-size:0.7rem; }
+  .list-header, .list-row { grid-template-columns:18px 1fr 52px 0 55px 36px 42px 28px 20px; font-size:0.7rem; }
+  .list-row .sale-badge { display:none; }
+  .list-header span:nth-child(4) { display:none; }
   .cal-day { min-height:80px; }
   .cal-entry-name { display:none; }
   .cal-day-dots { display:flex; }
