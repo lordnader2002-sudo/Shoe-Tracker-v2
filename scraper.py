@@ -12,6 +12,7 @@ Sources (in priority order):
 import json
 import os
 import re
+import shutil
 import sys
 import logging
 from datetime import datetime, timedelta, timezone, date
@@ -579,6 +580,12 @@ def main():
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(json_data, f, indent=2, default=str)
     log.info("JSON data saved to %s", json_path)
+
+    # Copy Excel report into docs/data/ so GitHub Pages can serve it as a download
+    xlsx_dest = os.path.join(os.path.dirname(__file__), "docs", "data", "sneaker_releases.xlsx")
+    if os.path.exists(OUTPUT_PATH):
+        shutil.copy2(OUTPUT_PATH, xlsx_dest)
+        log.info("Excel report copied to %s", xlsx_dest)
 
     log.info("Done. %d releases tracked.", len(filtered))
 

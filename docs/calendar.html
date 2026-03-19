@@ -3,61 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Release Calendar — Sneaker Tracker</title>
+  <title>Calendar — Sneaker Tracker</title>
   <link rel="stylesheet" href="assets/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-brand">
-      <span class="nav-logo">👟</span>
-      <span class="nav-title">Sneaker Release Tracker</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="index.html">Dashboard</a></li>
-      <li><a href="calendar.html" class="active">Calendar</a></li>
-      <li><a href="hype.html">Hype Watch</a></li>
-    </ul>
+
+<nav class="navbar">
+  <a class="nav-brand" href="index.html"><span class="nav-logo">👟</span><span class="nav-title">Sneaker Release Tracker</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Summary</a></li>
+    <li><a href="releases.html">Releases</a></li>
+    <li><a href="calendar.html" class="active">Calendar</a></li>
+    <li><a href="hype.html">Hype Watch</a></li>
+  </ul>
+  <div class="nav-right">
     <div class="nav-meta" id="last-updated">—</div>
-  </nav>
+    <a class="btn-download" href="data/sneaker_releases.xlsx" download>⬇ Excel Report</a>
+  </div>
+</nav>
 
-  <header class="hero slim">
-    <div class="hero-content">
-      <h1>Release <span class="accent">Calendar</span></h1>
-      <p class="hero-sub">Day-by-day view of upcoming drops.</p>
+<header class="hero slim">
+  <div class="hero-content">
+    <h1>Release <span class="accent">Calendar</span></h1>
+    <p class="hero-sub">Click any day with dots to see that day's drops.</p>
+  </div>
+</header>
+
+<main class="calendar-section">
+  <div class="calendar-nav">
+    <button id="cal-prev" class="cal-btn">← Prev</button>
+    <h2 id="cal-month-label">—</h2>
+    <button id="cal-next" class="cal-btn">Next →</button>
+  </div>
+  <div class="calendar-grid-wrapper">
+    <div class="calendar-dow">
+      <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+      <span>Thu</span><span>Fri</span><span>Sat</span>
     </div>
-  </header>
-
-  <main class="calendar-section">
-    <div class="calendar-nav">
-      <button id="cal-prev" class="cal-btn">&#8592; Prev</button>
-      <h2 id="cal-month-label">—</h2>
-      <button id="cal-next" class="cal-btn">Next &#8594;</button>
+    <div class="calendar-grid" id="calendar-grid"></div>
+  </div>
+  <div class="day-detail" id="day-detail" style="display:none;">
+    <div class="day-detail-header">
+      <h3 id="detail-date-label">—</h3>
+      <button id="detail-close" class="detail-close">✕</button>
     </div>
+    <div class="cards-grid" id="detail-cards"></div>
+  </div>
+</main>
 
-    <div class="calendar-grid-wrapper">
-      <div class="calendar-dow">
-        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
-        <span>Thu</span><span>Fri</span><span>Sat</span>
-      </div>
-      <div class="calendar-grid" id="calendar-grid"></div>
-    </div>
+<footer class="site-footer">
+  <p>Mall Intelligence · Data refreshed Mon &amp; Fri @ 01:00 EST via GitHub Actions</p>
+</footer>
 
-    <!-- Day detail panel -->
-    <div class="day-detail" id="day-detail" style="display:none;">
-      <div class="day-detail-header">
-        <h3 id="detail-date-label">—</h3>
-        <button id="detail-close" class="detail-close">✕</button>
-      </div>
-      <div class="cards-grid" id="detail-cards"></div>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <p>Mall Intelligence | Data refreshed Mon &amp; Fri @ 01:00 EST via GitHub Actions</p>
-  </footer>
-
-  <script src="assets/data.js"></script>
-  <script src="assets/calendar.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/calendar.js"></script>
 </body>
 </html>
