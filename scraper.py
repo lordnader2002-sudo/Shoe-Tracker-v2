@@ -35,8 +35,11 @@ log = logging.getLogger(__name__)
 LOOKAHEAD_DAYS = 30
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "reports", "sneaker_releases.xlsx")
 
-TARGET_BRANDS = {"nike", "jordan", "air jordan", "adidas", "under armour",
-                 "yeezy", "new balance"}
+TARGET_BRANDS = {
+    "nike", "jordan", "air jordan", "adidas", "under armour",
+    "yeezy", "new balance", "reebok", "puma", "converse",
+    "asics", "on", "hoka", "vans", "saucony",
+}
 
 HTTP_HEADERS = {
     "User-Agent": (
@@ -128,26 +131,40 @@ def parse_price_from_text(text: str) -> float | None:
 def detect_brand(text: str) -> str:
     """Detect the sneaker brand from the shoe name/text."""
     t = text.lower()
-    if "jordan" in t or "air jordan" in t:
+    # Check most specific first to avoid false positives
+    if "air jordan" in t or ("jordan" in t and ("retro" in t or "aj" in t or "jumpman" in t)):
         return "Jordan"
     if "yeezy" in t:
         return "Yeezy"
-    if "nike" in t or "dunk" in t or "air force" in t or "air max" in t:
-        return "Nike"
-    if "adidas" in t or "ultraboost" in t or "samba" in t:
-        return "Adidas"
-    if "new balance" in t:
+    if "new balance" in t or "nb " in t:
         return "New Balance"
     if "under armour" in t or "ua " in t or "curry" in t:
         return "Under Armour"
-    if "reebok" in t:
+    if any(kw in t for kw in ["nike", "dunk", "air force", "air max", "foamposite",
+                               "vapormax", "blazer", "cortez", "pegasus", "kobe",
+                               "lebron", " kd ", "kyrie", "mercurial"]):
+        return "Nike"
+    if "jordan" in t:
+        return "Jordan"
+    if any(kw in t for kw in ["adidas", "ultraboost", "samba", "campus", "forum",
+                               "gazelle", "superstar", "stan smith", "nmd"]):
+        return "Adidas"
+    if "reebok" in t or "question mid" in t or "answer" in t:
         return "Reebok"
-    if "puma" in t:
+    if "puma" in t or "lamelo" in t or "mb." in t:
         return "Puma"
-    if "converse" in t:
+    if "converse" in t or "chuck taylor" in t or "chuck 70" in t:
         return "Converse"
-    if "asics" in t:
+    if "asics" in t or "gel-" in t:
         return "ASICS"
+    if "hoka" in t:
+        return "HOKA"
+    if " on " in t or "cloudmonster" in t or "cloudnova" in t or "roger pro" in t:
+        return "On"
+    if "vans" in t or "old skool" in t or "sk8-hi" in t:
+        return "Vans"
+    if "saucony" in t:
+        return "Saucony"
     return "Other"
 
 
@@ -201,6 +218,10 @@ def scrape_sneakerfiles() -> list[dict]:
         title_el = article.select_one("h2 a, h3 a, .entry-title a, h2, h3")
         name = title_el.get_text(strip=True) if title_el else ""
 
+        # Get the article URL
+        link_el = article.select_one("h2 a, h3 a, .entry-title a, a")
+        source_url = link_el.get("href", "") if link_el else ""
+
         if not name:
             continue
 
@@ -217,12 +238,13 @@ def scrape_sneakerfiles() -> list[dict]:
                 "colorway": "N/A",
                 "style_code": "N/A",
                 "source": "SneakerFiles",
+                "source_url": source_url,
             })
 
     # Also try to parse from plain text blocks / divs if articles didn't work
     if not releases:
         log.info("SneakerFiles: trying text-block parsing...")
-        releases = _parse_release_blocks(soup, "SneakerFiles")
+        releases = _parse_release_blocks(soup, "SneakerFiles", url)
 
     log.info("SneakerFiles: extracted %d releases", len(releases))
     return releases
@@ -258,6 +280,9 @@ def scrape_nicekicks() -> list[dict]:
         title_el = card.select_one("h2 a, h3 a, h4 a, .title a, h2, h3, h4")
         name = title_el.get_text(strip=True) if title_el else ""
 
+        link_el = card.select_one("h2 a, h3 a, h4 a, .title a, a")
+        source_url = link_el.get("href", "") if link_el else ""
+
         if not name:
             continue
 
@@ -274,11 +299,12 @@ def scrape_nicekicks() -> list[dict]:
                 "colorway": "N/A",
                 "style_code": "N/A",
                 "source": "NiceKicks",
+                "source_url": source_url,
             })
 
     if not releases:
         log.info("NiceKicks: trying text-block parsing...")
-        releases = _parse_release_blocks(soup, "NiceKicks")
+        releases = _parse_release_blocks(soup, "NiceKicks", url)
 
     log.info("NiceKicks: extracted %d releases", len(releases))
     return releases
@@ -313,6 +339,9 @@ def scrape_sneakerbardetroit() -> list[dict]:
         title_el = article.select_one("h2 a, h3 a, .entry-title a, h2, h3")
         name = title_el.get_text(strip=True) if title_el else ""
 
+        link_el = article.select_one("h2 a, h3 a, .entry-title a, a")
+        source_url = link_el.get("href", "") if link_el else ""
+
         if not name:
             continue
 
@@ -329,11 +358,12 @@ def scrape_sneakerbardetroit() -> list[dict]:
                 "colorway": "N/A",
                 "style_code": "N/A",
                 "source": "SneakerBarDetroit",
+                "source_url": source_url,
             })
 
     if not releases:
         log.info("SneakerBarDetroit: trying text-block parsing...")
-        releases = _parse_release_blocks(soup, "SneakerBarDetroit")
+        releases = _parse_release_blocks(soup, "SneakerBarDetroit", url)
 
     log.info("SneakerBarDetroit: extracted %d releases", len(releases))
     return releases
@@ -343,7 +373,7 @@ def scrape_sneakerbardetroit() -> list[dict]:
 # Fallback: generic text-block parser
 # ---------------------------------------------------------------------------
 
-def _parse_release_blocks(soup: BeautifulSoup, source: str) -> list[dict]:
+def _parse_release_blocks(soup: BeautifulSoup, source: str, page_url: str = "") -> list[dict]:
     """
     Fallback parser that scans the entire page for sneaker release patterns.
     Looks for shoe names near dates and prices in text content.
@@ -370,7 +400,8 @@ def _parse_release_blocks(soup: BeautifulSoup, source: str) -> list[dict]:
             kw in text.lower()
             for kw in ["nike", "jordan", "adidas", "yeezy", "new balance",
                        "under armour", "dunk", "air force", "air max",
-                       "air jordan", "retro", "boost"]
+                       "air jordan", "retro", "boost", "puma", "reebok",
+                       "converse", "asics", "hoka", "vans", "saucony"]
         )
         if not has_brand_keyword:
             continue
@@ -378,6 +409,10 @@ def _parse_release_blocks(soup: BeautifulSoup, source: str) -> list[dict]:
         # Try to extract the shoe name (first line or bolded text)
         name_el = el.find(["strong", "b", "a", "h2", "h3", "h4", "h5"])
         name = name_el.get_text(strip=True) if name_el else text[:80]
+
+        # Try to get a link
+        link_el = el.find("a", href=True)
+        source_url = link_el.get("href", "") if link_el else page_url
 
         # Clean up name — remove date and price from it
         name = DATE_PATTERNS[0].sub("", name).strip()
@@ -398,6 +433,7 @@ def _parse_release_blocks(soup: BeautifulSoup, source: str) -> list[dict]:
             "colorway": "N/A",
             "style_code": "N/A",
             "source": source,
+            "source_url": source_url,
         })
 
     return releases
@@ -488,6 +524,7 @@ def main():
         r["estimated_market_value"] = None
         r["silhouette"] = ""
         r["image_url"] = ""
+        r.setdefault("source_url", "")
         filtered.append(r)
 
     log.info("After brand + date filtering: %d", len(filtered))
