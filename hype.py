@@ -19,8 +19,16 @@ BRAND_HYPE = {
     "adidas": 5,
     "new balance": 6,
     "under armour": 3,
+    "reebok": 4,
+    "puma": 4,
+    "converse": 5,
+    "asics": 5,
+    "hoka": 3,
+    "on": 3,
+    "vans": 4,
+    "saucony": 4,
 }
-DEFAULT_BRAND_HYPE = 4
+DEFAULT_BRAND_HYPE = 3
 
 # ---------------------------------------------------------------------------
 # High-demand silhouettes / models (partial match, case-insensitive)

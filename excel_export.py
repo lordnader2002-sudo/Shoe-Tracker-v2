@@ -38,6 +38,8 @@ THIN_BORDER = Border(
 DATA_ALIGNMENT = Alignment(vertical="center", wrap_text=False)
 CENTER_ALIGNMENT = Alignment(horizontal="center", vertical="center")
 
+LINK_FONT = Font(name="Calibri", size=11, color="0563C1", underline="single")
+
 # Column definitions: (header, key, width, format)
 COLUMNS = [
     ("Release Date", "release_date", 14, "date"),
@@ -50,6 +52,7 @@ COLUMNS = [
     ("Est. Market Value", "estimated_market_value", 18, "currency"),
     ("Hype Score", "hype_score", 12, "int"),
     ("Hype Level", "hype_level", 13, None),
+    ("Source", "source", 16, "link"),
 ]
 
 
@@ -91,6 +94,16 @@ def _write_sneaker_row(ws, row_num: int, sneaker: dict):
             cell.alignment = CENTER_ALIGNMENT
         elif fmt == "int":
             cell.value = value
+            cell.alignment = CENTER_ALIGNMENT
+        elif fmt == "link":
+            source_url = sneaker.get("source_url", "")
+            source_name = value if value else "Link"
+            if source_url and source_url.startswith("http"):
+                cell.value = source_name
+                cell.hyperlink = source_url
+                cell.font = LINK_FONT
+            else:
+                cell.value = source_name
             cell.alignment = CENTER_ALIGNMENT
         else:
             cell.value = value if value else "N/A"
