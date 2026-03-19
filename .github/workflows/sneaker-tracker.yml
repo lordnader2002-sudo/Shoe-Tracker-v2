@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -27,10 +29,10 @@ jobs:
       - name: Run sneaker tracker
         run: python scraper.py
 
-      - name: Commit and push report
+      - name: Commit and push reports + dashboard data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/sneaker_releases.xlsx reports/releases.json
+          git add reports/ docs/data/
           git diff --cached --quiet || git commit -m "chore: sneaker release update [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git push

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Releases — Sneaker Tracker</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="index.html"><span class="nav-logo">👟</span><span class="nav-title">Sneaker Release Tracker</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Summary</a></li>
+    <li><a href="releases.html" class="active">Releases</a></li>
+    <li><a href="calendar.html">Calendar</a></li>
+    <li><a href="hype.html">Hype Watch</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-meta" id="last-updated">—</div>
+    <a class="btn-download" href="data/sneaker_releases.xlsx" download>⬇ Excel Report</a>
+  </div>
+</nav>
+
+<header class="hero slim">
+  <div class="hero-content">
+    <h1>Upcoming <span class="accent">Releases</span></h1>
+    <p class="hero-sub">Next 30 days · Filter, sort, and toggle view.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Total</div></div>
+    <div class="stat-card s-urgent"><div class="stat-num" id="stat-week">—</div><div class="stat-label">This Week</div></div>
+    <div class="stat-card s-ext"><div class="stat-num" id="stat-high">—</div><div class="stat-label">HIGH+</div></div>
+  </div>
+</header>
+
+<section class="filters-bar">
+  <div class="filters-inner">
+    <div class="filter-group">
+      <label>Brand</label>
+      <div class="filter-chips" id="brand-chips">
+        <button class="chip active" data-brand="all">All</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>Hype</label>
+      <div class="filter-chips">
+        <button class="chip active" data-hype="all">All</button>
+        <button class="chip" data-hype="EXTREME">EXTREME</button>
+        <button class="chip" data-hype="HIGH">HIGH</button>
+        <button class="chip" data-hype="MEDIUM">MEDIUM</button>
+        <button class="chip" data-hype="LOW">LOW</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>Urgency</label>
+      <div class="filter-chips">
+        <button class="chip active" data-urgency="all">All</button>
+        <button class="chip" data-urgency="7">≤7d</button>
+        <button class="chip" data-urgency="14">≤14d</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>Search</label>
+      <input type="text" id="search-input" class="search-input" placeholder="Shoe name…" />
+    </div>
+  </div>
+</section>
+
+<main class="cards-section">
+  <div class="section-header">
+    <h2>Releases <span class="count-badge" id="count-badge">0</span></h2>
+    <div class="section-controls">
+      <div class="view-toggle">
+        <button class="view-btn active" id="btn-grid" title="Grid view">⊞</button>
+        <button class="view-btn" id="btn-list" title="List view">≡</button>
+      </div>
+      <select id="sort-select" class="sort-select">
+        <option value="date-asc">Date ↑</option>
+        <option value="date-desc">Date ↓</option>
+        <option value="hype-desc">Hype ↓</option>
+        <option value="price-asc">Price ↑</option>
+      </select>
+    </div>
+  </div>
+  <div id="releases-container"><div class="loading">Loading releases…</div></div>
+</main>
+
+<footer class="site-footer">
+  <p>Mall Intelligence · Data refreshed Mon &amp; Fri @ 01:00 EST via GitHub Actions</p>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

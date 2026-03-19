@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hype Watch — Sneaker Tracker</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-brand" href="index.html"><span class="nav-logo">👟</span><span class="nav-title">Sneaker Release Tracker</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Summary</a></li>
+    <li><a href="releases.html">Releases</a></li>
+    <li><a href="calendar.html">Calendar</a></li>
+    <li><a href="hype.html" class="active">Hype Watch</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-meta" id="last-updated">—</div>
+    <a class="btn-download" href="data/sneaker_releases.xlsx" download>⬇ Excel Report</a>
+  </div>
+</nav>
+
+<div class="alert-banner" id="alert-banner">
+  <span class="alert-icon">⚠️</span>
+  <span id="alert-text"></span>
+</div>
+
+<header class="hero slim extreme-bg">
+  <div class="hero-content">
+    <h1>🔥 Hype <span class="accent">Watch</span></h1>
+    <p class="hero-sub">HIGH &amp; EXTREME releases — heightened crowd management expected.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card s-ext"><div class="stat-num" id="stat-extreme">—</div><div class="stat-label">EXTREME</div></div>
+    <div class="stat-card s-high"><div class="stat-num" id="stat-high">—</div><div class="stat-label">HIGH</div></div>
+  </div>
+</header>
+
+<div class="hype-breakdown">
+  <h2>By Brand</h2>
+  <div class="brand-bars" id="brand-bars"></div>
+</div>
+
+<main class="cards-section">
+  <div class="section-header">
+    <h2>HIGH / EXTREME Releases <span class="count-badge" id="count-badge">0</span></h2>
+    <div class="section-controls">
+      <div class="view-toggle">
+        <button class="view-btn active" id="btn-grid" title="Grid">⊞</button>
+        <button class="view-btn" id="btn-list" title="List">≡</button>
+      </div>
+    </div>
+  </div>
+  <div id="releases-container"><div class="loading">Loading…</div></div>
+</main>
+
+<footer class="site-footer">
+  <p>Mall Intelligence · Data refreshed Mon &amp; Fri @ 01:00 EST via GitHub Actions</p>
+</footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/hype.js"></script>
+</body>
+</html>

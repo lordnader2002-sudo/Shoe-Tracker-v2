@@ -12,6 +12,7 @@ Sources (in priority order):
 import json
 import os
 import re
+import shutil
 import sys
 import logging
 from datetime import datetime, timedelta, timezone, date
@@ -560,30 +561,32 @@ def main():
     export_to_excel(filtered, OUTPUT_PATH)
     log.info("Report saved to %s", OUTPUT_PATH)
 
-    # Export to JSON (used by the web dashboard)
-    json_records = []
-    for r in filtered:
-        json_records.append({
-            "name": r["name"],
-            "brand": r["brand"],
-            "release_date": r["release_date"].strftime("%Y-%m-%d"),
-            "days_until_release": r["days_until_release"],
-            "retail_price": r.get("retail_price"),
-            "estimated_market_value": r.get("estimated_market_value"),
-            "colorway": r.get("colorway", "N/A"),
-            "style_code": r.get("style_code", "N/A"),
-            "hype_score": r["hype_score"],
-            "hype_level": r["hype_level"],
-            "source": r.get("source", ""),
-            "source_url": r.get("source_url", ""),
-        })
-    with open(JSON_PATH, "w", encoding="utf-8") as fh:
-        json.dump({
-            "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-            "count": len(json_records),
-            "releases": json_records,
-        }, fh, indent=2)
-    log.info("JSON snapshot saved to %s", JSON_PATH)
+    # Export to JSON for the web dashboard (docs/data/ for GitHub Pages)
+    json_path = os.path.join(os.path.dirname(__file__), "docs", "data", "releases.json")
+    os.makedirs(os.path.dirname(json_path), exist_ok=True)
+
+    def _serialize(obj):
+        if isinstance(obj, (datetime, date)):
+            return obj.strftime("%Y-%m-%d")
+        return str(obj)
+
+    json_data = {
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "total": len(filtered),
+        "releases": [
+            {k: _serialize(v) if isinstance(v, (datetime, date)) else v for k, v in s.items()}
+            for s in filtered
+        ],
+    }
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(json_data, f, indent=2, default=str)
+    log.info("JSON data saved to %s", json_path)
+
+    # Copy Excel report into docs/data/ so GitHub Pages can serve it as a download
+    xlsx_dest = os.path.join(os.path.dirname(__file__), "docs", "data", "sneaker_releases.xlsx")
+    if os.path.exists(OUTPUT_PATH):
+        shutil.copy2(OUTPUT_PATH, xlsx_dest)
+        log.info("Excel report copied to %s", xlsx_dest)
 
     log.info("Done. %d releases tracked.", len(filtered))
 
