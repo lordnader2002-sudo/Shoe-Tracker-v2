@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sneaker Release Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f13;
+      --surface: #18181f;
+      --surface2: #21212b;
+      --border: #2e2e3a;
+      --text: #e8e8f0;
+      --muted: #8888a0;
+      --accent: #7c6aff;
+      --accent2: #ff6a9b;
+      --extreme: #ff3b3b;
+      --high: #ff8c00;
+      --medium: #f5c518;
+      --low: #4caf50;
+      --urgent-bg: rgba(255,59,59,0.12);
+      --upcoming-bg: rgba(245,197,24,0.10);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ───────────────────────────────────────────── */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .last-updated {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: opacity .15s, transform .1s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .content { padding: 24px; max-width: 1600px; margin: 0 auto; }
+
+    /* ── Stat Cards ───────────────────────────────────────── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .stat-card.extreme .stat-value { color: var(--extreme); }
+    .stat-card.high .stat-value    { color: var(--high); }
+    .stat-card.urgent .stat-value  { color: var(--accent2); }
+    .stat-card.total .stat-value   { color: var(--accent); }
+
+    /* ── Charts Row ───────────────────────────────────────── */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .charts-row { grid-template-columns: 1fr; }
+    }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .chart-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 16px;
+    }
+
+    .chart-wrap {
+      position: relative;
+      height: 220px;
+    }
+
+    /* ── Filters ──────────────────────────────────────────── */
+    .filters-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .filter-label {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    select, input[type="text"] {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 7px;
+      padding: 6px 10px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    select:focus, input[type="text"]:focus {
+      border-color: var(--accent);
+    }
+
+    .result-count {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* ── Table ────────────────────────────────────────────── */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: var(--surface2);
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    thead th:hover { color: var(--text); }
+    thead th .sort-arrow { margin-left: 4px; opacity: .4; }
+    thead th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .1s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+
+    tbody tr.urgent  { background: var(--urgent-bg); }
+    tbody tr.upcoming { background: var(--upcoming-bg); }
+
+    td {
+      padding: 10px 14px;
+      vertical-align: middle;
+    }
+
+    .shoe-name {
+      font-weight: 500;
+      max-width: 260px;
+    }
+
+    .shoe-name a {
+      color: var(--text);
+    }
+
+    .brand-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .days-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      min-width: 48px;
+    }
+
+    .days-badge.urgent  { background: rgba(255,59,59,.2);  color: var(--extreme); }
+    .days-badge.upcoming { background: rgba(245,197,24,.2); color: var(--medium); }
+    .days-badge.normal  { background: var(--surface2); color: var(--muted); }
+
+    .hype-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: .3px;
+    }
+
+    .hype-badge.EXTREME { background: rgba(255,59,59,.2);  color: var(--extreme); border: 1px solid rgba(255,59,59,.4); }
+    .hype-badge.HIGH    { background: rgba(255,140,0,.2);  color: var(--high);    border: 1px solid rgba(255,140,0,.4); }
+    .hype-badge.MEDIUM  { background: rgba(245,197,24,.15); color: var(--medium);  border: 1px solid rgba(245,197,24,.3); }
+    .hype-badge.LOW     { background: rgba(76,175,80,.15); color: var(--low);     border: 1px solid rgba(76,175,80,.3); }
+
+    .hype-score-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bar-outer {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      min-width: 60px;
+    }
+
+    .bar-inner {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .score-num {
+      font-size: 12px;
+      font-weight: 600;
+      min-width: 18px;
+      text-align: right;
+    }
+
+    .muted { color: var(--muted); }
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 13px;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .25s, transform .25s;
+      z-index: 999;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ── Top Bar ─────────────────────────────────────────────── -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="logo">👟 Sneaker Tracker</span>
+    <span class="last-updated">Last updated: <span id="last-updated-text">{{ last_updated }}</span></span>
+  </div>
+  <button class="btn btn-primary" id="refresh-btn" onclick="refreshData()">
+    <div class="spinner" id="refresh-spinner"></div>
+    <span id="refresh-label">↻ Refresh</span>
+  </button>
+</div>
+
+<!-- ── Main Content ────────────────────────────────────────── -->
+<div class="content">
+
+  <!-- Stat Cards -->
+  <div class="stats-row">
+    <div class="stat-card total">
+      <span class="stat-label">Total Releases</span>
+      <span class="stat-value" id="stat-total">{{ total }}</span>
+      <span class="muted" style="font-size:12px">next {{ lookahead_days }} days</span>
+    </div>
+    <div class="stat-card extreme">
+      <span class="stat-label">Extreme Hype</span>
+      <span class="stat-value" id="stat-extreme">{{ extreme }}</span>
+      <span class="muted" style="font-size:12px">must-cop releases</span>
+    </div>
+    <div class="stat-card high">
+      <span class="stat-label">High Hype</span>
+      <span class="stat-value" id="stat-high">{{ high }}</span>
+      <span class="muted" style="font-size:12px">high-demand drops</span>
+    </div>
+    <div class="stat-card urgent">
+      <span class="stat-label">Dropping Soon</span>
+      <span class="stat-value" id="stat-urgent">{{ urgent }}</span>
+      <span class="muted" style="font-size:12px">within 7 days</span>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Releases by Brand</div>
+      <div class="chart-wrap">
+        <canvas id="brandChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Hype Level Distribution</div>
+      <div class="chart-wrap">
+        <canvas id="hypeChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-bar">
+    <div class="filter-group">
+      <span class="filter-label">Brand</span>
+      <select id="filter-brand" onchange="applyFilters()">
+        <option value="">All Brands</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Hype</span>
+      <select id="filter-hype" onchange="applyFilters()">
+        <option value="">All Levels</option>
+        <option value="EXTREME">Extreme</option>
+        <option value="HIGH">High</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LOW">Low</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Days Out</span>
+      <select id="filter-days" onchange="applyFilters()">
+        <option value="">Any</option>
+        <option value="7">≤ 7 days</option>
+        <option value="14">≤ 14 days</option>
+        <option value="21">≤ 21 days</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Search</span>
+      <input type="text" id="filter-search" placeholder="Shoe name…" oninput="applyFilters()" />
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Sort</span>
+      <select id="sort-col" onchange="applyFilters()">
+        <option value="days_until_release">Date (soonest)</option>
+        <option value="hype_score">Hype Score</option>
+        <option value="brand">Brand</option>
+        <option value="retail_price">Price</option>
+      </select>
+    </div>
+    <span class="result-count" id="result-count"></span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Release Date</th>
+          <th>Days Out</th>
+          <th>Brand</th>
+          <th>Shoe Name</th>
+          <th>Colorway</th>
+          <th>Retail</th>
+          <th>Hype Score</th>
+          <th>Hype Level</th>
+          <th>Source</th>
+        </tr>
+      </thead>
+      <tbody id="releases-tbody">
+        <!-- Populated by JS -->
+      </tbody>
+    </table>
+    <div class="empty-state" id="empty-state" style="display:none">
+      No releases match the current filters.
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ── Scripts ─────────────────────────────────────────────── -->
+<script>
+  // Raw data injected from Flask
+  const ALL_RELEASES = {{ releases_json | safe }};
+  let brandChartInstance = null;
+  let hypeChartInstance = null;
+
+  // ── Chart helpers ──────────────────────────────────────────
+
+  function buildBrandChart(brandCounts) {
+    const labels = Object.keys(brandCounts).sort((a,b) => brandCounts[b] - brandCounts[a]);
+    const data   = labels.map(l => brandCounts[l]);
+    const colors = [
+      '#7c6aff','#ff6a9b','#ff8c00','#f5c518','#4caf50',
+      '#00bcd4','#e91e63','#9c27b0','#3f51b5','#009688',
+      '#ff5722','#795548','#607d8b','#cddc39',
+    ];
+
+    const ctx = document.getElementById('brandChart').getContext('2d');
+    if (brandChartInstance) brandChartInstance.destroy();
+    brandChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          data,
+          backgroundColor: labels.map((_,i) => colors[i % colors.length] + 'cc'),
+          borderColor:      labels.map((_,i) => colors[i % colors.length]),
+          borderWidth: 1,
+          borderRadius: 5,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: {
+            ticks: { color: '#8888a0', font: { size: 11 } },
+            grid:  { color: '#2e2e3a' },
+          },
+          y: {
+            ticks: { color: '#8888a0', font: { size: 11 }, stepSize: 1 },
+            grid:  { color: '#2e2e3a' },
+            beginAtZero: true,
+          }
+        }
+      }
+    });
+  }
+
+  function buildHypeChart(hypeCounts) {
+    const labels = ['EXTREME','HIGH','MEDIUM','LOW'];
+    const data   = labels.map(l => hypeCounts[l] || 0);
+    const colors = ['#ff3b3b','#ff8c00','#f5c518','#4caf50'];
+
+    const ctx = document.getElementById('hypeChart').getContext('2d');
+    if (hypeChartInstance) hypeChartInstance.destroy();
+    hypeChartInstance = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels,
+        datasets: [{
+          data,
+          backgroundColor: colors.map(c => c + 'cc'),
+          borderColor:      colors,
+          borderWidth: 2,
+          hoverOffset: 8,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: { color: '#8888a0', font: { size: 12 }, padding: 14 }
+          }
+        }
+      }
+    });
+  }
+
+  // ── Table rendering ────────────────────────────────────────
+
+  function formatDate(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function daysBadge(days) {
+    const cls = days <= 7 ? 'urgent' : days <= 14 ? 'upcoming' : 'normal';
+    const label = days === 0 ? 'TODAY' : days === 1 ? '1 day' : `${days} days`;
+    return `<span class="days-badge ${cls}">${label}</span>`;
+  }
+
+  function hypeBadge(level) {
+    return `<span class="hype-badge ${level}">${level}</span>`;
+  }
+
+  function hypeScoreBar(score) {
+    const pct   = (score / 10) * 100;
+    const color = score >= 9 ? '#ff3b3b' : score >= 7 ? '#ff8c00' : score >= 4 ? '#f5c518' : '#4caf50';
+    return `
+      <div class="hype-score-bar">
+        <div class="bar-outer"><div class="bar-inner" style="width:${pct}%;background:${color}"></div></div>
+        <span class="score-num" style="color:${color}">${score}</span>
+      </div>`;
+  }
+
+  function renderTable(releases) {
+    const tbody = document.getElementById('releases-tbody');
+    const empty = document.getElementById('empty-state');
+    document.getElementById('result-count').textContent = `${releases.length} release${releases.length !== 1 ? 's' : ''}`;
+
+    if (releases.length === 0) {
+      tbody.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    tbody.innerHTML = releases.map(r => {
+      const rowCls = r.days_until_release <= 7 ? 'urgent' : r.days_until_release <= 14 ? 'upcoming' : '';
+      const price  = r.retail_price != null ? `$${r.retail_price.toFixed(0)}` : '<span class="muted">TBD</span>';
+      const nameCell = r.source_url
+        ? `<a href="${r.source_url}" target="_blank" rel="noopener">${escHtml(r.name)}</a>`
+        : escHtml(r.name);
+      const source = r.source_url
+        ? `<a href="${r.source_url}" target="_blank" rel="noopener">${escHtml(r.source)}</a>`
+        : escHtml(r.source);
+
+      return `<tr class="${rowCls}">
+        <td>${formatDate(r.release_date)}</td>
+        <td>${daysBadge(r.days_until_release)}</td>
+        <td><span class="brand-badge">${escHtml(r.brand)}</span></td>
+        <td class="shoe-name">${nameCell}</td>
+        <td class="muted" style="font-size:13px">${escHtml(r.colorway || 'N/A')}</td>
+        <td style="font-weight:500">${price}</td>
+        <td>${hypeScoreBar(r.hype_score)}</td>
+        <td>${hypeBadge(r.hype_level)}</td>
+        <td>${source}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  function escHtml(str) {
+    return String(str ?? '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── Filtering & sorting ────────────────────────────────────
+
+  function applyFilters() {
+    const brand  = document.getElementById('filter-brand').value.toLowerCase();
+    const hype   = document.getElementById('filter-hype').value;
+    const maxDays = parseInt(document.getElementById('filter-days').value) || Infinity;
+    const search = document.getElementById('filter-search').value.toLowerCase();
+    const sortKey = document.getElementById('sort-col').value;
+
+    let filtered = ALL_RELEASES.filter(r => {
+      if (brand   && r.brand.toLowerCase() !== brand) return false;
+      if (hype    && r.hype_level !== hype)            return false;
+      if (r.days_until_release > maxDays)              return false;
+      if (search  && !r.name.toLowerCase().includes(search)) return false;
+      return true;
+    });
+
+    const dir = sortKey === 'hype_score' ? -1 : 1;
+    filtered.sort((a, b) => {
+      const av = a[sortKey] ?? 0;
+      const bv = b[sortKey] ?? 0;
+      if (typeof av === 'string') return av.localeCompare(bv) * dir;
+      return (av - bv) * dir;
+    });
+
+    renderTable(filtered);
+  }
+
+  // ── Populate brand dropdown ────────────────────────────────
+
+  function populateBrandFilter() {
+    const brands = [...new Set(ALL_RELEASES.map(r => r.brand))].sort();
+    const sel = document.getElementById('filter-brand');
+    brands.forEach(b => {
+      const opt = document.createElement('option');
+      opt.value = b.toLowerCase();
+      opt.textContent = b;
+      sel.appendChild(opt);
+    });
+  }
+
+  // ── Refresh data ───────────────────────────────────────────
+
+  async function refreshData() {
+    const btn     = document.getElementById('refresh-btn');
+    const spinner = document.getElementById('refresh-spinner');
+    const label   = document.getElementById('refresh-label');
+    btn.disabled  = true;
+    spinner.style.display = 'block';
+    label.textContent     = 'Refreshing…';
+
+    try {
+      const resp = await fetch('/api/refresh', { method: 'POST' });
+      const data = await resp.json();
+      document.getElementById('last-updated-text').textContent = data.last_updated;
+      showToast(`Refreshed! ${data.count} releases found.`);
+      setTimeout(() => location.reload(), 1200);
+    } catch (e) {
+      showToast('Refresh failed. Try again.');
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      label.textContent = '↻ Refresh';
+    }
+  }
+
+  // ── Toast ──────────────────────────────────────────────────
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // ── Init ───────────────────────────────────────────────────
+
+  (function init() {
+    const brandCounts = {{ brand_counts | safe }};
+    const hypeCounts  = {{ hype_counts  | safe }};
+
+    buildBrandChart(brandCounts);
+    buildHypeChart(hypeCounts);
+    populateBrandFilter();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
