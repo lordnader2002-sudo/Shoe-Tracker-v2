@@ -72,7 +72,7 @@ def _fetch_page(url: str, headers: dict, params: dict, brand: str, page: int) ->
 def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
     """
     Fetch sneakers for a single brand from The Sneaker Database API.
-    Uses releaseYear filter to narrow results to current/next year.
+    Tries multiple releaseYear values to find upcoming releases.
     Returns a list of raw sneaker dicts from the API response.
     """
     headers = {
@@ -86,71 +86,91 @@ def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
 
     all_sneakers = []
 
-    # Fetch current year's releases (and next year if we're in Nov/Dec)
-    years_to_fetch = [str(current_year)]
-    if today.month >= 11:
-        years_to_fetch.append(str(current_year + 1))
+    # Try current year, previous year (for late releases), and next year
+    # The API may label releases by their announcement year, not release year
+    years_to_try = [str(current_year), str(current_year - 1)]
+    if today.month >= 10:
+        years_to_try.append(str(current_year + 1))
 
-    for year in years_to_fetch:
-        page = 1
-        while True:
+    found_with_year_filter = False
+
+    for year in years_to_try:
+        params = {
+            "brand": brand,
+            "limit": str(RESULTS_PER_PAGE),
+            "page": "1",
+            "releaseYear": year,
+        }
+
+        log.info("Fetching %s releaseYear=%s page 1 ...", brand, year)
+        data = _fetch_page(url, headers, params, brand, 1)
+
+        if data is None:
+            continue
+
+        if isinstance(data, dict):
+            count = data.get("count", 0)
+            log.info("%s releaseYear=%s: %s results available", brand, year, count)
+            if count and count > 0:
+                found_with_year_filter = True
+                results = data.get("results", [])
+                if results:
+                    # Log samples
+                    for i, s in enumerate(results[:3]):
+                        log.info(
+                            "  Sample[%d]: name=%s, releaseDate=%s, retailPrice=%s",
+                            i, s.get("name", "?")[:60], s.get("releaseDate", "?"), s.get("retailPrice", "?"),
+                        )
+                    all_sneakers.extend(results)
+
+                    # Paginate if there are more
+                    total_pages = data.get("totalPages", 1)
+                    page = 2
+                    while page <= min(total_pages, 5):
+                        params["page"] = str(page)
+                        log.info("Fetching %s releaseYear=%s page %d ...", brand, year, page)
+                        pdata = _fetch_page(url, headers, params, brand, page)
+                        if pdata is None:
+                            break
+                        presults = pdata if isinstance(pdata, list) else pdata.get("results", [])
+                        if not presults:
+                            break
+                        all_sneakers.extend(presults)
+                        if len(presults) < RESULTS_PER_PAGE:
+                            break
+                        page += 1
+                        time.sleep(0.3)
+
+        time.sleep(0.3)
+
+    # Fallback: if year filter returned nothing, fetch without it
+    if not found_with_year_filter:
+        log.info("No results with releaseYear filter for %s. Fetching without filter...", brand)
+        for page in range(1, 6):
             params = {
                 "brand": brand,
                 "limit": str(RESULTS_PER_PAGE),
                 "page": str(page),
-                "releaseYear": year,
             }
-
-            log.info("Fetching %s year=%s page %d ...", brand, year, page)
+            log.info("Fetching %s (no year filter) page %d ...", brand, page)
             data = _fetch_page(url, headers, params, brand, page)
-
             if data is None:
-                # releaseYear might have caused the error — try without it
-                if page == 1 and "releaseYear" in params:
-                    log.info("Retrying %s without releaseYear filter...", brand)
-                    del params["releaseYear"]
-                    data = _fetch_page(url, headers, params, brand, page)
-                if data is None:
-                    break
-
-            # Log response shape on first call
-            if page == 1:
-                if isinstance(data, dict):
-                    log.info("Response keys for %s: %s", brand, list(data.keys()))
-                    count = data.get("count", "?")
-                    total_pages = data.get("totalPages", "?")
-                    log.info("Total results: %s, pages: %s", count, total_pages)
-
-                    # Log sample release dates to debug filtering
-                    results_sample = data.get("results", [])[:3]
-                    for i, s in enumerate(results_sample):
-                        log.info(
-                            "  Sample[%d]: name=%s, releaseDate=%s, retailPrice=%s",
-                            i, s.get("name", "?")[:50], s.get("releaseDate", "?"), s.get("retailPrice", "?"),
-                        )
+                break
 
             results = data if isinstance(data, list) else data.get("results", [])
+
+            if page == 1 and results:
+                for i, s in enumerate(results[:5]):
+                    log.info(
+                        "  Sample[%d]: name=%s, releaseDate=%s, retailPrice=%s",
+                        i, s.get("name", "?")[:60], s.get("releaseDate", "?"), s.get("retailPrice", "?"),
+                    )
+
             if not results:
                 break
-
             all_sneakers.extend(results)
-
-            # Check pagination
-            if isinstance(data, dict):
-                total_pages = data.get("totalPages", 1)
-                if page >= total_pages:
-                    break
-
             if len(results) < RESULTS_PER_PAGE:
                 break
-
-            page += 1
-
-            # Safety: limit pages per year per brand to stay in API budget
-            if page > 5:
-                log.info("Hit page limit for %s year=%s, moving on.", brand, year)
-                break
-
             time.sleep(0.3)
 
     log.info("Fetched %d raw results for %s.", len(all_sneakers), brand)
