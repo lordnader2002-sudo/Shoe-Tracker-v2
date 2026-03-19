@@ -30,12 +30,21 @@ function buildCalendar() {
     const k = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
     const rels = map[k] || [];
     const isToday = k === todayKey;
-    const dots = rels.slice(0,8).map(r => `<div class="cal-dot ${window.SRT.dotClass(r)}" title="${r.name}"></div>`).join('');
-    const countLabel = rels.length > 1 ? `<div class="cal-day-count">${rels.length} drops</div>` : '';
+    const MAX_SHOWN = 4;
+    const entries = rels.slice(0, MAX_SHOWN).map(r => {
+      const lvl = (r.hype_level || 'LOW').toLowerCase();
+      const dc  = window.SRT.dotClass(r);
+      return `<div class="cal-entry ce-${lvl}">
+  <span class="cal-entry-dot ${dc}"></span>
+  <span class="cal-entry-name" title="${r.name}">${r.name}</span>
+</div>`;
+    }).join('');
+    const moreLabel = rels.length > MAX_SHOWN
+      ? `<div class="cal-day-more">+${rels.length - MAX_SHOWN} more</div>` : '';
     html += `<div class="cal-day${isToday?' today':''}${rels.length?' has-releases':''}" data-date="${k}">
   <div class="cal-day-num">${day}</div>
-  <div class="cal-day-dots">${dots}</div>
-  ${countLabel}
+  <div class="cal-day-entries">${entries}</div>
+  ${moreLabel}
 </div>`;
   }
 
