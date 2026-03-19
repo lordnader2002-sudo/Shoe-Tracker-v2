@@ -26,8 +26,6 @@ jobs:
 
       - name: Run sneaker tracker
         run: python scraper.py
-        env:
-          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
 
       - name: Commit and push report
         run: |
