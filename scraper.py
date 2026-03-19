@@ -9,6 +9,7 @@ Sources (in priority order):
   3. SneakerBarDetroit.com/sneaker-release-dates/
 """
 
+import json
 import os
 import re
 import sys
@@ -557,6 +558,28 @@ def main():
     # Export to Excel
     export_to_excel(filtered, OUTPUT_PATH)
     log.info("Report saved to %s", OUTPUT_PATH)
+
+    # Export to JSON for the web dashboard
+    json_path = os.path.join(os.path.dirname(__file__), "docs", "data", "releases.json")
+    os.makedirs(os.path.dirname(json_path), exist_ok=True)
+
+    def _serialize(obj):
+        if isinstance(obj, (datetime, date)):
+            return obj.strftime("%Y-%m-%d")
+        return str(obj)
+
+    json_data = {
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "total": len(filtered),
+        "releases": [
+            {k: _serialize(v) if isinstance(v, (datetime, date)) else v for k, v in s.items()}
+            for s in filtered
+        ],
+    }
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(json_data, f, indent=2, default=str)
+    log.info("JSON data saved to %s", json_path)
+
     log.info("Done. %d releases tracked.", len(filtered))
 
 

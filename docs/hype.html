@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hype Watch — Sneaker Tracker</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-logo">👟</span>
+      <span class="nav-title">Sneaker Release Tracker</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="hype.html" class="active">Hype Watch</a></li>
+    </ul>
+    <div class="nav-meta" id="last-updated">—</div>
+  </nav>
+
+  <header class="hero slim extreme-bg">
+    <div class="hero-content">
+      <h1>🔥 Hype <span class="accent">Watch</span></h1>
+      <p class="hero-sub">HIGH &amp; EXTREME hype releases — the ones most likely to cause in-store incidents.</p>
+    </div>
+    <div class="hero-stats" id="hero-stats">
+      <div class="stat-card extreme"><div class="stat-num" id="stat-extreme">—</div><div class="stat-label">EXTREME</div></div>
+      <div class="stat-card high"><div class="stat-num" id="stat-high">—</div><div class="stat-label">HIGH</div></div>
+    </div>
+  </header>
+
+  <!-- Alert Banner -->
+  <div class="alert-banner" id="alert-banner" style="display:none;">
+    <span class="alert-icon">⚠️</span>
+    <span id="alert-text"></span>
+  </div>
+
+  <!-- Hype breakdown bar chart -->
+  <section class="hype-breakdown">
+    <h2>By Brand</h2>
+    <div class="brand-bars" id="brand-bars"></div>
+  </section>
+
+  <main class="cards-section">
+    <div class="section-header">
+      <h2>HIGH / EXTREME Releases <span class="count-badge" id="count-badge">0</span></h2>
+    </div>
+    <div class="cards-grid" id="cards-grid">
+      <div class="loading">Loading…</div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Mall Intelligence | Data refreshed Mon &amp; Fri @ 01:00 EST via GitHub Actions</p>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/hype.js"></script>
+</body>
+</html>

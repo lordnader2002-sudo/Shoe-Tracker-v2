@@ -1,0 +1,548 @@
+/* ============================================================
+   Sneaker Release Tracker — Dashboard Styles
+   Dark sneaker-culture aesthetic
+   ============================================================ */
+
+:root {
+  --bg: #0d0d0f;
+  --surface: #18181b;
+  --surface2: #232328;
+  --border: #2e2e35;
+  --accent: #ff5733;
+  --accent2: #ff8c42;
+  --text: #f0f0f5;
+  --text-muted: #8888a0;
+  --urgent: #ff3b3b;
+  --upcoming: #f5a623;
+  --low: #4caf50;
+  --medium: #2196f3;
+  --high: #ff9800;
+  --extreme: #e91e63;
+  --jordan: #da291c;
+  --nike: #111;
+  --adidas: #0050aa;
+  --yeezy: #c8b560;
+  --nb: #cf102d;
+  --ua: #c8102e;
+  --font: 'Inter', system-ui, sans-serif;
+  --radius: 12px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  height: 60px;
+  background: rgba(13,13,15,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+.nav-logo { font-size: 1.3rem; }
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--text);
+  background: var(--surface2);
+}
+.nav-links a.active { color: var(--accent); }
+
+.nav-meta {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── HERO ── */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3.5rem 2.5rem 3rem;
+  background: linear-gradient(135deg, #0d0d0f 0%, #1a0a05 60%, #200d00 100%);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.hero.slim { padding: 2rem 2.5rem; }
+.hero.extreme-bg { background: linear-gradient(135deg, #0d0d0f 0%, #1a0010 60%, #200018 100%); }
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.accent { color: var(--accent); }
+.hero-sub { color: var(--text-muted); margin-top: 0.5rem; font-size: 0.95rem; }
+
+.hero-stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  min-width: 110px;
+}
+.stat-card.urgent { border-color: var(--urgent); }
+.stat-card.high { border-color: var(--high); }
+.stat-card.extreme { border-color: var(--extreme); }
+.stat-num { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+.stat-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+
+/* ── FILTERS ── */
+.filters-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2.5rem;
+}
+.filters-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+.filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.filter-group label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 600; }
+.filter-chips { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+.chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.chip:hover { border-color: var(--accent); color: var(--text); }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip.urgent-chip.active { background: var(--urgent); border-color: var(--urgent); }
+
+.search-group { flex: 1; min-width: 200px; }
+.search-input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  font-family: var(--font);
+  width: 100%;
+  max-width: 280px;
+  transition: border-color 0.15s;
+}
+.search-input:focus { outline: none; border-color: var(--accent); }
+.search-input::placeholder { color: var(--text-muted); }
+
+.sort-select {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.82rem;
+  font-family: var(--font);
+  cursor: pointer;
+}
+
+/* ── CARDS SECTION ── */
+.cards-section { padding: 2rem 2.5rem; }
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.section-header h2 { font-size: 1.3rem; font-weight: 700; }
+.sort-group { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--text-muted); }
+.count-badge {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── SNEAKER CARD ── */
+.sneaker-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  cursor: default;
+}
+.sneaker-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.sneaker-card.urgent-card { border-top: 3px solid var(--urgent); }
+.sneaker-card.upcoming-card { border-top: 3px solid var(--upcoming); }
+
+.card-image-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.sneaker-card:hover .card-image-wrap img { transform: scale(1.04); }
+.card-image-placeholder {
+  font-size: 3rem;
+  opacity: 0.2;
+}
+
+.card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+.card-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.hype-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.hype-LOW    { background: rgba(76,175,80,0.2);  color: #4caf50; border: 1px solid rgba(76,175,80,0.4); }
+.hype-MEDIUM { background: rgba(33,150,243,0.2); color: #2196f3; border: 1px solid rgba(33,150,243,0.4); }
+.hype-HIGH   { background: rgba(255,152,0,0.2);  color: #ff9800; border: 1px solid rgba(255,152,0,0.4); }
+.hype-EXTREME{ background: rgba(233,30,99,0.2);  color: #e91e63; border: 1px solid rgba(233,30,99,0.4); }
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+.meta-pill {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: var(--surface2);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+}
+.brand-pill {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  margin-top: auto;
+}
+.release-date-wrap { display: flex; flex-direction: column; }
+.release-date-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+.release-date-val { font-size: 0.88rem; font-weight: 700; }
+
+.days-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+}
+.days-urgent  { background: rgba(255,59,59,0.15); color: var(--urgent); border: 1px solid rgba(255,59,59,0.3); }
+.days-upcoming{ background: rgba(245,166,35,0.15); color: var(--upcoming); border: 1px solid rgba(245,166,35,0.3); }
+.days-normal  { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+
+.price-tag { font-size: 1rem; font-weight: 800; color: var(--accent); }
+.price-tbd { font-size: 0.78rem; color: var(--text-muted); font-style: italic; }
+
+.card-source-link {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-top: 0.4rem;
+  display: inline-block;
+  transition: color 0.15s;
+}
+.card-source-link:hover { color: var(--accent); }
+
+/* ── HYPE SCORE BAR ── */
+.hype-score-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+.hype-bar-bg {
+  flex: 1;
+  height: 4px;
+  background: var(--surface2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.hype-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.hype-score-num { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); min-width: 1.5rem; text-align: right; }
+
+/* ── LOADING / EMPTY ── */
+.loading, .empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+.empty-state .empty-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+/* ── CALENDAR ── */
+.calendar-section { padding: 2rem 2.5rem; }
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.calendar-nav h2 { font-size: 1.4rem; font-weight: 700; min-width: 200px; text-align: center; }
+.cal-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  transition: border-color 0.15s;
+}
+.cal-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.calendar-grid-wrapper {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.calendar-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.calendar-dow span {
+  text-align: center;
+  padding: 0.6rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.cal-day {
+  min-height: 90px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0.4rem 0.5rem;
+  cursor: default;
+  transition: background 0.1s;
+}
+.cal-day:nth-child(7n) { border-right: none; }
+.cal-day.empty { background: rgba(0,0,0,0.15); }
+.cal-day.has-releases { cursor: pointer; }
+.cal-day.has-releases:hover { background: var(--surface2); }
+.cal-day.today { background: rgba(255,87,51,0.06); }
+
+.cal-day-num {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+.cal-day.today .cal-day-num { color: var(--accent); font-weight: 900; }
+.cal-day-dots { display: flex; flex-wrap: wrap; gap: 3px; }
+.cal-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cal-dot.urgent  { background: var(--urgent); }
+.cal-dot.high    { background: var(--high); }
+.cal-dot.extreme { background: var(--extreme); }
+.cal-dot.medium  { background: var(--medium); }
+.cal-dot.low     { background: var(--low); }
+.cal-dot.normal  { background: var(--text-muted); }
+.cal-day-count {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Day detail panel */
+.day-detail {
+  margin-top: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.day-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.day-detail-header h3 { font-size: 1.1rem; font-weight: 700; }
+.detail-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 50%;
+  width: 28px; height: 28px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: border-color 0.15s;
+}
+.detail-close:hover { border-color: var(--urgent); color: var(--urgent); }
+#detail-cards { padding: 1rem 1.5rem; }
+
+/* ── HYPE PAGE ── */
+.hype-breakdown { padding: 1.5rem 2.5rem; }
+.hype-breakdown h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+.brand-bars { display: flex; flex-direction: column; gap: 0.75rem; max-width: 600px; }
+.brand-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.brand-bar-label { font-size: 0.82rem; font-weight: 600; min-width: 110px; }
+.brand-bar-track {
+  flex: 1;
+  height: 10px;
+  background: var(--surface2);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.brand-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--accent);
+  transition: width 0.6s ease;
+}
+.brand-bar-num { font-size: 0.78rem; color: var(--text-muted); min-width: 2rem; text-align: right; }
+
+/* ── ALERT BANNER ── */
+.alert-banner {
+  background: rgba(233,30,99,0.12);
+  border-bottom: 2px solid var(--extreme);
+  padding: 0.75rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.alert-icon { font-size: 1.2rem; }
+
+/* ── FOOTER ── */
+.site-footer {
+  margin-top: 4rem;
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .navbar { padding: 0 1rem; gap: 1rem; }
+  .nav-title { display: none; }
+  .hero { padding: 2rem 1.25rem; }
+  .filters-bar { padding: 1rem 1.25rem; }
+  .cards-section { padding: 1.5rem 1.25rem; }
+  .calendar-section { padding: 1.5rem 1.25rem; }
+  .hype-breakdown { padding: 1.5rem 1.25rem; }
+  .cal-day { min-height: 60px; }
+}
