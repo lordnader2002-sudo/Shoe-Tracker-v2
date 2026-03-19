@@ -31,6 +31,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/
+          git add reports/sneaker_releases.xlsx reports/releases.json
           git diff --cached --quiet || git commit -m "chore: sneaker release update [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git push
