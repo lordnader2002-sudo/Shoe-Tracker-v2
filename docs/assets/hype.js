@@ -1,6 +1,6 @@
 /** hype.js — hype.html */
 
-let viewMode = 'grid';
+let viewMode = 'list';
 
 document.addEventListener('releases-loaded', function (e) {
   const all = e.detail.releases || [];

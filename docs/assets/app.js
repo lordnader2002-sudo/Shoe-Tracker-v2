@@ -6,7 +6,7 @@ let activeHype    = 'all';
 let activeUrgency = 'all';
 let searchQuery   = '';
 let sortMode      = 'date-asc';
-let viewMode      = 'grid'; // 'grid' | 'list'
+let viewMode      = 'list'; // 'grid' | 'list'
 
 function getFiltered() {
   return allReleases.filter(r => {
