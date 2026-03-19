@@ -212,4 +212,4 @@ Shoe-Tracker-v2/
 
 ---
 
-*Data refreshed automatically every Monday & Friday · Built for mall operations and sneaker culture*
+*Data refreshed automatically every Monday & Friday · Built for retail operations and sneaker culture*
