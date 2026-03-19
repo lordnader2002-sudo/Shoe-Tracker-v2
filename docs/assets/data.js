@@ -80,8 +80,10 @@ window.SRT = {
     const src = r.source_url
       ? `<a href="${r.source_url}" target="_blank" rel="noopener" class="card-source-link">↗ ${r.source}</a>`
       : `<span class="card-source-link">${r.source || ''}</span>`;
-    const barW = Math.round((r.hype_score / 10) * 100);
-    const col  = window.SRT.hypeColor(r.hype_level);
+    const barW  = Math.round((r.hype_score / 10) * 100);
+    const col   = window.SRT.hypeColor(r.hype_level);
+    const method = r.sale_method || 'Online + Retail';
+    const smCls  = window.SRT.saleClass(method);
     return `
 <div class="sneaker-card ${cls}">
   <div class="card-image-wrap">${img}</div>
@@ -93,6 +95,7 @@ window.SRT = {
     <div class="card-meta">
       <span class="meta-pill brand-pill">${r.brand}</span>${colorway}${style}
     </div>
+    <div class="card-sale-row"><span class="sale-badge ${smCls}">${method}</span></div>
     <div class="hype-score-bar">
       <div class="hype-bar-bg"><div class="hype-bar-fill" style="width:${barW}%;background:${col}"></div></div>
       <span class="hype-score-num">${r.hype_score}/10</span>
@@ -110,14 +113,30 @@ window.SRT = {
 </div>`;
   },
 
+  saleClass(method) {
+    const map = {
+      'SNKRS App':       'sm-snkrs',
+      'Confirmed App':   'sm-confirmed',
+      'Raffle':          'sm-raffle',
+      'Giveaway':        'sm-giveaway',
+      'Online':          'sm-online',
+      'Online + Retail': 'sm-online-retail',
+      'In-Store':        'sm-instore',
+      'Retail':          'sm-retail',
+    };
+    return map[method] || 'sm-retail';
+  },
+
   buildListRow(r) {
     const urgent   = r.days_until_release <= 7;
     const upcoming = !urgent && r.days_until_release <= 14;
     const rowCls = urgent ? 'list-row urgent-row' : upcoming ? 'list-row upcoming-row' : 'list-row';
-    const dotCls = window.SRT.dotClass(r);
+    const dotCls  = window.SRT.dotClass(r);
     const daysCls = urgent ? 'urgent' : upcoming ? 'upcoming' : '';
-    const price = r.retail_price ? `$${Number(r.retail_price).toFixed(0)}` : '—';
-    const link = r.source_url
+    const price   = r.retail_price ? `$${Number(r.retail_price).toFixed(0)}` : '—';
+    const method  = r.sale_method || 'Online + Retail';
+    const smCls   = window.SRT.saleClass(method);
+    const link    = r.source_url
       ? `<a href="${r.source_url}" target="_blank" rel="noopener" class="list-link">↗</a>`
       : '<span class="list-link">—</span>';
     return `
@@ -125,6 +144,7 @@ window.SRT = {
   <span class="list-dot ${dotCls}"></span>
   <span class="list-name" title="${r.name}">${r.name}</span>
   <span class="list-brand">${r.brand}</span>
+  <span class="sale-badge ${smCls}">${method}</span>
   <span class="list-date">${window.SRT.formatDateShort(r.release_date)}</span>
   <span class="list-days ${daysCls}">${r.days_until_release}d</span>
   <span class="list-price">${price}</span>
@@ -134,6 +154,6 @@ window.SRT = {
   },
 
   listHeader() {
-    return `<div class="list-header"><span></span><span>Name</span><span>Brand</span><span>Date</span><span>Days</span><span>Price</span><span>Score</span><span></span></div>`;
+    return `<div class="list-header"><span></span><span>Name</span><span>Brand</span><span>Sale Method</span><span>Date</span><span>Days</span><span>Price</span><span>Score</span><span></span></div>`;
   },
 };
