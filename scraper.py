@@ -65,12 +65,12 @@ def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
     page = 1
 
     while True:
+        # Use only confirmed API params: brand, limit, page
+        # releaseYear and sort may cause 500 errors
         params = {
             "brand": brand,
-            "limit": RESULTS_PER_PAGE,
-            "page": page,
-            "releaseYear": current_year,
-            "sort": "releaseDate",
+            "limit": str(RESULTS_PER_PAGE),
+            "page": str(page),
         }
 
         log.info("Fetching %s page %d ...", brand, page)
@@ -93,12 +93,26 @@ def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
             log.error("API auth error (%d). Check your RAPIDAPI_KEY.", resp.status_code)
             sys.exit(1)
         if resp.status_code != 200:
-            log.warning("Unexpected status %d for %s page %d.", resp.status_code, brand, page)
+            body_preview = resp.text[:500] if resp.text else "(empty)"
+            log.warning(
+                "HTTP %d for %s page %d. Response: %s",
+                resp.status_code, brand, page, body_preview,
+            )
             break
 
         data = resp.json()
 
-        # The API may return {"results": [...]} or a bare list
+        # Log response shape on first call to help debug
+        if page == 1:
+            if isinstance(data, dict):
+                log.info("Response keys for %s: %s", brand, list(data.keys()))
+                total_pages = data.get("totalPages", "?")
+                count = data.get("count", "?")
+                log.info("Total results: %s, pages: %s", count, total_pages)
+            elif isinstance(data, list):
+                log.info("Response is a list with %d items for %s.", len(data), brand)
+
+        # The API returns {"results": [...], "count": N, "totalPages": N}
         results = data if isinstance(data, list) else data.get("results", [])
 
         if not results:
@@ -106,23 +120,25 @@ def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
 
         all_sneakers.extend(results)
 
+        # Check if there are more pages
+        if isinstance(data, dict):
+            total_pages = data.get("totalPages", 1)
+            if page >= total_pages:
+                break
+
         # If we got fewer than the limit, we've reached the last page
         if len(results) < RESULTS_PER_PAGE:
             break
 
         page += 1
 
-        # Safety: don't fetch more than 5 pages per brand
-        if page > 5:
+        # Safety: don't fetch more than 3 pages per brand (to stay within API budget)
+        if page > 3:
             log.info("Hit page limit for %s, moving on.", brand)
             break
 
         # Brief pause to be respectful of rate limits
         time.sleep(0.5)
-
-    # Also fetch next year's releases if we're near the end of the year
-    if today.month >= 11 and current_year + 1 != cutoff.year:
-        pass  # cutoff is already in next year, handled by date filtering below
 
     log.info("Fetched %d raw results for %s.", len(all_sneakers), brand)
     return all_sneakers
