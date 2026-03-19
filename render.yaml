@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: shoe-tracker-dashboard
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn dashboard:app
+    envVars:
+      - key: PORT
+        value: 10000
+    autoDeploy: true
