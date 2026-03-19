@@ -60,9 +60,9 @@ window.SRT = {
   dotClass(r) {
     if (r.hype_level === 'EXTREME') return 'd-extreme';
     if (r.hype_level === 'HIGH')    return 'd-high';
-    if (r.days_until_release <= 7)  return 'd-urgent';
     if (r.hype_level === 'MEDIUM')  return 'd-medium';
-    return 'd-normal';
+    if (r.hype_level === 'LOW')     return 'd-low';
+    return 'd-low';
   },
 
   buildCard(r) {
