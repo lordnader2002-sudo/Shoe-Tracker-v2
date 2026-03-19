@@ -27,24 +27,58 @@ from scraper import (
     enrich_sneaker,
     is_target_brand,
     LOOKAHEAD_DAYS,
+    JSON_PATH,
 )
 
 app = Flask(__name__)
 
 # In-memory cache of scraped releases
-_cache: dict = {"releases": [], "last_updated": None}
+_cache: dict = {"releases": [], "last_updated": None, "source": None}
+
+JSON_MTIME_SEEN: float = 0.0  # mtime of the JSON file last time we loaded it
 
 
 def _load_releases(force_refresh: bool = False) -> list[dict]:
-    """Return cached releases, re-scraping if cache is stale (>30 min) or forced."""
+    """
+    Return releases. Priority:
+      1. reports/releases.json written by the workflow — reload whenever its
+         mtime changes so the dashboard auto-updates after every workflow run.
+      2. Live scrape — used as fallback when the JSON doesn't exist yet, or
+         when the caller explicitly requests a refresh.
+    """
+    global JSON_MTIME_SEEN
+
+    if not force_refresh and os.path.exists(JSON_PATH):
+        mtime = os.path.getmtime(JSON_PATH)
+        if mtime != JSON_MTIME_SEEN or not _cache["releases"]:
+            _read_json_snapshot()
+            JSON_MTIME_SEEN = mtime
+        return _cache["releases"]
+
+    # Fallback: live scrape (or explicit refresh)
     now = datetime.now()
     cache_age = (now - _cache["last_updated"]).total_seconds() if _cache["last_updated"] else 9999
-
     if force_refresh or cache_age > 1800 or not _cache["releases"]:
         _cache["releases"] = _scrape_all()
         _cache["last_updated"] = now
+        _cache["source"] = "live"
 
     return _cache["releases"]
+
+
+def _read_json_snapshot():
+    """Load releases from the JSON file produced by the workflow."""
+    with open(JSON_PATH, encoding="utf-8") as fh:
+        data = json.load(fh)
+
+    releases = []
+    for r in data.get("releases", []):
+        r["release_date_iso"] = r["release_date"]
+        releases.append(r)
+
+    _cache["releases"] = releases
+    _cache["last_updated"] = datetime.now()
+    _cache["source"] = "workflow snapshot"
 
 
 def _scrape_all() -> list[dict]:
@@ -126,7 +160,15 @@ def index():
     for r in releases:
         hype_counts[r["hype_level"]] = hype_counts.get(r["hype_level"], 0) + 1
 
-    last_updated = _cache["last_updated"].strftime("%Y-%m-%d %H:%M UTC") if _cache["last_updated"] else "Never"
+    if os.path.exists(JSON_PATH):
+        import json as _json
+        with open(JSON_PATH, encoding="utf-8") as fh:
+            meta = _json.load(fh)
+        last_updated = meta.get("generated_at", "Unknown")
+        data_source = "workflow"
+    else:
+        last_updated = _cache["last_updated"].strftime("%Y-%m-%d %H:%M UTC") if _cache["last_updated"] else "Never"
+        data_source = "live scrape"
 
     return render_template(
         "index.html",
@@ -138,6 +180,7 @@ def index():
         brand_counts=json.dumps(brand_counts),
         hype_counts=json.dumps(hype_counts),
         last_updated=last_updated,
+        data_source=data_source,
         lookahead_days=LOOKAHEAD_DAYS,
     )
 

@@ -9,6 +9,7 @@ Sources (in priority order):
   3. SneakerBarDetroit.com/sneaker-release-dates/
 """
 
+import json
 import os
 import re
 import sys
@@ -34,6 +35,7 @@ log = logging.getLogger(__name__)
 
 LOOKAHEAD_DAYS = 30
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "reports", "sneaker_releases.xlsx")
+JSON_PATH   = os.path.join(os.path.dirname(__file__), "reports", "releases.json")
 
 TARGET_BRANDS = {
     "nike", "jordan", "air jordan", "adidas", "under armour",
@@ -557,6 +559,32 @@ def main():
     # Export to Excel
     export_to_excel(filtered, OUTPUT_PATH)
     log.info("Report saved to %s", OUTPUT_PATH)
+
+    # Export to JSON (used by the web dashboard)
+    json_records = []
+    for r in filtered:
+        json_records.append({
+            "name": r["name"],
+            "brand": r["brand"],
+            "release_date": r["release_date"].strftime("%Y-%m-%d"),
+            "days_until_release": r["days_until_release"],
+            "retail_price": r.get("retail_price"),
+            "estimated_market_value": r.get("estimated_market_value"),
+            "colorway": r.get("colorway", "N/A"),
+            "style_code": r.get("style_code", "N/A"),
+            "hype_score": r["hype_score"],
+            "hype_level": r["hype_level"],
+            "source": r.get("source", ""),
+            "source_url": r.get("source_url", ""),
+        })
+    with open(JSON_PATH, "w", encoding="utf-8") as fh:
+        json.dump({
+            "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+            "count": len(json_records),
+            "releases": json_records,
+        }, fh, indent=2)
+    log.info("JSON snapshot saved to %s", JSON_PATH)
+
     log.info("Done. %d releases tracked.", len(filtered))
 
 
