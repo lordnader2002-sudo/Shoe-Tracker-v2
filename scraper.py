@@ -36,6 +36,7 @@ log = logging.getLogger(__name__)
 
 LOOKAHEAD_DAYS = 30
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "reports", "sneaker_releases.xlsx")
+JSON_PATH   = os.path.join(os.path.dirname(__file__), "reports", "releases.json")
 
 TARGET_BRANDS = {
     "nike", "jordan", "air jordan", "adidas", "under armour",
@@ -560,7 +561,7 @@ def main():
     export_to_excel(filtered, OUTPUT_PATH)
     log.info("Report saved to %s", OUTPUT_PATH)
 
-    # Export to JSON for the web dashboard
+    # Export to JSON for the web dashboard (docs/data/ for GitHub Pages)
     json_path = os.path.join(os.path.dirname(__file__), "docs", "data", "releases.json")
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
 
