@@ -4,7 +4,7 @@ Creates a professionally formatted .xlsx workbook with multiple sheets.
 """
 
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side, numbers
@@ -180,7 +180,7 @@ def _create_summary_sheet(wb: Workbook, sneakers: list[dict]):
 
     row = 1
     ws.cell(row=row, column=1, value="Sneaker Release Report Summary").font = title_font
-    ws.cell(row=row, column=3, value=f"Generated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}").font = data_font
+    ws.cell(row=row, column=3, value=f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}").font = data_font
     row += 1
     ws.cell(row=row, column=1, value=f"Total releases tracked: {len(sneakers)}").font = data_font
     row += 2

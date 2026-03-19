@@ -9,7 +9,7 @@ import os
 import sys
 import time
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import requests
 
@@ -57,7 +57,7 @@ def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
         "X-RapidAPI-Host": API_HOST,
     }
 
-    today = datetime.utcnow().date()
+    today = datetime.now(timezone.utc).date()
     cutoff = today + timedelta(days=LOOKAHEAD_DAYS)
     current_year = today.year
 
@@ -77,7 +77,7 @@ def fetch_sneakers_for_brand(brand: str, api_key: str) -> list[dict]:
 
         try:
             resp = requests.get(
-                f"{API_BASE}/v2/sneakers",
+                f"{API_BASE}/sneakers",
                 headers=headers,
                 params=params,
                 timeout=15,
@@ -186,7 +186,7 @@ def normalize_sneaker(raw: dict) -> dict | None:
     if release_date is None:
         return None
 
-    today = datetime.utcnow()
+    today = datetime.now(timezone.utc)
     cutoff = today + timedelta(days=LOOKAHEAD_DAYS)
 
     # Only include upcoming releases (today through cutoff)
@@ -209,12 +209,19 @@ def normalize_sneaker(raw: dict) -> dict | None:
     brand = (raw.get("brand") or raw.get("make") or "Unknown").strip()
     colorway = (raw.get("colorway") or raw.get("colour") or "N/A").strip()
     style_code = (
-        raw.get("styleId") or raw.get("style_id") or raw.get("sku") or "N/A"
+        raw.get("sku") or raw.get("styleId") or raw.get("style_id") or "N/A"
     ).strip()
     silhouette = (raw.get("silhouette") or raw.get("model") or "").strip()
-    image_url = (
-        raw.get("thumbnail") or raw.get("image") or raw.get("imageUrl") or ""
-    ).strip()
+
+    # Image can be a nested object {"original": url, "small": url, "thumbnail": url}
+    # or a plain string
+    image_raw = raw.get("image") or raw.get("thumbnail") or ""
+    if isinstance(image_raw, dict):
+        image_url = (
+            image_raw.get("original") or image_raw.get("small") or image_raw.get("thumbnail") or ""
+        )
+    else:
+        image_url = str(image_raw).strip()
 
     days_until = (release_date.date() - today.date()).days
 
