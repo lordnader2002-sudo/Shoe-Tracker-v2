@@ -156,4 +156,20 @@ window.SRT = {
   listHeader() {
     return `<div class="list-header"><span></span><span>Name</span><span>Brand</span><span>Sale Method</span><span>Date</span><span>Days</span><span>Price</span><span>Score</span><span></span></div>`;
   },
+
+  // Animated count-up for stat numbers
+  countUp(el, target, duration) {
+    target = parseInt(target, 10) || 0;
+    if (!el) return;
+    if (target === 0) { el.textContent = '0'; return; }
+    duration = duration || 680;
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  },
 };
