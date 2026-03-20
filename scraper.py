@@ -42,6 +42,8 @@ TARGET_BRANDS = {
     "nike", "jordan", "air jordan", "adidas", "under armour",
     "yeezy", "new balance", "reebok", "puma", "converse",
     "asics", "on", "hoka", "vans", "saucony",
+    "salomon", "crocs", "brooks", "timberland", "ugg",
+    "mizuno", "merrell", "clarks", "diadora", "karhu",
 }
 
 HTTP_HEADERS = {
@@ -168,6 +170,26 @@ def detect_brand(text: str) -> str:
         return "Vans"
     if "saucony" in t:
         return "Saucony"
+    if "salomon" in t or "xt-6" in t or "speedcross" in t or "s/lab" in t:
+        return "Salomon"
+    if "crocs" in t or "literide" in t:
+        return "Crocs"
+    if "brooks" in t or "adrenaline gts" in t:
+        return "Brooks"
+    if "timberland" in t or "6-inch boot" in t or "6 inch boot" in t:
+        return "Timberland"
+    if "ugg" in t or "tazz" in t or "tasman" in t or "ultra mini" in t:
+        return "UGG"
+    if "mizuno" in t or "wave rider" in t or "wave prophecy" in t:
+        return "Mizuno"
+    if "merrell" in t or "moab " in t or "1trl" in t:
+        return "Merrell"
+    if "clarks" in t or "wallabee" in t or "desert boot" in t or "desert trek" in t:
+        return "Clarks"
+    if "diadora" in t or "n9000" in t:
+        return "Diadora"
+    if "karhu" in t or "fusion " in t or "mestari" in t:
+        return "Karhu"
     return "Other"
 
 

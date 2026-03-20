@@ -27,6 +27,16 @@ BRAND_HYPE = {
     "on": 3,
     "vans": 4,
     "saucony": 4,
+    "salomon":    6,
+    "crocs":      5,
+    "brooks":     4,
+    "timberland": 5,
+    "ugg":        4,
+    "mizuno":     5,
+    "merrell":    4,
+    "clarks":     4,
+    "diadora":    4,
+    "karhu":      3,
 }
 DEFAULT_BRAND_HYPE = 3
 
@@ -75,6 +85,17 @@ HIGH_HYPE_SILHOUETTES = [
     "990",
     "992",
     "993",
+    # Salomon
+    "xt-6",
+    "speedcross",
+    "s/lab",
+    # UGG
+    "tazz",
+    "tasman",
+    # Mizuno
+    "wave prophecy",
+    # Clarks
+    "wallabee",
 ]
 
 MEDIUM_HYPE_SILHOUETTES = [
