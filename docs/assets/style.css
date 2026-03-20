@@ -123,6 +123,27 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 .alert-banner.show { display:flex; }
 .alert-icon { font-size:1.1rem; }
 
+/* ── DROPS TODAY WIDGET ──────────────────────── */
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(233,30,99,0.45), inset 0 0 0 1px rgba(233,30,99,0.55); }
+  50%       { box-shadow: 0 0 18px 5px rgba(233,30,99,0.22), inset 0 0 0 1px rgba(233,30,99,0.9); }
+}
+.drops-today-widget {
+  display:flex; align-items:flex-start; gap:1rem;
+  margin:0.75rem 1.75rem;
+  padding:1rem 1.4rem;
+  background:rgba(233,30,99,0.07);
+  border:1px solid rgba(233,30,99,0.45);
+  border-radius:10px;
+  animation:pulse-border 2.4s ease-in-out infinite;
+}
+.dt-icon  { font-size:1.6rem; line-height:1; padding-top:2px; }
+.dt-body  { display:flex; flex-direction:column; gap:0.45rem; }
+.dt-title { font-size:0.72rem; font-weight:900; letter-spacing:0.1em; color:#e91e63; text-transform:uppercase; }
+.dt-names { display:flex; flex-wrap:wrap; gap:0.5rem; }
+.dt-shoe  { display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap; }
+.dt-shoe-name { font-size:0.85rem; font-weight:600; color:var(--text); }
+
 /* ── FILTERS BAR ─────────────────────────────── */
 .filters-bar {
   background:var(--surface); border-bottom:1px solid var(--border);

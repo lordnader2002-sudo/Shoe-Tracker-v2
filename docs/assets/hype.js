@@ -1,11 +1,18 @@
 /** hype.js — hype.html */
 
-let viewMode = 'list';
+let viewMode   = 'list';
+let activeSale = 'all';
+
+function getHighHype(all) {
+  return all
+    .filter(r => (r.hype_level === 'HIGH' || r.hype_level === 'EXTREME') &&
+                 (activeSale === 'all' || r.sale_method === activeSale))
+    .sort((a,b) => b.hype_score - a.hype_score || a.release_date.localeCompare(b.release_date));
+}
 
 document.addEventListener('releases-loaded', function (e) {
   const all = e.detail.releases || [];
-  const highHype = all.filter(r => r.hype_level === 'HIGH' || r.hype_level === 'EXTREME')
-                      .sort((a,b) => b.hype_score - a.hype_score || a.release_date.localeCompare(b.release_date));
+  const highHype = getHighHype(all);
 
   document.getElementById('stat-extreme').textContent = all.filter(r => r.hype_level === 'EXTREME').length;
   document.getElementById('stat-high').textContent    = all.filter(r => r.hype_level === 'HIGH').length;
@@ -52,13 +59,24 @@ document.getElementById('btn-grid')?.addEventListener('click', function () {
   viewMode = 'grid';
   this.classList.add('active');
   document.getElementById('btn-list').classList.remove('active');
-  const all = window.RELEASES_DATA?.releases || [];
-  renderCards(all.filter(r => r.hype_level === 'HIGH' || r.hype_level === 'EXTREME').sort((a,b) => b.hype_score - a.hype_score));
+  renderCards(getHighHype(window.RELEASES_DATA?.releases || []));
 });
 document.getElementById('btn-list')?.addEventListener('click', function () {
   viewMode = 'list';
   this.classList.add('active');
   document.getElementById('btn-grid').classList.remove('active');
+  renderCards(getHighHype(window.RELEASES_DATA?.releases || []));
+});
+
+// Sale method filter chips
+document.addEventListener('click', function (e) {
+  const chip = e.target.closest('.chip[data-sale]');
+  if (!chip) return;
+  activeSale = chip.dataset.sale;
+  document.querySelectorAll('[data-sale]').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
   const all = window.RELEASES_DATA?.releases || [];
-  renderCards(all.filter(r => r.hype_level === 'HIGH' || r.hype_level === 'EXTREME').sort((a,b) => b.hype_score - a.hype_score));
+  const filtered = getHighHype(all);
+  document.getElementById('count-badge').textContent = filtered.length;
+  renderCards(filtered);
 });
