@@ -123,26 +123,32 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 .alert-banner.show { display:flex; }
 .alert-icon { font-size:1.1rem; }
 
-/* ── DROPS TODAY WIDGET ──────────────────────── */
-@keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(233,30,99,0.45), inset 0 0 0 1px rgba(233,30,99,0.55); }
-  50%       { box-shadow: 0 0 18px 5px rgba(233,30,99,0.22), inset 0 0 0 1px rgba(233,30,99,0.9); }
+/* ── COMBINED NOTICE BAR ─────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 2px 8px rgba(233,30,99,0); }
+  50%       { box-shadow: 0 2px 20px rgba(233,30,99,0.3); }
 }
-.drops-today-widget {
-  display:flex; align-items:flex-start; gap:1rem;
-  margin:0.75rem 1.75rem;
-  padding:1rem 1.4rem;
-  background:rgba(233,30,99,0.07);
-  border:1px solid rgba(233,30,99,0.45);
-  border-radius:10px;
-  animation:pulse-border 2.4s ease-in-out infinite;
+.notice-bar {
+  display:none; align-items:center; gap:1.5rem;
+  padding:0.7rem 1.75rem;
+  background:linear-gradient(90deg, rgba(233,30,99,0.15), rgba(233,30,99,0.05));
+  border-bottom:2px solid rgba(233,30,99,0.5);
+  font-size:0.85rem; font-weight:600;
 }
-.dt-icon  { font-size:1.6rem; line-height:1; padding-top:2px; }
-.dt-body  { display:flex; flex-direction:column; gap:0.45rem; }
-.dt-title { font-size:0.72rem; font-weight:900; letter-spacing:0.1em; color:#e91e63; text-transform:uppercase; }
-.dt-names { display:flex; flex-wrap:wrap; gap:0.5rem; }
-.dt-shoe  { display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap; }
-.dt-shoe-name { font-size:0.85rem; font-weight:600; color:var(--text); }
+.notice-bar.show { display:flex; }
+.notice-bar.has-drops { animation:pulse-glow 2.4s ease-in-out infinite; }
+.nb-drops { display:none; align-items:flex-start; gap:0.65rem; }
+.nb-drops.show { display:flex; }
+.nb-icon  { font-size:1.15rem; line-height:1; }
+.nb-body  { display:flex; flex-direction:column; gap:0.4rem; }
+.nb-label { font-size:0.7rem; font-weight:900; letter-spacing:0.1em; color:#e91e63; text-transform:uppercase; }
+.nb-shoes { display:flex; flex-wrap:wrap; gap:0.45rem; }
+.dt-shoe  { display:flex; align-items:center; gap:0.4rem; background:rgba(255,255,255,0.06); border:1px solid rgba(233,30,99,0.3); border-radius:6px; padding:0.22rem 0.6rem; }
+.dt-shoe-name { font-size:0.84rem; font-weight:600; color:var(--text); }
+.nb-sep   { display:none; width:1px; align-self:stretch; min-height:28px; background:rgba(233,30,99,0.35); }
+.nb-sep.show { display:block; }
+.nb-alert { display:none; align-items:center; gap:0.65rem; }
+.nb-alert.show { display:flex; }
 
 /* ── FILTERS BAR ─────────────────────────────── */
 .filters-bar {
@@ -373,8 +379,8 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 .sm-giveaway     { background:rgba(67,201,106,0.15); color:#43c96a; border-color:rgba(67,201,106,0.35); }
 /* Online-only — teal */
 .sm-online       { background:rgba(0,188,212,0.12);  color:#00bcd4; border-color:rgba(0,188,212,0.3); }
-/* Online + Retail — neutral */
-.sm-online-retail{ background:rgba(255,255,255,0.06);color:var(--text-muted); border-color:rgba(255,255,255,0.12); }
+/* Online + Retail — indigo */
+.sm-online-retail{ background:rgba(139,92,246,0.13); color:#a78bfa; border-color:rgba(139,92,246,0.35); }
 /* In-Store — warm gray */
 .sm-instore      { background:rgba(255,193,7,0.12);  color:#ffc107; border-color:rgba(255,193,7,0.3); }
 /* Retail — dim */

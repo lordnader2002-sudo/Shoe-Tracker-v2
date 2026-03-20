@@ -10,24 +10,28 @@ function initSummary(data) {
   document.getElementById('stat-high').textContent  = all.filter(r => r.hype_level === 'HIGH').length;
   document.getElementById('stat-ext').textContent   = all.filter(r => r.hype_level === 'EXTREME').length;
 
-  // Drops Today widget
+  // Combined notice bar — Drops Today + Alert
   const dropsToday = all.filter(r => r.days_until_release === 0);
-  if (dropsToday.length) {
-    const widget = document.getElementById('drops-today');
-    document.getElementById('drops-today-names').innerHTML = dropsToday.map(r => {
-      const smCls = window.SRT.saleClass(r.sale_method || 'Online + Retail');
-      return `<span class="dt-shoe"><span class="dt-shoe-name">${r.name}</span><span class="sale-badge ${smCls}">${r.sale_method || 'Online + Retail'}</span></span>`;
-    }).join('');
-    widget.style.display = 'flex';
-  }
-
-  // Alert banner
-  const imminent = all.filter(r => (r.hype_level === 'HIGH' || r.hype_level === 'EXTREME') && r.days_until_release <= 7);
-  if (imminent.length) {
-    const b = document.getElementById('alert-banner');
-    document.getElementById('alert-text').textContent =
-      `${imminent.length} HIGH/EXTREME drop${imminent.length > 1 ? 's' : ''} within 7 days — heightened crowd management expected.`;
-    b.classList.add('show');
+  const imminent   = all.filter(r => (r.hype_level === 'HIGH' || r.hype_level === 'EXTREME') && r.days_until_release <= 7);
+  if (dropsToday.length || imminent.length) {
+    const bar = document.getElementById('notice-bar');
+    bar.classList.add('show');
+    if (dropsToday.length) {
+      document.getElementById('drops-today-names').innerHTML = dropsToday.map(r => {
+        const smCls = window.SRT.saleClass(r.sale_method || 'Online + Retail');
+        return `<span class="dt-shoe"><span class="dt-shoe-name">${r.name}</span><span class="sale-badge ${smCls}">${r.sale_method || 'Online + Retail'}</span></span>`;
+      }).join('');
+      document.getElementById('nb-drops').classList.add('show');
+      bar.classList.add('has-drops');
+    }
+    if (imminent.length) {
+      document.getElementById('alert-text').textContent =
+        `${imminent.length} HIGH/EXTREME drop${imminent.length > 1 ? 's' : ''} within 7 days — heightened crowd management expected.`;
+      document.getElementById('nb-alert').classList.add('show');
+    }
+    if (dropsToday.length && imminent.length) {
+      document.getElementById('nb-sep').classList.add('show');
+    }
   }
 
   // Top Hype Releases (top 6 by score)
