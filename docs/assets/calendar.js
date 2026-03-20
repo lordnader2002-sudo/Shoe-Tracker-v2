@@ -65,12 +65,18 @@ function showDayDetail(dateKey, releases) {
   panel.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
-document.addEventListener('releases-loaded', function (e) {
-  allReleases = e.detail.releases || [];
+function initCalendar(data) {
+  allReleases = (data && data.releases) || [];
   const today = new Date();
   viewYear = today.getFullYear(); viewMonth = today.getMonth();
   buildCalendar();
-});
+}
+
+if (window.RELEASES_DATA) {
+  initCalendar(window.RELEASES_DATA);
+} else {
+  document.addEventListener('releases-loaded', function (e) { initCalendar(e.detail); });
+}
 
 document.getElementById('cal-prev').addEventListener('click', function () {
   if (--viewMonth < 0) { viewMonth = 11; viewYear--; }

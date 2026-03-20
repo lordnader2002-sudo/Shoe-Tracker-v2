@@ -1,7 +1,7 @@
 /** summary.js — landing summary page (index.html) */
 
-document.addEventListener('releases-loaded', function (e) {
-  const all = e.detail.releases || [];
+function initSummary(data) {
+  const all = (data && data.releases) || [];
 
   // Stats
   const week = all.filter(r => r.days_until_release <= 7);
@@ -72,7 +72,13 @@ document.addEventListener('releases-loaded', function (e) {
   <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(count/maxCount*100)}%"></div></div>
   <div class="brand-bar-num">${count}</div>
 </div>`).join('');
-});
+}
+
+if (window.RELEASES_DATA) {
+  initSummary(window.RELEASES_DATA);
+} else {
+  document.addEventListener('releases-loaded', function (e) { initSummary(e.detail); });
+}
 
 // Hype Legend toggle
 document.getElementById('legend-toggle').addEventListener('click', function () {
