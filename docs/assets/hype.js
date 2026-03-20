@@ -14,9 +14,9 @@ function initHype(data) {
   const all = (data && data.releases) || [];
   const highHype = getHighHype(all);
 
-  document.getElementById('stat-extreme').textContent = all.filter(r => r.hype_level === 'EXTREME').length;
-  document.getElementById('stat-high').textContent    = all.filter(r => r.hype_level === 'HIGH').length;
-  document.getElementById('count-badge').textContent  = highHype.length;
+  window.SRT.countUp(document.getElementById('stat-extreme'), all.filter(r => r.hype_level === 'EXTREME').length);
+  window.SRT.countUp(document.getElementById('stat-high'),    all.filter(r => r.hype_level === 'HIGH').length);
+  window.SRT.countUp(document.getElementById('count-badge'),  highHype.length);
 
   // Alert banner
   const imminent = highHype.filter(r => r.days_until_release <= 7);
