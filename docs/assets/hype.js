@@ -10,8 +10,8 @@ function getHighHype(all) {
     .sort((a,b) => b.hype_score - a.hype_score || a.release_date.localeCompare(b.release_date));
 }
 
-document.addEventListener('releases-loaded', function (e) {
-  const all = e.detail.releases || [];
+function initHype(data) {
+  const all = (data && data.releases) || [];
   const highHype = getHighHype(all);
 
   document.getElementById('stat-extreme').textContent = all.filter(r => r.hype_level === 'EXTREME').length;
@@ -40,7 +40,13 @@ document.addEventListener('releases-loaded', function (e) {
 </div>`).join('');
 
   renderCards(highHype);
-});
+}
+
+if (window.RELEASES_DATA) {
+  initHype(window.RELEASES_DATA);
+} else {
+  document.addEventListener('releases-loaded', function (e) { initHype(e.detail); });
+}
 
 function renderCards(list) {
   const c = document.getElementById('releases-container');

@@ -46,8 +46,8 @@ function render() {
   }
 }
 
-document.addEventListener('releases-loaded', function (e) {
-  allReleases = e.detail.releases || [];
+function initReleases(data) {
+  allReleases = (data && data.releases) || [];
 
   document.getElementById('stat-total').textContent = allReleases.length;
   document.getElementById('stat-week').textContent  = allReleases.filter(r => r.days_until_release <= 7).length;
@@ -68,7 +68,13 @@ document.addEventListener('releases-loaded', function (e) {
     return;
   }
   render();
-});
+}
+
+if (window.RELEASES_DATA) {
+  initReleases(window.RELEASES_DATA);
+} else {
+  document.addEventListener('releases-loaded', function (e) { initReleases(e.detail); });
+}
 
 // Chip clicks
 document.addEventListener('click', function (e) {
