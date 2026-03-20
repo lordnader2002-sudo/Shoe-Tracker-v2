@@ -5,10 +5,10 @@ function initSummary(data) {
 
   // Stats
   const week = all.filter(r => r.days_until_release <= 7);
-  document.getElementById('stat-total').textContent = all.length;
-  document.getElementById('stat-week').textContent  = week.length;
-  document.getElementById('stat-high').textContent  = all.filter(r => r.hype_level === 'HIGH').length;
-  document.getElementById('stat-ext').textContent   = all.filter(r => r.hype_level === 'EXTREME').length;
+  window.SRT.countUp(document.getElementById('stat-total'), all.length);
+  window.SRT.countUp(document.getElementById('stat-week'),  week.length);
+  window.SRT.countUp(document.getElementById('stat-high'),  all.filter(r => r.hype_level === 'HIGH').length);
+  window.SRT.countUp(document.getElementById('stat-ext'),   all.filter(r => r.hype_level === 'EXTREME').length);
 
   // Combined notice bar — Drops Today + Alert
   const dropsToday = all.filter(r => r.days_until_release === 0);
