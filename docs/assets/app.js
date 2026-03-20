@@ -1,9 +1,10 @@
 /** app.js — releases.html (grid + compact list toggle) */
 
-let allReleases = [];
+let allReleases   = [];
 let activeBrand   = 'all';
 let activeHype    = 'all';
 let activeUrgency = 'all';
+let activeSale    = 'all';
 let searchQuery   = '';
 let sortMode      = 'date-asc';
 let viewMode      = 'list'; // 'grid' | 'list'
@@ -13,6 +14,7 @@ function getFiltered() {
     if (activeBrand   !== 'all' && r.brand      !== activeBrand)   return false;
     if (activeHype    !== 'all' && r.hype_level  !== activeHype)   return false;
     if (activeUrgency !== 'all' && r.days_until_release > Number(activeUrgency)) return false;
+    if (activeSale    !== 'all' && r.sale_method !== activeSale)   return false;
     if (searchQuery && !r.name.toLowerCase().includes(searchQuery)) return false;
     return true;
   });
@@ -87,6 +89,12 @@ document.addEventListener('click', function (e) {
   if ('urgency' in chip.dataset) {
     activeUrgency = chip.dataset.urgency;
     document.querySelectorAll('[data-urgency]').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    render();
+  }
+  if ('sale' in chip.dataset) {
+    activeSale = chip.dataset.sale;
+    document.querySelectorAll('[data-sale]').forEach(c => c.classList.remove('active'));
     chip.classList.add('active');
     render();
   }

@@ -56,6 +56,18 @@ HYPE_DISPLAY = {
     "LOW":     ("LOW",     COL_LOW),
 }
 
+# Sale method display: stored value → hex color for bold text
+SALE_METHOD_COLORS = {
+    "SNKRS App":       "FF6B35",
+    "Confirmed App":   "3B9EFF",
+    "Raffle":          "FF9800",
+    "Giveaway":        "43C96A",
+    "Online":          "00BCD4",
+    "Online + Retail": "888888",
+    "In-Store":        "FFC107",
+    "Retail":          "888888",
+}
+
 # ---------------------------------------------------------------------------
 # Column definitions for the main releases sheet
 # (header, data-key, width, alignment, number-format)
@@ -164,11 +176,15 @@ def _write_data_rows(ws, sneakers: list[dict]):
             if num_fmt:
                 c.number_format = num_fmt
 
-            # Hype-level: colored text, no override fill
+            # Hype-level: colored text
             if key == "hype_level":
                 display_text, color = HYPE_DISPLAY.get(value, (str(value), "000000"))
                 c.value = display_text
                 c.font  = Font(name="Calibri", size=11, bold=True, color=color)
+            # Sale method: colored text
+            elif key == "sale_method":
+                color = SALE_METHOD_COLORS.get(value, "888888")
+                c.font = Font(name="Calibri", size=11, bold=True, color=color)
             else:
                 c.font = DATA_FONT
 
@@ -256,6 +272,21 @@ def _create_summary_sheet(wb: Workbook, sneakers: list[dict]):
         c = ws.cell(row=row, column=1, value=display)
         c.font = Font(name="Calibri", size=11, bold=True, color=color)
         ws.cell(row=row, column=2, value=hype_counts[level]).font = data_font
+        row += 1
+    row += 1
+
+    # By sale method
+    ws.cell(row=row, column=1, value="Releases by Sale Method").font = section_font
+    row += 1
+    method_counts: dict[str, int] = {}
+    for s in sneakers:
+        m = s.get("sale_method", "Online + Retail")
+        method_counts[m] = method_counts.get(m, 0) + 1
+    for method in sorted(method_counts, key=method_counts.__getitem__, reverse=True):
+        color = SALE_METHOD_COLORS.get(method, "888888")
+        c = ws.cell(row=row, column=1, value=method)
+        c.font = Font(name="Calibri", size=11, bold=True, color=color)
+        ws.cell(row=row, column=2, value=method_counts[method]).font = data_font
         row += 1
 
     ws.column_dimensions["A"].width = 28
