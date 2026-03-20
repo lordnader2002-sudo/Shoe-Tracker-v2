@@ -327,7 +327,7 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
   padding:0 0.75rem;
 }
 .list-header {
-  font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); font-weight:700;
+  font-size:0.67rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); font-weight:700;
   padding-bottom:0.4rem; border-bottom:1px solid var(--border);
   margin-bottom:2px;
 }
@@ -335,7 +335,7 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:var(--r-xs);
-  height:44px;
+  height:38px;
   box-shadow:var(--bevel);
   transition:background 0.12s, border-color 0.12s;
   cursor:default;
@@ -350,14 +350,14 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 .list-dot.d-high    { background:var(--high);   color:var(--high); }
 .list-dot.d-extreme { background:var(--extreme);color:var(--extreme); }
 
-.list-name  { font-size:0.8rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.list-brand { font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); }
-.list-date  { font-size:0.75rem; font-weight:600; }
-.list-days  { font-size:0.7rem; font-weight:800; text-align:center; }
+.list-name  { font-size:0.87rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.list-brand { font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; color:var(--text-muted); }
+.list-date  { font-size:0.8rem; font-weight:600; }
+.list-days  { font-size:0.75rem; font-weight:800; text-align:center; }
 .list-days.urgent   { color:var(--urgent); }
 .list-days.upcoming { color:var(--upcoming); }
-.list-price { font-size:0.78rem; font-weight:800; color:var(--accent); text-align:right; }
-.list-score { font-size:0.72rem; font-weight:800; text-align:center; }
+.list-price { font-size:0.83rem; font-weight:800; color:var(--accent); text-align:right; }
+.list-score { font-size:0.78rem; font-weight:800; text-align:center; }
 .list-link  { font-size:0.8rem; font-weight:700; color:var(--accent); text-decoration:none; text-align:center; transition:color 0.12s, opacity 0.12s; opacity:0.75; }
 .list-link:hover { color:var(--accent2); opacity:1; }
 
@@ -587,16 +587,16 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 
 /* Page fade-in on load */
 @keyframes page-in {
-  from { opacity: 0; transform: translateY(7px); }
+  from { opacity: 0; transform: translateY(5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-body { animation: page-in 0.28s ease-out both; }
+body { animation: page-in 0.18s ease-out both; }
 
 /* Page fade-out when leaving */
 @keyframes page-out {
-  to { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 0; transform: translateY(-4px); }
 }
-body.is-leaving { animation: page-out 0.19s ease-in forwards; }
+body.is-leaving { animation: page-out 0.12s ease-in forwards; }
 
 /* Shared fade-up used by hero, stat cards, summary sections */
 @keyframes fade-up {

@@ -78,16 +78,13 @@ function initSummary(data) {
 </div>`).join('');
 }
 
-if (window.RELEASES_DATA) {
-  initSummary(window.RELEASES_DATA);
-} else {
-  document.addEventListener('releases-loaded', function (e) { initSummary(e.detail); });
+// Register event listener first, then also check if data already loaded
+// (handles both slow-network first load and fast cached reload)
+let _summaryDone = false;
+function _runSummary(data) {
+  if (_summaryDone) return;
+  _summaryDone = true;
+  initSummary(data);
 }
-
-// Hype Legend toggle
-document.getElementById('legend-toggle').addEventListener('click', function () {
-  const body = document.getElementById('legend-body');
-  const chev = document.getElementById('legend-chevron');
-  const collapsed = body.classList.toggle('collapsed');
-  chev.textContent = collapsed ? '▶' : '▼';
-});
+document.addEventListener('releases-loaded', function(e) { _runSummary(e.detail); });
+if (window.RELEASES_DATA) _runSummary(window.RELEASES_DATA);
