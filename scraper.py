@@ -15,6 +15,7 @@ import re
 import shutil
 import sys
 import logging
+import time
 from datetime import datetime, timedelta, timezone, date
 
 import requests
@@ -484,12 +485,84 @@ _COLLAB_NAMES = [
     "division st", "thug club", "avirex", "stüssy", "stussy",
 ]
 
+# Brick-and-mortar / multi-door retail chains — if any appear in "Where to Buy"
+# the release is broadly distributed (Online + Retail), not app-exclusive.
+_RETAIL_CHAINS = {
+    "foot locker", "footlocker",
+    "finish line", "finishline",
+    "dsg", "dick's sporting goods", "dicks sporting goods",
+    "hibbett", "hibbett sports",
+    "champs", "champs sports",
+    "jd sports",
+    "shoe palace",
+    "dtlr",
+    "academy", "academy sports",
+    "eastbay",
+    "city gear",
+    "villa",
+    "snipes",
+    "famous footwear",
+}
+
+# Domains that publish structured "Where to Buy" data we can parse
+_ARTICLE_SOURCES = ("sneakerfiles.com",)
+
+_last_article_fetch: float = 0.0
+_ARTICLE_FETCH_INTERVAL = 0.8   # seconds between individual article GETs
+
+
+def fetch_article_sale_method(source_url: str) -> str | None:
+    """Fetch the source article page and parse 'Where to Buy' to determine
+    the actual sale method.  Returns a sale_method string on success, or
+    None if the page can't be parsed (caller should fall back to heuristic).
+
+    Rate-limited to ~0.8 s between requests to be polite to the source site.
+    """
+    global _last_article_fetch
+
+    if not source_url or not any(d in source_url for d in _ARTICLE_SOURCES):
+        return None
+
+    # Polite rate limit
+    wait = _ARTICLE_FETCH_INTERVAL - (time.time() - _last_article_fetch)
+    if wait > 0:
+        time.sleep(wait)
+
+    html = fetch_html(source_url)
+    _last_article_fetch = time.time()
+
+    if not html:
+        return None
+
+    soup = BeautifulSoup(html, "html.parser")
+    full_text = soup.get_text(separator=" ", strip=True).lower()
+
+    # Locate the "Where to Buy" line in the Quick Facts box
+    wtb_m = re.search(r"where to buy[:\s]+(.{3,200}?)(?:more info|$|\n)", full_text)
+    if not wtb_m:
+        return None
+
+    wtb_text = wtb_m.group(1)
+
+    # Presence of a broad retail chain → this is a wide retail release
+    if any(chain in wtb_text for chain in _RETAIL_CHAINS):
+        return "Online + Retail"
+
+    # SNKRS or Adidas-app specific language
+    if "snkrs" in full_text:
+        return "SNKRS App"
+    if "adidas confirmed" in full_text or "confirmed app" in full_text:
+        return "Confirmed App"
+
+    return None
+
 
 def detect_sale_method(name: str, brand: str, hype_level: str) -> str:
-    """Infer how a shoe will be sold based on name, brand, and hype level."""
+    """Heuristic fallback: infer sale method from name, brand, and hype level.
+    Used only when article-level retailer data is unavailable."""
     t = name.lower()
 
-    # Explicit keywords in the name take priority
+    # Explicit keywords in the name always take priority
     if "raffle" in t:
         return "Raffle"
     if "giveaway" in t:
@@ -508,10 +581,9 @@ def detect_sale_method(name: str, brand: str, hype_level: str) -> str:
     if is_collab and hype_level in ("EXTREME", "HIGH"):
         return "Raffle"
 
-    # Brand + hype heuristics
+    # Conservative brand defaults — most releases (even high-hype) go to retail.
+    # "SNKRS App" / "Confirmed App" are only set when the article confirms it.
     if brand in ("Jordan", "Nike"):
-        if hype_level in ("EXTREME", "HIGH"):
-            return "SNKRS App"
         return "Online + Retail"
 
     if brand in ("Adidas", "Yeezy"):
@@ -613,12 +685,20 @@ def main():
     filtered = deduplicate(filtered)
     log.info("After deduplication: %d", len(filtered))
 
-    # Calculate hype scores then infer sale method
+    # Calculate hype scores then determine sale method.
+    # Prefer article-level "Where to Buy" data (ground truth) over heuristics.
+    log.info("Calculating hype scores and sale methods...")
     for sneaker in filtered:
         score, level = calculate_hype_score(sneaker)
         sneaker["hype_score"] = score
         sneaker["hype_level"] = level
-        sneaker["sale_method"] = detect_sale_method(sneaker["name"], sneaker["brand"], level)
+
+        article_sale = fetch_article_sale_method(sneaker.get("source_url", ""))
+        if article_sale:
+            log.info("  Article sale method for '%s': %s", sneaker["name"][:40], article_sale)
+        sneaker["sale_method"] = article_sale or detect_sale_method(
+            sneaker["name"], sneaker["brand"], level
+        )
 
     # Sort by release date
     filtered.sort(key=lambda s: s["release_date"])
