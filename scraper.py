@@ -511,17 +511,20 @@ _last_article_fetch: float = 0.0
 _ARTICLE_FETCH_INTERVAL = 0.8   # seconds between individual article GETs
 
 
-def fetch_article_sale_method(source_url: str) -> str | None:
-    """Fetch the source article page and parse 'Where to Buy' to determine
-    the actual sale method.  Returns a sale_method string on success, or
-    None if the page can't be parsed (caller should fall back to heuristic).
+def fetch_article_data(source_url: str) -> dict:
+    """Fetch the source article page and extract:
+      - image_url : og:image of the shoe (all sources)
+      - sale_method: parsed from 'Where to Buy' (SneakerFiles only)
 
-    Rate-limited to ~0.8 s between requests to be polite to the source site.
+    Returns a dict with those two keys (values may be None).
+    Rate-limited to ~0.8 s between requests.
     """
     global _last_article_fetch
 
-    if not source_url or not any(d in source_url for d in _ARTICLE_SOURCES):
-        return None
+    result = {"sale_method": None, "image_url": None}
+
+    if not source_url:
+        return result
 
     # Polite rate limit
     wait = _ARTICLE_FETCH_INTERVAL - (time.time() - _last_article_fetch)
@@ -532,29 +535,42 @@ def fetch_article_sale_method(source_url: str) -> str | None:
     _last_article_fetch = time.time()
 
     if not html:
-        return None
+        return result
 
     soup = BeautifulSoup(html, "html.parser")
+
+    # --- Image: prefer og:image, fall back to first large article img ---
+    og_img = soup.find("meta", property="og:image")
+    if og_img and og_img.get("content"):
+        result["image_url"] = og_img["content"].strip()
+    else:
+        for img in soup.select("article img, .entry-content img, .post-content img"):
+            src = img.get("src") or img.get("data-src") or ""
+            # Skip icons and tiny images (heuristic: url contains a size token < 200px)
+            if src and not any(x in src for x in ("logo", "avatar", "icon", "50x", "75x", "100x")):
+                result["image_url"] = src.strip()
+                break
+
+    # --- Sale method: only SneakerFiles has reliable structured data ---
+    if not any(d in source_url for d in _ARTICLE_SOURCES):
+        return result
+
     full_text = soup.get_text(separator=" ", strip=True).lower()
 
-    # Locate the "Where to Buy" line in the Quick Facts box
     wtb_m = re.search(r"where to buy[:\s]+(.{3,200}?)(?:more info|$|\n)", full_text)
     if not wtb_m:
-        return None
+        return result
 
     wtb_text = wtb_m.group(1)
 
-    # Presence of a broad retail chain → this is a wide retail release
     if any(chain in wtb_text for chain in _RETAIL_CHAINS):
-        return "Online + Retail"
+        result["sale_method"] = "Online + Retail"
+    elif "snkrs" in full_text:
+        result["sale_method"] = "SNKRS App"
+    elif "adidas confirmed" in full_text or "confirmed app" in full_text:
+        result["sale_method"] = "Confirmed App"
 
-    # SNKRS or Adidas-app specific language
-    if "snkrs" in full_text:
-        return "SNKRS App"
-    if "adidas confirmed" in full_text or "confirmed app" in full_text:
-        return "Confirmed App"
-
-    return None
+    return result
 
 
 def detect_sale_method(name: str, brand: str, hype_level: str) -> str:
@@ -693,12 +709,14 @@ def main():
         sneaker["hype_score"] = score
         sneaker["hype_level"] = level
 
-        article_sale = fetch_article_sale_method(sneaker.get("source_url", ""))
-        if article_sale:
-            log.info("  Article sale method for '%s': %s", sneaker["name"][:40], article_sale)
-        sneaker["sale_method"] = article_sale or detect_sale_method(
+        article = fetch_article_data(sneaker.get("source_url", ""))
+        if article["sale_method"]:
+            log.info("  Article sale method for '%s': %s", sneaker["name"][:40], article["sale_method"])
+        sneaker["sale_method"] = article["sale_method"] or detect_sale_method(
             sneaker["name"], sneaker["brand"], level
         )
+        if article["image_url"]:
+            sneaker["image_url"] = article["image_url"]
 
     # Sort by release date
     filtered.sort(key=lambda s: s["release_date"])
