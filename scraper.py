@@ -507,13 +507,17 @@ _RETAIL_CHAINS = {
 # Domains that publish structured "Where to Buy" data we can parse
 _ARTICLE_SOURCES = ("sneakerfiles.com",)
 
+# Sneaker news sites we trust for article fetching (image + sale method).
+# Brand/retailer URLs (nike.com, adidas.com, etc.) are intentionally excluded.
+_FETCH_SOURCES = ("sneakerfiles.com", "nicekicks.com", "sneakerbardetroit.com")
+
 _last_article_fetch: float = 0.0
 _ARTICLE_FETCH_INTERVAL = 0.8   # seconds between individual article GETs
 
 
 def fetch_article_data(source_url: str) -> dict:
     """Fetch the source article page and extract:
-      - image_url : og:image of the shoe (all sources)
+      - image_url : og:image of the shoe (sneaker news sites only)
       - sale_method: parsed from 'Where to Buy' (SneakerFiles only)
 
     Returns a dict with those two keys (values may be None).
@@ -523,7 +527,7 @@ def fetch_article_data(source_url: str) -> dict:
 
     result = {"sale_method": None, "image_url": None}
 
-    if not source_url:
+    if not source_url or not any(d in source_url for d in _FETCH_SOURCES):
         return result
 
     # Polite rate limit
@@ -539,15 +543,27 @@ def fetch_article_data(source_url: str) -> dict:
 
     soup = BeautifulSoup(html, "html.parser")
 
-    # --- Image: prefer og:image, fall back to first large article img ---
+    # Patterns that indicate a logo/icon rather than a product shot
+    _SKIP = ("logo", "avatar", "icon", "favicon", "swoosh", "badge",
+             "50x", "75x", "100x")
+    # Brand CDN domains — their og:image tends to be marketing assets, not clean product shots
+    _BRAND_CDNS = ("nike.com", "adidas.com", "jordan.com",
+                   "newbalance.com", "converse.com", "hoka.com")
+
+    # --- Image: prefer og:image unless it points to a brand CDN ---
     og_img = soup.find("meta", property="og:image")
     if og_img and og_img.get("content"):
-        result["image_url"] = og_img["content"].strip()
-    else:
-        for img in soup.select("article img, .entry-content img, .post-content img"):
+        src = og_img["content"].strip()
+        from_brand_cdn = any(d in src for d in _BRAND_CDNS)
+        is_logo = any(p in src.lower() for p in _SKIP)
+        if src and not from_brand_cdn and not is_logo:
+            result["image_url"] = src
+
+    # Fall through to article content images if og:image was rejected or absent
+    if not result["image_url"]:
+        for img in soup.select("article img, .entry-content img, .post-content img, .wp-post-image"):
             src = img.get("src") or img.get("data-src") or ""
-            # Skip icons and tiny images (heuristic: url contains a size token < 200px)
-            if src and not any(x in src for x in ("logo", "avatar", "icon", "50x", "75x", "100x")):
+            if src and not any(p in src.lower() for p in _SKIP):
                 result["image_url"] = src.strip()
                 break
 
