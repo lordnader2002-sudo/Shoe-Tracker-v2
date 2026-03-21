@@ -33,6 +33,24 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Always deploy data to the main branch so GitHub Pages updates,
+          # even when this workflow is triggered from a feature branch.
+          git fetch origin main
+          git worktree add /tmp/deploy-tree origin/main
+
+          # Copy only the generated data files (no code changes)
+          cp -r reports/ /tmp/deploy-tree/
+          mkdir -p /tmp/deploy-tree/docs/data
+          cp docs/data/releases.json /tmp/deploy-tree/docs/data/releases.json
+          [ -f docs/data/sneaker_releases.xlsx ] && \
+            cp docs/data/sneaker_releases.xlsx /tmp/deploy-tree/docs/data/sneaker_releases.xlsx || true
+
+          cd /tmp/deploy-tree
           git add reports/ docs/data/
-          git diff --cached --quiet || git commit -m "chore: sneaker release update [$(date -u '+%Y-%m-%d %H:%M UTC')]"
-          git push
+          if git diff --cached --quiet; then
+            echo "No data changes to deploy."
+          else
+            git commit -m "chore: sneaker release update [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+            git push origin HEAD:main
+          fi
