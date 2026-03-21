@@ -40,15 +40,20 @@ function initSummary(data) {
   if (!topHype.length) {
     topEl.innerHTML = '<div style="color:var(--text-dim);font-size:0.82rem;">No data yet.</div>';
   } else {
-    topEl.innerHTML = topHype.map((r, i) => `
+    topEl.innerHTML = topHype.map((r, i) => {
+      const smCls = window.SRT.saleClass(r.sale_method || 'Online + Retail');
+      const sm    = r.sale_method || 'Online + Retail';
+      return `
 <div class="top-release-row">
   <span class="tr-rank">#${i+1}</span>
   <span class="tr-name" title="${r.name}">${r.name}</span>
   <div class="tr-meta">
+    <span class="sale-badge ${smCls}">${sm}</span>
     <span class="hype-badge hype-${r.hype_level}">${r.hype_level}</span>
     ${window.SRT.daysChip(r.days_until_release)}
   </div>
-</div>`).join('');
+</div>`;
+    }).join('');
   }
 
   // This Week
@@ -57,12 +62,19 @@ function initSummary(data) {
   if (!weekSorted.length) {
     weekEl.innerHTML = '<div style="color:var(--text-dim);font-size:0.82rem;">No drops this week.</div>';
   } else {
-    weekEl.innerHTML = weekSorted.map(r => `
+    weekEl.innerHTML = weekSorted.map(r => {
+      const smCls = window.SRT.saleClass(r.sale_method || 'Online + Retail');
+      const sm    = r.sale_method || 'Online + Retail';
+      return `
 <div class="week-row">
   <span class="wr-date">${window.SRT.formatDateShort(r.release_date)}</span>
   <span class="wr-name" title="${r.name}">${r.name}</span>
-  <span class="hype-badge hype-${r.hype_level}">${r.hype_level}</span>
-</div>`).join('');
+  <div class="wr-badges">
+    <span class="sale-badge ${smCls}">${sm}</span>
+    <span class="hype-badge hype-${r.hype_level}">${r.hype_level}</span>
+  </div>
+</div>`;
+    }).join('');
   }
 
   // Brand Breakdown
