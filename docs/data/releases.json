@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-21T06:06:46Z",
+  "generated_at": "2026-03-21T06:11:53Z",
   "total": 51,
   "releases": [
     {
@@ -133,7 +133,7 @@
       "days_until_release": 2,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -150,7 +150,7 @@
       "days_until_release": 2,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -167,7 +167,7 @@
       "days_until_release": 2,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -269,7 +269,7 @@
       "days_until_release": 5,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -286,7 +286,7 @@
       "days_until_release": 5,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -303,7 +303,7 @@
       "days_until_release": 5,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -337,7 +337,7 @@
       "days_until_release": 6,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -354,7 +354,7 @@
       "days_until_release": 6,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -456,7 +456,7 @@
       "days_until_release": 7,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.sneakerfiles.com/wp-content/uploads/2026/02/nike-gt-future-swooshman-2026.jpg",
+      "image_url": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='768'%20height='544'%20viewBox='0%200%20768%20544'%3E%3C/svg%3E",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "SNKRS App"
@@ -473,7 +473,7 @@
       "days_until_release": 7,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -524,7 +524,7 @@
       "days_until_release": 10,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -541,7 +541,7 @@
       "days_until_release": 11,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -558,7 +558,7 @@
       "days_until_release": 12,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -575,7 +575,7 @@
       "days_until_release": 12,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -592,7 +592,7 @@
       "days_until_release": 13,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 3,
       "hype_level": "LOW",
       "sale_method": "Online + Retail"
@@ -609,7 +609,7 @@
       "days_until_release": 13,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 6,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -626,7 +626,7 @@
       "days_until_release": 13,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -677,7 +677,7 @@
       "days_until_release": 20,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -694,7 +694,7 @@
       "days_until_release": 20,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail"
@@ -779,7 +779,7 @@
       "days_until_release": 23,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
@@ -796,7 +796,7 @@
       "days_until_release": 23,
       "estimated_market_value": null,
       "silhouette": "",
-      "image_url": "https://www.nike.com/android-icon-192x192.png",
+      "image_url": "",
       "hype_score": 7,
       "hype_level": "HIGH",
       "sale_method": "Online + Retail"
