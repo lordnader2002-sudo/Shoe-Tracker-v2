@@ -507,13 +507,17 @@ _RETAIL_CHAINS = {
 # Domains that publish structured "Where to Buy" data we can parse
 _ARTICLE_SOURCES = ("sneakerfiles.com",)
 
+# Sneaker news sites we trust for article fetching (image + sale method).
+# Brand/retailer URLs (nike.com, adidas.com, etc.) are intentionally excluded.
+_FETCH_SOURCES = ("sneakerfiles.com", "nicekicks.com", "sneakerbardetroit.com")
+
 _last_article_fetch: float = 0.0
 _ARTICLE_FETCH_INTERVAL = 0.8   # seconds between individual article GETs
 
 
 def fetch_article_data(source_url: str) -> dict:
     """Fetch the source article page and extract:
-      - image_url : og:image of the shoe (all sources)
+      - image_url : og:image of the shoe (sneaker news sites only)
       - sale_method: parsed from 'Where to Buy' (SneakerFiles only)
 
     Returns a dict with those two keys (values may be None).
@@ -523,7 +527,7 @@ def fetch_article_data(source_url: str) -> dict:
 
     result = {"sale_method": None, "image_url": None}
 
-    if not source_url:
+    if not source_url or not any(d in source_url for d in _FETCH_SOURCES):
         return result
 
     # Polite rate limit
