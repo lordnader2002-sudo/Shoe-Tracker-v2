@@ -88,6 +88,34 @@ function initSummary(data) {
   <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(count/maxCount*100)}%"></div></div>
   <div class="brand-bar-num">${count}</div>
 </div>`).join('');
+
+  // Sale Method Breakdown
+  const smColorMap = {
+    'SNKRS App':       'rgba(255,255,255,0.72)',
+    'Confirmed App':   '#3b9eff',
+    'Raffle':          '#ff9800',
+    'Giveaway':        '#43c96a',
+    'Online':          '#00bcd4',
+    'Online + Retail': '#a78bfa',
+    'In-Store':        '#ffc107',
+    'Retail':          'rgba(255,255,255,0.28)',
+  };
+  const saleMap = {};
+  all.forEach(r => {
+    const m = r.sale_method || 'Online + Retail';
+    saleMap[m] = (saleMap[m] || 0) + 1;
+  });
+  const saleSorted = Object.entries(saleMap).sort((a, b) => b[1] - a[1]);
+  const saleMax = saleSorted[0]?.[1] || 1;
+  document.getElementById('sale-bars').innerHTML = saleSorted.map(([method, count]) => {
+    const color = smColorMap[method] || 'rgba(255,255,255,0.3)';
+    return `
+<div class="brand-bar-row">
+  <div class="brand-bar-label">${method}</div>
+  <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(count/saleMax*100)}%;background:${color};"></div></div>
+  <div class="brand-bar-num">${count}</div>
+</div>`;
+  }).join('');
 }
 
 // Register event listener first, then also check if data already loaded
