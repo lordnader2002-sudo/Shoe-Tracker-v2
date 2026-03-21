@@ -543,15 +543,27 @@ def fetch_article_data(source_url: str) -> dict:
 
     soup = BeautifulSoup(html, "html.parser")
 
-    # --- Image: prefer og:image, fall back to first large article img ---
+    # Patterns that indicate a logo/icon rather than a product shot
+    _SKIP = ("logo", "avatar", "icon", "favicon", "swoosh", "badge",
+             "50x", "75x", "100x")
+    # Brand CDN domains — their og:image tends to be marketing assets, not clean product shots
+    _BRAND_CDNS = ("nike.com", "adidas.com", "jordan.com",
+                   "newbalance.com", "converse.com", "hoka.com")
+
+    # --- Image: prefer og:image unless it points to a brand CDN ---
     og_img = soup.find("meta", property="og:image")
     if og_img and og_img.get("content"):
-        result["image_url"] = og_img["content"].strip()
-    else:
-        for img in soup.select("article img, .entry-content img, .post-content img"):
+        src = og_img["content"].strip()
+        from_brand_cdn = any(d in src for d in _BRAND_CDNS)
+        is_logo = any(p in src.lower() for p in _SKIP)
+        if src and not from_brand_cdn and not is_logo:
+            result["image_url"] = src
+
+    # Fall through to article content images if og:image was rejected or absent
+    if not result["image_url"]:
+        for img in soup.select("article img, .entry-content img, .post-content img, .wp-post-image"):
             src = img.get("src") or img.get("data-src") or ""
-            # Skip icons and tiny images (heuristic: url contains a size token < 200px)
-            if src and not any(x in src for x in ("logo", "avatar", "icon", "50x", "75x", "100x")):
+            if src and not any(p in src.lower() for p in _SKIP):
                 result["image_url"] = src.strip()
                 break
 
