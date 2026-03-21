@@ -1,121 +1,120 @@
-# 👟 Sneaker Release Tracker
+# Sneaker Release Tracker
 
-> **Your personal early-warning system for every major sneaker drop.**
+A live dashboard tracking major sneaker releases over the next 30 days, with automated hype scoring, sale method classification, and release calendar views.
 
----
+**[→ Open the Dashboard](https://lordnader2002-sudo.github.io/Shoe-Tracker-v2/)**
 
-## 🔗 [→ Open the Dashboard](https://lordnader2002-sudo.github.io/Shoe-Tracker-v2/)
-
-No login. No app to install. Just click and go.
+Data refreshes automatically every **Monday and Friday at 1:00 AM EST**.
 
 ---
 
-## What Is This?
+## Pages
 
-The Sneaker Release Tracker is a live dashboard that shows you every major sneaker dropping in the next 30 days — with a **Hype Score** on each one so you know exactly what to line up for and what you can skip.
+### Summary
+An at-a-glance overview of the full release calendar.
 
-It automatically refreshes every **Monday and Friday at 1:00 AM EST**, pulling data from three of the biggest sneaker release calendars on the web and combining them into one clean view.
-
----
-
-## 🗂️ The Four Pages
-
-### 📊 Summary
-Your homepage. A snapshot of everything important at a glance.
-
-| Section | What It Shows |
+| Section | Description |
 |---|---|
-| **Stats Bar** | Total drops coming up, how many land this week, HIGH and EXTREME hype counts |
-| **Top Hype Releases** | The 6 hottest shoes right now, ranked |
-| **Dropping This Week** | Every shoe releasing in the next 7 days |
-| **Brand Breakdown** | Which brands are dropping the most |
-| **How Hype Is Calculated** | Exactly what goes into every shoe's score |
-| **Quick Links** | Jump to any other page, or download the Excel report |
+| **Stats Bar** | Total upcoming releases, drops this week, HIGH and EXTREME counts |
+| **Top Hype Releases** | The 6 highest-scoring releases, with hype level and sale method |
+| **Dropping This Week** | All releases within the next 7 days, with hype level and sale method |
+| **Brand Breakdown** | Five charts: releases by brand, sale method, hype level, price range, and release month |
+| **Hype Score** | Explanation of the scoring methodology and how each factor is weighted |
+| **Quick Links** | Navigation to other pages and the Excel report download |
 
 ---
 
-### 📋 Releases
-The full list. Every shoe dropping in the next 30 days, all in one place.
+### Releases
+The complete release list for the next 30 days.
 
-- **Search** by name — type anything and results filter instantly
-- **Filter** by brand (Nike, Jordan, Adidas, etc.) or hype level (LOW → EXTREME)
-- **Sort** by release date, hype score, or retail price
-- **Two views** — a card grid for browsing, or a compact list for scanning fast
-- Color-coded urgency indicators show which shoes are **dropping this week** vs. coming up soon
-
----
-
-### 🗓️ Calendar
-A traditional monthly calendar with every drop marked on the right day.
-
-- Each day shows the shoe names directly on the tile (up to 4, then "+X more")
-- Left-border color tells you the hype level at a glance
-- Click any day to open a full detail panel with images, prices, and hype scores
-- Navigate month-by-month with the prev/next arrows
+- Search by name with instant filtering
+- Filter by brand or hype level
+- Sort by release date, hype score, or retail price
+- Card grid and compact list views
+- Color-coded urgency for releases dropping this week vs. later
 
 ---
 
-### 🔥 Hype Watch
-Only the **HIGH** and **EXTREME** releases. No noise, no fillers.
+### Calendar
+A monthly calendar with every release plotted on its release date.
 
-This is your must-watch list — every shoe here has a real chance of selling out fast or carrying strong resell value. Sorted by hype score, highest first.
+- Up to 4 shoe names per day tile, with an overflow count for busier days
+- Left-border color reflects hype level
+- Click any day for a full detail panel with prices, scores, and sale method
+- Month navigation with previous/next controls
 
 ---
 
-## 🎯 Understanding Hype Scores
+### Hype Watch
+Only HIGH and EXTREME releases, sorted by score descending. Intended as a focused view for high-demand drops.
 
-Every shoe gets a score from **1 to 10**, broken into four levels:
+---
 
-| Level | Score | What It Means |
+## Hype Scores
+
+Each release is scored from 1 to 10 and assigned one of four tiers:
+
+| Level | Score | Description |
 |---|---|---|
-| 🟢 **LOW** | 1 – 3 | Widely available, shelf filler, easy cop |
-| 🔵 **MEDIUM** | 4 – 6 | Some demand, worth keeping an eye on |
-| 🟠 **HIGH** | 7 – 8 | Sell out risk is real — move fast |
-| 🔴 **EXTREME** | 9 – 10 | All-time heat. Bots, raffles, campouts |
+| **LOW** | 1–3 | Widely available, low secondary market demand |
+| **MEDIUM** | 4–6 | Moderate demand, some sell-out risk |
+| **HIGH** | 7–8 | Elevated demand, likely to sell out quickly |
+| **EXTREME** | 9–10 | Very high demand, significant resell premium expected |
 
-### How the score is calculated
+### Scoring factors
 
-Each shoe is scored on four factors, then blended into a final 1–10 score:
+**Resell Premium — 50% of score (35% when no market data is available)**
+Measures how much the shoe is expected to trade above retail. Above 300% of retail scores 10; above 100% scores 8; at or below retail scores 1. When no resell data is available, this factor is omitted and the remaining three carry more weight.
 
-**💰 Resell Premium — up to 50% of the score**
-How much the shoe is expected to trade above retail on the secondary market. A shoe sitting flat at retail scores 1/10. One flipping at 3× retail scores 10/10. When no resell data is available, this factor is omitted and the other three carry more weight.
+**Brand — 20% of score (35% without resell data)**
 
-**👟 Brand Factor — up to 20% of the score**
-Some brands carry more hype than others, full stop.
-
-| Brand | Rating |
+| Brand | Score |
 |---|---|
-| Jordan, Yeezy | 9 / 10 |
-| Nike | 7 / 10 |
-| New Balance | 6 / 10 |
-| Adidas, Converse | 5 / 10 |
-| HOKA, On | 3 / 10 |
+| Jordan, Yeezy | 9 |
+| Nike | 7 |
+| New Balance | 6 |
+| Adidas, Converse | 5 |
+| HOKA, On | 3 |
 
-**🏆 Silhouette Boost — up to 20% of the score**
-The model matters as much as the brand. An Air Jordan 1, Dunk, or Yeezy 350 scores 9/10 regardless of colorway. Mid-tier silhouettes like the Vapormax score 6/10. Everything else gets a 3/10.
+**Silhouette — 20% of score (45% without resell data)**
+High-demand models (AJ1, AJ4, Dunk, Yeezy 350, NB 990) score 9. Mid-tier models (AJ12, Vapormax, Blazer) score 6. All others score 3.
 
-**🤝 Collab Boost — up to 10% of the score**
-If the shoe is a collaboration with a high-profile name — Travis Scott, Off-White, Supreme, Sacai, Bad Bunny, and others — this factor automatically scores 10/10 and pulls the whole number up.
+**Collaboration — 10% of score (20% without resell data)**
+Shoes with a notable collaborator (Travis Scott, Off-White, Supreme, Sacai, Bad Bunny, and similar) score 10 for this factor.
 
 ---
 
-## 📥 Excel Report
+## Sale Methods
 
-Every version of the dashboard includes a downloadable `.xlsx` file with three tabs:
+Each release is classified by how it will be sold:
+
+| Method | Description |
+|---|---|
+| **Online + Retail** | Available through standard online and in-store channels |
+| **SNKRS App** | Nike SNKRS App exclusive |
+| **Confirmed App** | Adidas Confirmed App exclusive |
+| **Raffle** | Entry-based draw, selected retailers |
+| **Giveaway** | Promotional release |
+| **In-Store** | In-store only |
+| **Retail** | Standard retail, broad distribution |
+
+---
+
+## Excel Report
+
+A downloadable `.xlsx` file is generated with each data refresh and contains three tabs:
 
 | Tab | Contents |
 |---|---|
-| **All Releases** | Complete list with all fields, ready to sort and filter |
-| **High Hype Alerts** | Only HIGH and EXTREME releases |
-| **Summary** | Stats by brand and hype level |
+| **All Releases** | Complete list with all fields |
+| **High Hype Alerts** | HIGH and EXTREME releases only |
+| **Summary** | Counts by brand and hype level |
 
-Click **⬇ Excel Report** in the top-right corner of any page, or use the button on the Summary page.
+Available via the **Download Excel Report** link on any page.
 
 ---
 
-## ⚡ How It Stays Up To Date
-
-The tracker runs automatically — no one has to do anything manually.
+## Data Pipeline
 
 ```
 Every Monday & Friday at 1:00 AM EST
@@ -125,23 +124,23 @@ Every Monday & Friday at 1:00 AM EST
   (SneakerFiles, NiceKicks, SneakerBarDetroit)
         │
         ▼
-  Deduplicates & cleans the data
+  Deduplicates and normalises records
         │
         ▼
-  Calculates hype scores
+  Calculates hype scores and classifies sale method
         │
         ▼
-  Generates JSON + Excel report
+  Generates releases.json and Excel report
         │
         ▼
-  Publishes to the dashboard
+  Publishes to GitHub Pages
 ```
 
-The "Updated" timestamp in the top-right corner of the dashboard always shows the exact moment the last refresh ran.
+The "Updated" timestamp in the top-right corner of the dashboard reflects the exact time of the last refresh.
 
 ---
 
-## 🌐 Data Sources
+## Data Sources
 
 | Source | URL |
 |---|---|
@@ -149,67 +148,5 @@ The "Updated" timestamp in the top-right corner of the dashboard always shows th
 | NiceKicks | nicekicks.com/sneaker-release-dates |
 | SneakerBar Detroit | sneakerbardetroit.com/sneaker-release-dates |
 
-When the same shoe appears on multiple sites, duplicates are automatically removed and only one listing is kept.
+Duplicates across sources are removed automatically; one canonical record is kept per release.
 
----
-
-## 🏗️ How It's Built (for the curious)
-
-The project is split into two parts:
-
-**Backend (runs automatically via GitHub Actions)**
-- `scraper.py` — fetches and parses release data from three sources
-- `hype.py` — calculates hype scores using the multi-factor algorithm
-- `excel_export.py` — generates the formatted `.xlsx` download
-
-**Frontend (static website, hosted on GitHub Pages)**
-- Pure HTML, CSS, and vanilla JavaScript — no frameworks, no backend needed
-- The site loads `releases.json` and renders everything in the browser
-- Dark theme with orange accents and Inter font
-
-**Tech stack at a glance:**
-
-| Layer | Tool |
-|---|---|
-| Scraping | Python + BeautifulSoup |
-| Excel Export | openpyxl |
-| Automation | GitHub Actions (cron schedule) |
-| Hosting | GitHub Pages |
-| No database | JSON flat file |
-
----
-
-## 🗓️ Refresh Schedule
-
-| Day | Time |
-|---|---|
-| Monday | 1:00 AM EST |
-| Friday | 1:00 AM EST |
-
-You can also trigger a manual refresh from the GitHub Actions tab at any time.
-
----
-
-## 📁 Project Layout
-
-```
-Shoe-Tracker-v2/
-├── .github/workflows/
-│   └── sneaker-tracker.yml   ← automation schedule
-├── docs/                     ← the live website
-│   ├── index.html            ← Summary page
-│   ├── releases.html         ← Full releases list
-│   ├── calendar.html         ← Monthly calendar
-│   ├── hype.html             ← Hype Watch
-│   ├── assets/               ← CSS and JavaScript
-│   └── data/                 ← Auto-generated data files
-├── reports/                  ← Raw output from each scrape run
-├── scraper.py                ← Main scraper
-├── hype.py                   ← Hype score engine
-├── excel_export.py           ← Excel generator
-└── requirements.txt          ← Python dependencies
-```
-
----
-
-*Data refreshed automatically every Monday & Friday · Built for retail operations and sneaker culture*
