@@ -124,12 +124,14 @@ function initSummary(data) {
   all.forEach(r => { hypeCountMap[r.hype_level] = (hypeCountMap[r.hype_level] || 0) + 1; });
   const hypeLevels = hypeOrder.filter(l => hypeCountMap[l]);
   const hypeMax = Math.max(...hypeLevels.map(l => hypeCountMap[l]), 1);
-  document.getElementById('hype-bars').innerHTML = hypeLevels.map(level => `
+  document.getElementById('hype-bars').innerHTML = hypeLevels.length
+    ? hypeLevels.map(level => `
 <div class="brand-bar-row">
   <div class="brand-bar-label">${level}</div>
   <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(hypeCountMap[level]/hypeMax*100)}%;background:${hypeColors[level]};"></div></div>
   <div class="brand-bar-num">${hypeCountMap[level]}</div>
-</div>`).join('');
+</div>`).join('')
+    : '<div style="color:var(--text-dim);font-size:0.82rem;">No data.</div>';
 
   // Price Range Breakdown
   const priceBuckets = [
@@ -163,12 +165,14 @@ function initSummary(data) {
   });
   const monthSorted = Object.entries(monthMap).sort((a, b) => a[1].ts - b[1].ts);
   const monthMax = Math.max(...monthSorted.map(([, v]) => v.count), 1);
-  document.getElementById('month-bars').innerHTML = monthSorted.map(([label, v]) => `
+  document.getElementById('month-bars').innerHTML = monthSorted.length
+    ? monthSorted.map(([label, v]) => `
 <div class="brand-bar-row">
   <div class="brand-bar-label">${label}</div>
   <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(v.count/monthMax*100)}%"></div></div>
   <div class="brand-bar-num">${v.count}</div>
-</div>`).join('');
+</div>`).join('')
+    : '<div style="color:var(--text-dim);font-size:0.82rem;">No data.</div>';
 }
 
 // Register event listener first, then also check if data already loaded
