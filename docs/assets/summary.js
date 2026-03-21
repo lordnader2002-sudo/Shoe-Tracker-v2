@@ -116,6 +116,59 @@ function initSummary(data) {
   <div class="brand-bar-num">${count}</div>
 </div>`;
   }).join('');
+
+  // Hype Level Breakdown
+  const hypeOrder  = ['EXTREME', 'HIGH', 'MEDIUM', 'LOW'];
+  const hypeColors = { LOW: '#43c96a', MEDIUM: '#3b9eff', HIGH: '#ff9800', EXTREME: '#e91e63' };
+  const hypeCountMap = {};
+  all.forEach(r => { hypeCountMap[r.hype_level] = (hypeCountMap[r.hype_level] || 0) + 1; });
+  const hypeLevels = hypeOrder.filter(l => hypeCountMap[l]);
+  const hypeMax = Math.max(...hypeLevels.map(l => hypeCountMap[l]), 1);
+  document.getElementById('hype-bars').innerHTML = hypeLevels.map(level => `
+<div class="brand-bar-row">
+  <div class="brand-bar-label">${level}</div>
+  <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(hypeCountMap[level]/hypeMax*100)}%;background:${hypeColors[level]};"></div></div>
+  <div class="brand-bar-num">${hypeCountMap[level]}</div>
+</div>`).join('');
+
+  // Price Range Breakdown
+  const priceBuckets = [
+    { label: 'Under $100', test: p => p < 100 },
+    { label: '$100–$150',  test: p => p >= 100 && p < 150 },
+    { label: '$150–$200',  test: p => p >= 150 && p < 200 },
+    { label: '$200–$300',  test: p => p >= 200 && p < 300 },
+    { label: '$300+',      test: p => p >= 300 },
+  ];
+  const priced = all.filter(r => r.retail_price);
+  priceBuckets.forEach(b => { b.count = priced.filter(r => b.test(Number(r.retail_price))).length; });
+  const priceFilled = priceBuckets.filter(b => b.count > 0);
+  const priceMax = Math.max(...priceFilled.map(b => b.count), 1);
+  document.getElementById('price-bars').innerHTML = priceFilled.length
+    ? priceFilled.map(b => `
+<div class="brand-bar-row">
+  <div class="brand-bar-label">${b.label}</div>
+  <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(b.count/priceMax*100)}%"></div></div>
+  <div class="brand-bar-num">${b.count}</div>
+</div>`).join('')
+    : '<div style="color:var(--text-dim);font-size:0.82rem;">No price data.</div>';
+
+  // Release Month Breakdown
+  const monthMap = {};
+  all.forEach(r => {
+    if (!r.release_date) return;
+    const d   = new Date(r.release_date + 'T00:00:00');
+    const key = d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    if (!monthMap[key]) monthMap[key] = { count: 0, ts: d.getTime() };
+    monthMap[key].count++;
+  });
+  const monthSorted = Object.entries(monthMap).sort((a, b) => a[1].ts - b[1].ts);
+  const monthMax = Math.max(...monthSorted.map(([, v]) => v.count), 1);
+  document.getElementById('month-bars').innerHTML = monthSorted.map(([label, v]) => `
+<div class="brand-bar-row">
+  <div class="brand-bar-label">${label}</div>
+  <div class="brand-bar-track"><div class="brand-bar-fill" style="width:${Math.round(v.count/monthMax*100)}%"></div></div>
+  <div class="brand-bar-num">${v.count}</div>
+</div>`).join('');
 }
 
 // Register event listener first, then also check if data already loaded
