@@ -25,14 +25,14 @@ NAVY        = "1F3864"
 LIGHT_BLUE  = "C9D9EF"
 WHITE       = "FFFFFF"
 COL_LOW     = "00B050"   # green
-COL_MED     = "FFC000"   # gold
-COL_HIGH    = "FF0000"   # red
-COL_EXTREME = "C00000"   # dark red
+COL_MED     = "D4A000"   # dark amber (more contrast on white)
+COL_HIGH    = "E02000"   # vivid red-orange
+COL_EXTREME = "7030A0"   # purple — clearly distinct from HIGH
 
 # Stat card accent colours
 STAT_TOTAL  = "1F3864"   # navy
 STAT_WEEK   = "C55A11"   # burnt orange
-STAT_HYPE   = "C00000"   # dark red
+STAT_HYPE   = "7030A0"   # purple (matches EXTREME)
 STAT_PRICE  = "1F6B5C"   # teal
 
 # ---------------------------------------------------------------------------
