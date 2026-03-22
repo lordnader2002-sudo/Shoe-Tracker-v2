@@ -129,17 +129,18 @@ def _merge_fill(ws, min_row, min_col, max_row, max_col, fill):
 # Shared title block used on release sheets
 # ---------------------------------------------------------------------------
 
-def _write_release_title(ws, label: str):
+def _write_release_title(ws, label: str, sheet_name: str):
     last = get_column_letter(NUM_COLS)
-    ws.row_dimensions[1].height = 22
-    ws.row_dimensions[2].height = 18
-    c1 = ws.cell(row=1, column=1, value=f"{label} Shoe Releases")
-    c1.font = TITLE_FONT; c1.fill = NAVY_FILL; c1.alignment = CENTER
+    ws.row_dimensions[1].height = 26
+    ws.row_dimensions[2].height = 16
+    c1 = ws.cell(row=1, column=1, value=f"Sneaker Release Report — {sheet_name}")
+    c1.font = _font(14, True, color=WHITE); c1.fill = NAVY_FILL; c1.alignment = CENTER
     ws.merge_cells(f"A1:{last}1")
     for col in range(2, NUM_COLS + 1):
         ws.cell(row=1, column=col).fill = NAVY_FILL
-    c2 = ws.cell(row=2, column=1, value="Calculated Hype Level")
-    c2.font = _font(11, False, True, WHITE); c2.fill = NAVY_FILL; c2.alignment = CENTER
+    gen = datetime.now(timezone.utc).strftime("%B %d, %Y  ·  %H:%M UTC")
+    c2 = ws.cell(row=2, column=1, value=f"Generated {gen}")
+    c2.font = _font(9, False, True, WHITE); c2.fill = NAVY_FILL; c2.alignment = CENTER
     ws.merge_cells(f"A2:{last}2")
     for col in range(2, NUM_COLS + 1):
         ws.cell(row=2, column=col).fill = NAVY_FILL
@@ -186,7 +187,7 @@ def _write_release_data(ws, sneakers):
 
 def _create_release_sheet(wb, sneakers, title, sheet_name):
     ws = wb.create_sheet(sheet_name)
-    _write_release_title(ws, title)
+    _write_release_title(ws, title, sheet_name)
     _write_release_header(ws)
     if sneakers:
         _write_release_data(ws, sneakers)
@@ -592,13 +593,15 @@ def _create_charts_sheet(wb, sneakers):
     c1.set_categories(cats1)
     c1.series[0].graphicalProperties.solidFill = NAVY
     c1.series[0].graphicalProperties.line.solidFill = NAVY
-    ws.add_chart(c1, "A" + str(n_brand + 4))
+    # Fixed 2×2 grid — all charts start at row 10 (data rows 1–7 at most)
+    # Row spacing: 12 cm height ≈ 23 rows; second row of charts at row 35
+    ws.add_chart(c1, "A10")
 
     # --- Chart 2: Hype Level Distribution (pie) ---
     c2 = PieChart()
     c2.title  = "Hype Level Distribution"
     c2.style  = 10
-    c2.width  = 15
+    c2.width  = 16
     c2.height = 12
     data2 = Reference(ws, min_col=5, min_row=1, max_row=5)
     cats2 = Reference(ws, min_col=4, min_row=2, max_row=5)
@@ -609,7 +612,7 @@ def _create_charts_sheet(wb, sneakers):
         pt = DataPoint(idx=idx)
         pt.graphicalProperties.solidFill = color
         c2.series[0].dPt.append(pt)
-    ws.add_chart(c2, "J2")
+    ws.add_chart(c2, "L10")   # right of chart 1
 
     # --- Chart 3: Releases by Sale Method (horizontal bar) ---
     c3 = BarChart()
@@ -626,7 +629,7 @@ def _create_charts_sheet(wb, sneakers):
     c3.set_categories(cats3)
     c3.series[0].graphicalProperties.solidFill = "3B9EFF"
     c3.series[0].graphicalProperties.line.solidFill = "3B9EFF"
-    ws.add_chart(c3, "G" + str(n_method + 4))
+    ws.add_chart(c3, "A35")   # below chart 1
 
     # --- Chart 4: Price Range Distribution (vertical bar) ---
     c4 = BarChart()
@@ -634,7 +637,7 @@ def _create_charts_sheet(wb, sneakers):
     c4.title   = "Releases by Price Range"
     c4.y_axis.title = "Count"
     c4.style   = 10
-    c4.width   = 15
+    c4.width   = 16
     c4.height  = 12
     c4.legend  = None
     data4 = Reference(ws, min_col=11, min_row=1, max_row=6)
@@ -643,7 +646,7 @@ def _create_charts_sheet(wb, sneakers):
     c4.set_categories(cats4)
     c4.series[0].graphicalProperties.solidFill = COL_MED
     c4.series[0].graphicalProperties.line.solidFill = COL_MED
-    ws.add_chart(c4, "J16")
+    ws.add_chart(c4, "L35")   # below chart 2
 
     # Column widths for readability
     for col, w in zip("ABCDEFGHIJK", [14, 10, 3, 12, 10, 3, 18, 10, 3, 14, 10]):
