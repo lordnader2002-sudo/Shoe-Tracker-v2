@@ -51,7 +51,7 @@ if (window.RELEASES_DATA) {
 function renderCards(list) {
   const c = document.getElementById('releases-container');
   if (!list.length) {
-    c.innerHTML = '<div class="cards-grid"><div class="empty-state"><span class="empty-icon">😌</span>No HIGH or EXTREME hype releases in the next 30 days.</div></div>';
+    c.innerHTML = '<div class="cards-grid"><div class="empty-state"><span class="empty-icon">😌</span>No HIGH or EXTREME hype releases in the next 90 days.</div></div>';
     return;
   }
   if (viewMode === 'grid') {
