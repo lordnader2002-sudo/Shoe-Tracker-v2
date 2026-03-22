@@ -35,7 +35,7 @@ log = logging.getLogger(__name__)
 # Configuration
 # ---------------------------------------------------------------------------
 
-LOOKAHEAD_DAYS = 30
+LOOKAHEAD_DAYS = 90
 OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "reports", "sneaker_releases.xlsx")
 JSON_PATH   = os.path.join(os.path.dirname(__file__), "reports", "releases.json")
 

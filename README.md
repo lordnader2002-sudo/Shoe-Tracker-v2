@@ -1,6 +1,6 @@
 # Sneaker Release Tracker
 
-A live dashboard tracking major sneaker releases over the next 30 days, with automated hype scoring, sale method classification, and release calendar views.
+A live dashboard tracking major sneaker releases over the next 90 days, with automated hype scoring, sale method classification, and release calendar views.
 
 **[→ Open the Dashboard](https://lordnader2002-sudo.github.io/Shoe-Tracker-v2/)**
 
@@ -25,7 +25,7 @@ An at-a-glance overview of the full release calendar.
 ---
 
 ### Releases
-The complete release list for the next 30 days.
+The complete release list for the next 90 days.
 
 - Search by name with instant filtering
 - Filter by brand or hype level
