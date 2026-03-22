@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Releases — Sneaker Tracker</title>
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('srt-theme')||'dark')</script>
   <link rel="stylesheet" href="assets/style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 </head>
@@ -20,6 +21,7 @@
   <div class="nav-right">
     <div class="nav-meta" id="last-updated">—</div>
     <div class="nav-meta">Refreshes Mon &amp; Fri @ 01:00 EST</div>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle light / dark mode">☀️</button>
     <a class="btn-download" href="data/sneaker_releases.xlsx" download>⬇ Excel Report</a>
   </div>
 </nav>
