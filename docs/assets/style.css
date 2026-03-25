@@ -414,7 +414,7 @@ body { background:var(--bg); color:var(--text); font-family:var(--font); min-hei
 [data-theme="light"] .sm-snkrs { background:rgba(0,0,0,0.08); color:#111; border-color:rgba(0,0,0,0.25); }
 /* Confirmed App — Adidas blue */
 .sm-confirmed    { background:rgba(59,158,255,0.15); color:#3b9eff; border-color:rgba(59,158,255,0.35); }
-/* Raffle — orange/amber heat */
+/* Raffle/Dropship — orange/amber heat */
 .sm-raffle       { background:rgba(255,152,0,0.15);  color:#ff9800; border-color:rgba(255,152,0,0.4); }
 /* Giveaway — green */
 .sm-giveaway     { background:rgba(67,201,106,0.15); color:#43c96a; border-color:rgba(67,201,106,0.35); }

@@ -68,7 +68,7 @@ HYPE_DISPLAY = {
 SALE_METHOD_COLORS = {
     "SNKRS App":       "FF6B35",
     "Confirmed App":   "3B9EFF",
-    "Raffle":          "FF9800",
+    "Raffle/Dropship":          "FF9800",
     "Giveaway":        "43C96A",
     "Online":          "00BCD4",
     "Online + Retail": "888888",

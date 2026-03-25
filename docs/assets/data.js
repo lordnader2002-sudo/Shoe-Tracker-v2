@@ -117,7 +117,7 @@ window.SRT = {
     const map = {
       'SNKRS App':       'sm-snkrs',
       'Confirmed App':   'sm-confirmed',
-      'Raffle':          'sm-raffle',
+      'Raffle/Dropship': 'sm-raffle',
       'Giveaway':        'sm-giveaway',
       'Online':          'sm-online',
       'Online + Retail': 'sm-online-retail',

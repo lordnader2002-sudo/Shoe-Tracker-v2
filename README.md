@@ -93,7 +93,7 @@ Each release is classified by how it will be sold:
 | **Online + Retail** | Available through standard online and in-store channels |
 | **SNKRS App** | Nike SNKRS App exclusive |
 | **Confirmed App** | Adidas Confirmed App exclusive |
-| **Raffle** | Entry-based draw, selected retailers |
+| **Raffle/Dropship** | Entry-based draw, selected retailers |
 | **Giveaway** | Promotional release |
 | **In-Store** | In-store only |
 | **Retail** | Standard retail, broad distribution |

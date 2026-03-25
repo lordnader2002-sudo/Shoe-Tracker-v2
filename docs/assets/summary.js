@@ -121,7 +121,7 @@ function initSummary(data) {
   const smColorMap = {
     'SNKRS App':       'rgba(255,255,255,0.72)',
     'Confirmed App':   '#3b9eff',
-    'Raffle':          '#ff9800',
+    'Raffle/Dropship': '#ff9800',
     'Giveaway':        '#43c96a',
     'Online':          '#00bcd4',
     'Online + Retail': '#a78bfa',
