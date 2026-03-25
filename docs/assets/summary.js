@@ -77,6 +77,33 @@ function initSummary(data) {
     }).join('');
   }
 
+  // New This Week (releases discovered in the past 7 days)
+  const newEl = document.getElementById('new-releases-list');
+  const generatedAt = data && data.generated_at ? new Date(data.generated_at) : new Date();
+  const cutoff = new Date(generatedAt);
+  cutoff.setDate(cutoff.getDate() - 7);
+  const newReleases = all
+    .filter(r => r.date_added && new Date(r.date_added + 'T00:00:00') >= cutoff)
+    .sort((a, b) => new Date(b.date_added) - new Date(a.date_added) || b.hype_score - a.hype_score)
+    .slice(0, 8);
+  if (!newReleases.length) {
+    newEl.innerHTML = '<div style="color:var(--text-dim);font-size:0.82rem;">No new releases discovered this week.</div>';
+  } else {
+    newEl.innerHTML = newReleases.map(r => {
+      const smCls = window.SRT.saleClass(r.sale_method || 'Online + Retail');
+      const sm    = r.sale_method || 'Online + Retail';
+      return `
+<div class="new-release-row">
+  <span class="nr-name" title="${r.name}">${r.name}</span>
+  <div class="nr-meta">
+    <span class="sale-badge ${smCls}">${sm}</span>
+    <span class="hype-badge hype-${r.hype_level}">${r.hype_level}</span>
+    ${window.SRT.daysChip(r.days_until_release)}
+  </div>
+</div>`;
+    }).join('');
+  }
+
   // Brand Breakdown
   const brandMap = {};
   all.forEach(r => { brandMap[r.brand] = (brandMap[r.brand] || 0) + 1; });
