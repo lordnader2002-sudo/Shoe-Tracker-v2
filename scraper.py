@@ -596,7 +596,7 @@ def detect_sale_method(name: str, brand: str, hype_level: str) -> str:
 
     # Explicit keywords in the name always take priority
     if "raffle" in t:
-        return "Raffle"
+        return "Raffle/Dropship"
     if "giveaway" in t:
         return "Giveaway"
     if "snkrs" in t:
@@ -611,7 +611,7 @@ def detect_sale_method(name: str, brand: str, hype_level: str) -> str:
     # Collab shoes at HIGH/EXTREME hype → typically raffled
     is_collab = any(kw in t for kw in _COLLAB_NAMES)
     if is_collab and hype_level in ("EXTREME", "HIGH"):
-        return "Raffle"
+        return "Raffle/Dropship"
 
     # Conservative brand defaults — most releases (even high-hype) go to retail.
     # "SNKRS App" / "Confirmed App" are only set when the article confirms it.
