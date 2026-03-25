@@ -757,18 +757,36 @@ def main():
     json_path = os.path.join(os.path.dirname(__file__), "docs", "data", "releases.json")
     os.makedirs(os.path.dirname(json_path), exist_ok=True)
 
+    # Load existing JSON to preserve date_added for known releases
+    existing_date_added: dict[str, str] = {}
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, encoding="utf-8") as _f:
+                _existing = json.load(_f)
+            for _r in _existing.get("releases", []):
+                _key = re.sub(r"[^a-z0-9]", "", _r.get("name", "").lower())
+                if _key and _r.get("date_added"):
+                    existing_date_added[_key] = _r["date_added"]
+        except Exception:
+            pass
+
+    today_str = today.strftime("%Y-%m-%d")
+
     def _serialize(obj):
         if isinstance(obj, (datetime, date)):
             return obj.strftime("%Y-%m-%d")
         return str(obj)
 
+    def _build_release(s):
+        key = re.sub(r"[^a-z0-9]", "", s.get("name", "").lower())
+        row = {k: _serialize(v) if isinstance(v, (datetime, date)) else v for k, v in s.items()}
+        row["date_added"] = existing_date_added.get(key, today_str)
+        return row
+
     json_data = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total": len(filtered),
-        "releases": [
-            {k: _serialize(v) if isinstance(v, (datetime, date)) else v for k, v in s.items()}
-            for s in filtered
-        ],
+        "releases": [_build_release(s) for s in filtered],
     }
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(json_data, f, indent=2, default=str)
