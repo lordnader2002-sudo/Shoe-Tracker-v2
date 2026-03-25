@@ -94,6 +94,7 @@ function initSummary(data) {
       const sm    = r.sale_method || 'Online + Retail';
       return `
 <div class="new-release-row">
+  <span class="nr-date">${window.SRT.formatDateShort(r.release_date)}</span>
   <span class="nr-name" title="${r.name}">${r.name}</span>
   <div class="nr-meta">
     <span class="sale-badge ${smCls}">${sm}</span>
