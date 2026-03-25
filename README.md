@@ -4,7 +4,7 @@ A live dashboard tracking major sneaker releases over the next 90 days, with aut
 
 **[→ Open the Dashboard](https://lordnader2002-sudo.github.io/Shoe-Tracker-v2/)**
 
-Data refreshes automatically every **Monday and Friday at 1:00 AM EST**.
+Data refreshes automatically **every day at 1:00 AM EST**.
 
 ---
 
@@ -117,7 +117,7 @@ Available via the **Download Excel Report** link on any page.
 ## Data Pipeline
 
 ```
-Every Monday & Friday at 1:00 AM EST
+Every day at 1:00 AM EST
         │
         ▼
   Scrapes 3 sneaker sites
