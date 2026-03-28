@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T04:50:06Z",
+  "generated_at": "2026-03-28T07:59:38Z",
   "total": 93,
   "releases": [
     {
@@ -849,6 +849,24 @@
       "date_added": "2026-03-25"
     },
     {
+      "name": "Nike Air Diamond Turf 2 \u201cRoyals\u201d",
+      "brand": "Nike",
+      "release_date": "2026-04-30",
+      "retail_price": 170.0,
+      "colorway": "N/A",
+      "style_code": "N/A",
+      "source": "SneakerFiles",
+      "source_url": "https://www.sneakerfiles.com/nike-air-diamond-turf-2-royals/",
+      "days_until_release": 33,
+      "estimated_market_value": null,
+      "silhouette": "",
+      "image_url": "https://www.sneakerfiles.com/wp-content/uploads/2026/03/nike-air-diamond-turf-2-royals-II7080-100.jpg",
+      "hype_score": 4,
+      "hype_level": "MEDIUM",
+      "sale_method": "Online + Retail",
+      "date_added": "2026-03-28"
+    },
+    {
       "name": "Air Jordan 6 \u201cCap and Gown\u201d",
       "brand": "Jordan",
       "release_date": "2026-04-30",
@@ -881,24 +899,6 @@
       "image_url": "https://www.sneakerfiles.com/wp-content/uploads/2026/03/air-jordan-6-sail-neutral-olive-IR2009-133.jpg",
       "hype_score": 7,
       "hype_level": "HIGH",
-      "sale_method": "Online + Retail",
-      "date_added": "2026-03-28"
-    },
-    {
-      "name": "Nike Air Diamond Turf 2 \u201cRoyals\u201d",
-      "brand": "Nike",
-      "release_date": "2026-04-30",
-      "retail_price": 170.0,
-      "colorway": "N/A",
-      "style_code": "N/A",
-      "source": "SneakerFiles",
-      "source_url": "https://www.sneakerfiles.com/nike-air-diamond-turf-2-royals/",
-      "days_until_release": 33,
-      "estimated_market_value": null,
-      "silhouette": "",
-      "image_url": "https://www.sneakerfiles.com/wp-content/uploads/2026/03/nike-air-diamond-turf-2-royals-II7080-100.jpg",
-      "hype_score": 4,
-      "hype_level": "MEDIUM",
       "sale_method": "Online + Retail",
       "date_added": "2026-03-28"
     },
@@ -1497,6 +1497,24 @@
       "date_added": "2026-03-25"
     },
     {
+      "name": "Patta x Nike Cryoshot Mercurial",
+      "brand": "Nike",
+      "release_date": "2026-06-13",
+      "retail_price": 210.0,
+      "colorway": "N/A",
+      "style_code": "N/A",
+      "source": "SneakerFiles",
+      "source_url": "https://www.sneakerfiles.com/patta-nike-cryoshot-mercurial/",
+      "days_until_release": 77,
+      "estimated_market_value": null,
+      "silhouette": "",
+      "image_url": "https://www.sneakerfiles.com/wp-content/uploads/2025/11/patta-nike-cryoshot-mercurial-IM0589-001.jpg",
+      "hype_score": 6,
+      "hype_level": "MEDIUM",
+      "sale_method": "SNKRS App",
+      "date_added": "2026-03-25"
+    },
+    {
       "name": "Patta x Nike Air Max 1 \u201987",
       "brand": "Nike",
       "release_date": "2026-06-13",
@@ -1530,24 +1548,6 @@
       "hype_score": 4,
       "hype_level": "MEDIUM",
       "sale_method": "Online + Retail",
-      "date_added": "2026-03-25"
-    },
-    {
-      "name": "Patta x Nike Cryoshot Mercurial",
-      "brand": "Nike",
-      "release_date": "2026-06-13",
-      "retail_price": 210.0,
-      "colorway": "N/A",
-      "style_code": "N/A",
-      "source": "SneakerFiles",
-      "source_url": "https://www.sneakerfiles.com/patta-nike-cryoshot-mercurial/",
-      "days_until_release": 77,
-      "estimated_market_value": null,
-      "silhouette": "",
-      "image_url": "https://www.sneakerfiles.com/wp-content/uploads/2025/11/patta-nike-cryoshot-mercurial-IM0589-001.jpg",
-      "hype_score": 6,
-      "hype_level": "MEDIUM",
-      "sale_method": "SNKRS App",
       "date_added": "2026-03-25"
     },
     {
