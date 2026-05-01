@@ -75,18 +75,6 @@ function SummaryView({ releases, onOpen, watchlist, toggleWatch, navigate }) {
         </div>
       </div>
 
-      <div className="section">
-        <div className="section-head">
-          <div className="section-title">
-            Top hype <span className="section-title-num">— scored 7+</span>
-          </div>
-          <button className="section-action" onClick={() => navigate("hype")}>View all <Icons.ChevR size={12} /></button>
-        </div>
-        <div className="grid-3">
-          {topHype.map(r => <ReleaseCard key={r.id} r={r} onOpen={onOpen} watchlist={watchlist} toggleWatch={toggleWatch} />)}
-        </div>
-      </div>
-
       <div className="grid-2">
         <div className="card">
           <div className="section-head" style={{ marginBottom: 14 }}>
@@ -115,6 +103,18 @@ function SummaryView({ releases, onOpen, watchlist, toggleWatch, navigate }) {
         ) : (
           <ReleaseList rows={droppingToday} view="list" onOpen={onOpen} watchlist={watchlist} toggleWatch={toggleWatch} />
         )}
+      </div>
+
+      <div className="section">
+        <div className="section-head">
+          <div className="section-title">
+            Top hype <span className="section-title-num">— scored 7+</span>
+          </div>
+          <button className="section-action" onClick={() => navigate("hype")}>View all <Icons.ChevR size={12} /></button>
+        </div>
+        <div className="grid-3">
+          {topHype.map(r => <ReleaseCard key={r.id} r={r} onOpen={onOpen} watchlist={watchlist} toggleWatch={toggleWatch} />)}
+        </div>
       </div>
     </div>
   );
