@@ -44,7 +44,8 @@ function SummaryView({ releases, onOpen, watchlist, toggleWatch, navigate }) {
             <span style={{ color: "var(--muted)", fontWeight: 400, fontSize: 26 }}>tracked across {Object.keys(window.BRAND_META).length} brands</span>
           </h1>
         </div>
-        <div style={{ display: "flex", gap: 8 }}>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <a className="btn ghost" href={window.EXCEL_PATH} download><Icons.External size={14} /> Excel report</a>
           <button className="btn ghost" onClick={() => navigate("calendar")}><Icons.Calendar size={14} /> Calendar</button>
           <button className="btn primary" onClick={() => navigate("hype")}><Icons.Flame size={14} /> Hype Watch</button>
         </div>
@@ -481,8 +482,9 @@ function DetailModal({ release: r, onClose, watchlist, toggleWatch }) {
       <div className="modal" onClick={e => e.stopPropagation()} style={{ position: "relative" }}>
         <button className="icon-btn modal-close" onClick={onClose}><Icons.Close size={14} /></button>
         <div className="modal-hero">
-          <div className="modal-img">
-            <span className="modal-img-label">{r.style_code}</span>
+          <div className={"modal-img" + (r.image_url ? " has-img" : "")}>
+            {r.image_url && <img src={r.image_url} alt={r.name} onError={(e) => e.currentTarget.parentElement.classList.remove("has-img")} />}
+            {r.style_code && <span className="modal-img-label">{r.style_code}</span>}
           </div>
           <div className="modal-info">
             <div className="modal-meta-row">
@@ -491,7 +493,7 @@ function DetailModal({ release: r, onClose, watchlist, toggleWatch }) {
               <HypeBadge level={r.hype_level} score={r.hype_score} />
             </div>
             <div className="modal-name">{r.name}</div>
-            <div className="release-colorway">{r.colorway}</div>
+            {r.colorway && <div className="release-colorway">{r.colorway}</div>}
             <div className="modal-pricing">
               <div className="price-box">
                 <div className="price-label">Retail</div>
@@ -524,9 +526,9 @@ function DetailModal({ release: r, onClose, watchlist, toggleWatch }) {
             <div className="page-eyebrow" style={{ marginBottom: 12 }}>Release details</div>
             <dl className="fact-list">
               <dt>Release date</dt><dd>{fmtFullDate(r.release_date)}</dd>
-              <dt>Style code</dt><dd className="mono">{r.style_code}</dd>
-              <dt>Colorway</dt><dd>{r.colorway}</dd>
-              <dt>Sale method</dt><dd>{r.sale_method}</dd>
+              <dt>Style code</dt><dd className="mono">{r.style_code || "—"}</dd>
+              <dt>Colorway</dt><dd>{r.colorway || "—"}</dd>
+              <dt>Sale method</dt><dd>{r.sale_method || "—"}</dd>
               <dt>Source</dt><dd><SourceLink r={r} /></dd>
             </dl>
           </div>

@@ -17,6 +17,9 @@ function App() {
   const [watchlist, setWatchlist] = useStateA(() => new Set());
   const [openRel, setOpenRel] = useStateA(null);
   const [toasts, setToasts] = useStateA([]);
+  const [releases, setReleases] = useStateA(null);
+  const [generatedAt, setGeneratedAt] = useStateA(window.GENERATED_AT);
+  const [loadError, setLoadError] = useStateA(null);
 
   useEffectA(() => {
     document.documentElement.setAttribute("data-theme", tweaks.theme);
@@ -25,16 +28,49 @@ function App() {
 
   useEffectA(() => {setView(tweaks.defaultView || "grid");}, [tweaks.defaultView]);
 
-  const releases = window.RELEASES;
+  useEffectA(() => {
+    let cancelled = false;
+    window.loadReleases()
+      .then(({ releases, generated_at }) => {
+        if (cancelled) return;
+        setReleases(releases);
+        setGeneratedAt(generated_at);
+      })
+      .catch((err) => { if (!cancelled) setLoadError(err.message || String(err)); });
+    return () => { cancelled = true; };
+  }, []);
 
-  const counts = useMemoA(() => ({
-    summary: releases.length,
-    releases: releases.length,
-    calendar: releases.length,
-    hype: releases.filter((r) => r.hype_level === "HIGH" || r.hype_level === "EXTREME").length,
-    brands: Object.keys(window.BRAND_META).length,
-    watchlist: watchlist.size
-  }), [releases, watchlist]);
+  const counts = useMemoA(() => {
+    const list = releases || [];
+    return {
+      summary: list.length,
+      releases: list.length,
+      calendar: list.length,
+      hype: list.filter((r) => r.hype_level === "HIGH" || r.hype_level === "EXTREME").length,
+      brands: Object.keys(window.BRAND_META).length,
+      watchlist: watchlist.size
+    };
+  }, [releases, watchlist]);
+
+  if (loadError) {
+    return (
+      <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24, background: "var(--bg)", color: "var(--text)" }}>
+        <div className="empty" style={{ maxWidth: 480 }}>
+          <div className="e-title">Couldn't load release data</div>
+          <div className="muted-text" style={{ marginBottom: 12 }}>{loadError}</div>
+          <div className="muted-text" style={{ fontFamily: "var(--font-mono)", fontSize: 11 }}>
+            Run the scraper to generate <code>reports/releases.json</code>.
+          </div>
+        </div>
+      </div>);
+  }
+
+  if (!releases) {
+    return (
+      <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", background: "var(--bg)", color: "var(--muted)", fontFamily: "var(--font-mono)", fontSize: 12, letterSpacing: ".08em", textTransform: "uppercase" }}>
+        Loading release data…
+      </div>);
+  }
 
   function toggleWatch(id) {
     setWatchlist((prev) => {
@@ -108,7 +144,7 @@ function App() {
 
         <div className="sidebar-footer">
           <div className="sidebar-meta">
-            <div className="sidebar-meta-row"><span>Last sync</span><span className="v">{window.GENERATED_AT.split(",")[1]?.trim() || "now"}</span></div>
+            <div className="sidebar-meta-row"><span>Last sync</span><span className="v">{generatedAt.split(",")[1]?.trim() || generatedAt}</span></div>
             <div className="sidebar-meta-row"><span>Sources</span><span className="v">3 active</span></div>
             <div className="sidebar-meta-row"><span>Refresh</span><span className="v">Daily 1AM EST</span></div>
           </div>
@@ -118,7 +154,7 @@ function App() {
       {/* ─── Main ─── */}
       <main className="main">
         <header className="topbar">
-          <div className="topbar-title">{pageTitleMap[page]}<span className="topbar-sub">/ {window.GENERATED_AT}</span></div>
+          <div className="topbar-title">{pageTitleMap[page]}<span className="topbar-sub">/ {generatedAt}</span></div>
           <div className="topbar-search">
             <span className="icon-search"><Icons.Search size={14} /></span>
             <input

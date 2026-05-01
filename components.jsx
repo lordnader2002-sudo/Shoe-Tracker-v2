@@ -161,8 +161,9 @@ function Sparkline({ values, w = 64, h = 22 }) {
 function ReleaseCard({ r, onOpen, watchlist, toggleWatch }) {
   return (
     <div className="release-card" onClick={() => onOpen(r)}>
-      <div className="release-img">
-        <span className="release-img-label">{r.style_code}</span>
+      <div className={"release-img" + (r.image_url ? " has-img" : "")}>
+        {r.image_url && <img src={r.image_url} alt={r.name} loading="lazy" onError={(e) => e.currentTarget.parentElement.classList.remove("has-img")} />}
+        {r.style_code && <span className="release-img-label">{r.style_code}</span>}
         <WatchBtn id={r.id} watchlist={watchlist} toggleWatch={toggleWatch} />
       </div>
       <div className="release-body">
@@ -173,7 +174,7 @@ function ReleaseCard({ r, onOpen, watchlist, toggleWatch }) {
           <SourceLink r={r} compact />
         </div>
         <div className="release-name">{r.name}</div>
-        <div className="release-colorway">{r.colorway}</div>
+        {r.colorway && <div className="release-colorway">{r.colorway}</div>}
         <div className="release-foot">
           <div>
             <div className="release-price">
@@ -203,13 +204,15 @@ function ReleaseRow({ r, onOpen, watchlist, toggleWatch }) {
   const hue = brandHue(r.brand);
   return (
     <div className="release-row" onClick={() => onOpen(r)}>
-      <div className="row-thumb" style={{ borderLeft: `3px solid oklch(0.75 0.16 ${hue})` }}>
-        <span className="row-thumb-init">{brandInitials(r.brand)}</span>
+      <div className={"row-thumb" + (r.image_url ? " has-img" : "")} style={{ borderLeft: `3px solid oklch(0.75 0.16 ${hue})` }}>
+        {r.image_url
+          ? <img src={r.image_url} alt={r.name} loading="lazy" onError={(e) => e.currentTarget.parentElement.classList.remove("has-img")} />
+          : <span className="row-thumb-init">{brandInitials(r.brand)}</span>}
       </div>
       <div className="row-name">
         <div className="n">{r.name}</div>
         <div className="c">
-          <span>{r.colorway} · <span style={{ opacity: 0.7 }}>{r.style_code}</span></span>
+          <span>{[r.colorway, r.style_code].filter(Boolean).join(" · ") || "—"}</span>
           <SourceLink r={r} compact />
         </div>
       </div>
@@ -240,7 +243,9 @@ function ReleaseRow({ r, onOpen, watchlist, toggleWatch }) {
 function FeedRow({ r, onOpen, watchlist, toggleWatch }) {
   return (
     <div className="feed-row" onClick={() => onOpen(r)}>
-      <div className="feed-img"></div>
+      <div className={"feed-img" + (r.image_url ? " has-img" : "")}>
+        {r.image_url && <img src={r.image_url} alt={r.name} loading="lazy" onError={(e) => e.currentTarget.parentElement.classList.remove("has-img")} />}
+      </div>
       <div className="feed-body">
         <div className="feed-meta">
           <BrandChip brand={r.brand} />
@@ -252,7 +257,7 @@ function FeedRow({ r, onOpen, watchlist, toggleWatch }) {
           <SourceLink r={r} />
         </div>
         <div className="feed-name">{r.name}</div>
-        <div className="release-colorway">{r.colorway} · {r.style_code}</div>
+        {(r.colorway || r.style_code) && <div className="release-colorway">{[r.colorway, r.style_code].filter(Boolean).join(" · ")}</div>}
         <div className="feed-foot">
           <div className="release-price"><span className="currency">$</span>{r.retail_price?.toFixed(0) ?? "TBD"}</div>
           {r.estimated_market_value && (
