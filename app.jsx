@@ -154,7 +154,7 @@ function App() {
 
         <div className="sidebar-footer">
           <div className="sidebar-meta">
-            <div className="sidebar-meta-row"><span>Last sync</span><span className="v">{generatedAt.split(",")[1]?.trim() || generatedAt}</span></div>
+            <div className="sidebar-meta-row"><span>Last sync</span><span className="v">{generatedAt}</span></div>
             <div className="sidebar-meta-row"><span>Sources</span><span className="v">3 active</span></div>
             <div className="sidebar-meta-row"><span>Refresh</span><span className="v">Daily 1AM EST</span></div>
           </div>
