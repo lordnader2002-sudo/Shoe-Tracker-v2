@@ -32,7 +32,7 @@ function SummaryView({ releases, onOpen, watchlist, toggleWatch, navigate }) {
   const topHype = useMemo(() =>
     [...releases].sort((a, b) => b.hype_score - a.hype_score || a.days_until_release - b.days_until_release).slice(0, 6),
   [releases]);
-  const droppingThisWeek = useMemo(() => releases.filter(r => r.days_until_release <= 7).slice(0, 5), [releases]);
+  const droppingToday = useMemo(() => releases.filter(r => r.days_until_release === 0), [releases]);
 
   return (
     <div className="page" data-screen-label="01 Summary">
@@ -75,18 +75,6 @@ function SummaryView({ releases, onOpen, watchlist, toggleWatch, navigate }) {
         </div>
       </div>
 
-      <div className="section">
-        <div className="section-head">
-          <div className="section-title">
-            Top hype <span className="section-title-num">— scored 7+</span>
-          </div>
-          <button className="section-action" onClick={() => navigate("hype")}>View all <Icons.ChevR size={12} /></button>
-        </div>
-        <div className="grid-3">
-          {topHype.map(r => <ReleaseCard key={r.id} r={r} onOpen={onOpen} watchlist={watchlist} toggleWatch={toggleWatch} />)}
-        </div>
-      </div>
-
       <div className="grid-2">
         <div className="card">
           <div className="section-head" style={{ marginBottom: 14 }}>
@@ -104,10 +92,29 @@ function SummaryView({ releases, onOpen, watchlist, toggleWatch, navigate }) {
 
       <div className="section">
         <div className="section-head">
-          <div className="section-title">Dropping this week <span className="section-title-num">— next 7 days</span></div>
+          <div className="section-title">Today's releases <span className="section-title-num">— {droppingToday.length} {droppingToday.length === 1 ? "drop" : "drops"}</span></div>
           <button className="section-action" onClick={() => navigate("releases")}>All releases <Icons.ChevR size={12} /></button>
         </div>
-        <ReleaseList rows={droppingThisWeek} view="list" onOpen={onOpen} watchlist={watchlist} toggleWatch={toggleWatch} />
+        {droppingToday.length === 0 ? (
+          <div className="empty">
+            <div className="e-title">No drops today</div>
+            <div className="muted-text">Check the calendar for what's next.</div>
+          </div>
+        ) : (
+          <ReleaseList rows={droppingToday} view="list" onOpen={onOpen} watchlist={watchlist} toggleWatch={toggleWatch} />
+        )}
+      </div>
+
+      <div className="section">
+        <div className="section-head">
+          <div className="section-title">
+            Top hype <span className="section-title-num">— scored 7+</span>
+          </div>
+          <button className="section-action" onClick={() => navigate("hype")}>View all <Icons.ChevR size={12} /></button>
+        </div>
+        <div className="grid-3">
+          {topHype.map(r => <ReleaseCard key={r.id} r={r} onOpen={onOpen} watchlist={watchlist} toggleWatch={toggleWatch} />)}
+        </div>
       </div>
     </div>
   );

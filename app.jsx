@@ -11,7 +11,11 @@ function App() {
   } /*EDITMODE-END*/;
 
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [page, setPage] = useStateA("summary");
+  const [page, setPage] = useStateA(() => {
+    const valid = ["summary", "releases", "calendar", "hype", "brands", "watchlist"];
+    const h = (window.location.hash || "").replace(/^#/, "");
+    return valid.includes(h) ? h : "summary";
+  });
   const [search, setSearch] = useStateA("");
   const [view, setView] = useStateA(tweaks.defaultView || "grid");
   const [watchlist, setWatchlist] = useStateA(() => new Set());
@@ -92,7 +96,13 @@ function App() {
     setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 2200);
   }
 
-  const navigate = (p) => {setPage(p);window.scrollTo({ top: 0, behavior: "smooth" });};
+  const navigate = (p) => {
+    setPage(p);
+    if (window.location.hash !== "#" + p) {
+      history.replaceState(null, "", "#" + p);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const NAV = [
   { k: "summary", label: "Summary", icon: Icons.Sparkles },
@@ -144,7 +154,7 @@ function App() {
 
         <div className="sidebar-footer">
           <div className="sidebar-meta">
-            <div className="sidebar-meta-row"><span>Last sync</span><span className="v">{generatedAt.split(",")[1]?.trim() || generatedAt}</span></div>
+            <div className="sidebar-meta-row"><span>Last sync</span><span className="v">{generatedAt}</span></div>
             <div className="sidebar-meta-row"><span>Sources</span><span className="v">3 active</span></div>
             <div className="sidebar-meta-row"><span>Refresh</span><span className="v">Daily 1AM EST</span></div>
           </div>

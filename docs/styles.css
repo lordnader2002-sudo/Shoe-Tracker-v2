@@ -259,18 +259,18 @@ button { font-family: inherit; cursor: pointer; }
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 }
 .sidebar-meta-row {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  flex-direction: column;
+  gap: 2px;
   font-family: var(--font-mono);
   font-size: 10.5px;
   color: var(--muted);
   letter-spacing: 0.02em;
 }
-.sidebar-meta-row .v { color: var(--text-2); }
+.sidebar-meta-row .v { color: var(--text-2); line-height: 1.35; }
 
 /* ── Main column ──────────────────────────────────────────── */
 

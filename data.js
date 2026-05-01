@@ -48,7 +48,18 @@
   }
 
   function formatGeneratedAt(iso) {
-    const fmt = (d) => d.toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit", hour12: true });
+    // "Friday, May 1, 2026 at 0216 ET" — anchored to America/New_York
+    // since the pipeline refreshes daily at 1:00 AM EST.
+    const fmt = (d) => {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        weekday: "long", month: "long", day: "numeric", year: "numeric",
+        hour: "2-digit", minute: "2-digit", hour12: false,
+        timeZone: "America/New_York",
+      }).formatToParts(d);
+      const get = (t) => parts.find((p) => p.type === t)?.value || "";
+      let hh = get("hour"); if (hh === "24") hh = "00";
+      return `${get("weekday")}, ${get("month")} ${get("day")}, ${get("year")} at ${hh}${get("minute")} ET`;
+    };
     if (!iso) return fmt(new Date());
     const d = new Date(iso);
     return isNaN(d.getTime()) ? iso : fmt(d);
